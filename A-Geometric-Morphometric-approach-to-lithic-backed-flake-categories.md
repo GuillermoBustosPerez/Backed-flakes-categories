@@ -56,6 +56,8 @@ bipolar/on anvil flakes ([Callahan, 1996](#ref-callahan_bipolar_1996);
 [Hayden, 1980](#ref-hayden_confusion_1980)) (Callahan, 1996; Hayden,
 1980);
 
+## 7. References
+
 <div id="refs" class="references csl-bib-body hanging-indent">
 
 <div id="ref-callahan_bipolar_1996" class="csl-entry">
