@@ -133,11 +133,11 @@ PCA_Coord <- left_join(PCA_Coord, Att, by = "ID")
 ``` r
 # Count artifact type per class 
 PCA_Coord %>% group_by(ARTIFACTTYPE) %>% 
-  summarise(COunt = n())
+  summarise(Count = n())
 ```
 
     ## # A tibble: 3 x 2
-    ##   ARTIFACTTYPE                COunt
+    ##   ARTIFACTTYPE                Count
     ##   <chr>                       <int>
     ## 1 Core Edge Flake                30
     ## 2 Core edge with limited back    93
@@ -169,6 +169,351 @@ PCA_Coord %>% group_by(ARTIFACTTYPE) %>%
 ```
 
 ![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Cortex%20distribution%20per%20artefact%20type-1.png)
+
+### 2.2 Geometric Morphometrics
+
+### 2.3 Machine Learning and resampling techniques
+
+### 2.4 Pre processing and training the models
+
+``` r
+#### Pre processing data
+# Change syntax of output
+PCA_Coord <- PCA_Coord %>% mutate(
+  New_Art.Type = 
+    case_when(
+      ARTIFACTTYPE == "Core Edge Flake" ~ "ED",
+      ARTIFACTTYPE == "Core edge with limited back" ~ "EDlb",
+      ARTIFACTTYPE == "pseudo-Levallois Point" ~ "p_Lp"
+    ))
+
+# Set factors
+PCA_Coord$New_Art.Type <- factor(
+  PCA_Coord$New_Art.Type, 
+  levels = c("ED", "EDlb", "p_Lp"),
+  labels = c("ED", "EDlb", "p_Lp"))
+```
+
+``` r
+# Set formula and validation
+# Formula
+frmla <- as.formula(
+  paste("New_Art.Type", paste(colnames(PCA_Coord[,1:25]), collapse = " + "), sep = " ~ "))
+
+# Validation
+trControl <- trainControl(method  = "repeatedcv",
+                          verboseIter = TRUE,
+                          number  = 10,
+                          repeats = 50,
+                          savePredictions = "final",
+                          classProbs = TRUE)
+```
+
+As mentioned previously, this is a unbalanced data set. Balancing to
+train the models correctly is done using the `groupdata2` package using
+the parameter **“mean”** for size. This means that each group will be up
+or down sampled to the result of dividing data set size between number
+of groups (46.3333333).
+
+``` r
+#### Train the models
+
+# Set tibble in which results of each model will be stored
+All_Results <- tibble()
+
+# LDA model training 
+repeat {
+  # Balance the dataset
+  Balanced <- groupdata2::balance(PCA_Coord,
+                                  size = "mean",
+                                  cat_col = "New_Art.Type")
+  # Train the model
+  Model <- train(frmla, 
+                     Balanced,
+                     method = "lda",
+                     trControl = trControl,
+                     preProc = c("center", "scale"),
+                     metric = "Accuracy",
+                     importance = 'impurity')
+  
+  # Bind model results and type of model
+  All_Results <- rbind(All_Results, 
+                       tibble(
+                         Accuracy = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[1]],
+                         Kappa = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[2]],
+                         AccuracyLower  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[3]],
+                         AccuracyUpper  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[4]],
+                         AccuracyNull = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[5]],
+                         Model = "LDA"))
+  
+  x = nrow(All_Results)
+  if (x >= 30){
+    break
+  }
+}
+
+# Knn model training 
+repeat {
+  Balanced <- groupdata2::balance(PCA_Coord,
+                                  size = "mean",
+                                  cat_col = "New_Art.Type")
+  
+  Model <- train(frmla, 
+                     Balanced,
+                     method = "knn",
+                     trControl = trControl,
+                     preProc = c("center", "scale"),
+                     tuneGrid   = expand.grid(k = 2:30),
+                     metric = "Accuracy")
+  
+  All_Results <- rbind(All_Results, 
+                       tibble(
+                         Accuracy = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[1]],
+                         Kappa = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[2]],
+                         AccuracyLower  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[3]],
+                         AccuracyUpper  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[4]],
+                         AccuracyNull = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[5]],
+                         Model = "KNN"))
+  
+  x = nrow(All_Results)
+  if (x >= 60){
+    break
+  }
+}
+
+# Logistic regression 
+repeat {
+  Balanced <- groupdata2::balance(PCA_Coord,
+                                  size = "mean",
+                                  cat_col = "New_Art.Type")
+  
+  Model <- train(frmla, 
+                 Balanced,
+                 method = "glmnet",
+                 family = 'multinomial',
+                 trControl = trControl,
+                 preProc = c("center", "scale"), 
+                 metric = "Accuracy")
+  
+  All_Results <- rbind(All_Results, 
+                       tibble(
+                         Accuracy = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[1]],
+                         Kappa = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[2]],
+                         AccuracyLower  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[3]],
+                         AccuracyUpper  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[4]],
+                         AccuracyNull = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[5]],
+                         Model = "Log. Reg."))
+  
+  x = nrow(All_Results)
+  if (x >= 90){
+    break
+  }
+}
+
+# Random forest 
+repeat {
+  Balanced <- groupdata2::balance(PCA_Coord,
+                                  size = "mean",
+                                  cat_col = "New_Art.Type")
+  
+  Model <- train(frmla, 
+                 Balanced,
+                 method = "ranger",
+                 trControl = trControl,
+                 preProc = c("center", "scale"), 
+                 metric = "Accuracy",
+                 importance = 'impurity')
+  
+  All_Results <- rbind(All_Results, 
+                       tibble(
+                         Accuracy = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[1]],
+                         Kappa = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[2]],
+                         AccuracyLower  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[3]],
+                         AccuracyUpper  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[4]],
+                         AccuracyNull = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[5]],
+                             Model = "Random Forest"))
+  
+  x = nrow(All_Results)
+  if (x >= 120){
+    break
+  }
+}
+
+# SVM linear 
+repeat {
+  Balanced <- groupdata2::balance(PCA_Coord,
+                                  size = "mean",
+                                  cat_col = "New_Art.Type")
+  
+  Model <- train(frmla, 
+                 Balanced,
+                 method = "svmLinear",
+                 trControl = trControl,
+                 preProc = c("center", "scale"), 
+                 metric = "Accuracy",
+                 importance = 'impurity')
+  
+  All_Results <- rbind(All_Results, 
+                       tibble(
+                         Accuracy = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[1]],
+                         Kappa = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[2]],
+                         AccuracyLower  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[3]],
+                         AccuracyUpper  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[4]],
+                         AccuracyNull = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[5]],
+                         Model = "SVM Linear"))
+  
+  x = nrow(All_Results)
+  if (x >= 180){
+    break
+  }
+}
+
+# SVM radial 
+repeat {
+  Balanced <- groupdata2::balance(PCA_Coord,
+                                  size = "mean",
+                                  cat_col = "New_Art.Type")
+  
+  Model <- train(frmla, 
+                 Balanced,
+                 method = "svmRadial",
+                 trControl = trControl,
+                 preProc = c("center", "scale"), 
+                 metric = "Accuracy",
+                 importance = 'impurity')
+  
+  All_Results <- rbind(All_Results, 
+                       tibble(
+                         Accuracy = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[1]],
+                         Kappa = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[2]],
+                         AccuracyLower  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[3]],
+                         AccuracyUpper  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[4]],
+                         AccuracyNull = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[5]],
+                         Model = "SVM Radial"))
+  
+  x = nrow(All_Results)
+  if (x >= 210){
+    break
+  }
+}
+
+# SVM Poly 
+repeat {
+  Balanced <- groupdata2::balance(PCA_Coord,
+                                  size = "mean",
+                                  cat_col = "New_Art.Type")
+  
+  Model <- train(frmla, 
+                 Balanced,
+                 method = "svmPoly",
+                 trControl = trControl,
+                 preProc = c("center", "scale"), 
+                 metric = "Accuracy",
+                 importance = 'impurity')
+  
+  All_Results <- rbind(All_Results, 
+                       tibble(
+                         Accuracy = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[1]],
+                         Kappa = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[2]],
+                         AccuracyLower  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[3]],
+                         AccuracyUpper  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[4]],
+                         AccuracyNull = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[5]],
+                         Model = "SVM Poly"))
+  
+  x = nrow(All_Results)
+  if (x >= 240){
+    break
+  }
+}
+
+# C5.0 Tree 
+repeat {
+  Balanced <- groupdata2::balance(PCA_Coord,
+                                  size = "mean",
+                                  cat_col = "New_Art.Type")
+  
+  Model <- train(frmla, 
+                 Balanced,
+                 method = "C5.0",
+                 trControl = trControl,
+                 preProc = c("center", "scale"), 
+                 metric = "Accuracy",
+                 importance = 'impurity')
+  
+  All_Results <- rbind(All_Results, 
+                       tibble(
+                         Accuracy = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[1]],
+                         Kappa = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[2]],
+                         AccuracyLower  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[3]],
+                         AccuracyUpper  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[4]],
+                         AccuracyNull = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[5]],
+                         Model = "C5.0 Tree"))
+  
+  x = nrow(All_Results)
+  if (x >= 270){
+    break
+  }
+}
+
+# Naïve Bayes 
+repeat {
+  Balanced <- groupdata2::balance(PCA_Coord,
+                                  size = "mean",
+                                  cat_col = "New_Art.Type")
+  
+  Model <- train(frmla, 
+                 Balanced,
+                 method = "nb",
+                 trControl = trControl,
+                 preProc = c("center", "scale"), 
+                 metric = "Accuracy",
+                 importance = 'impurity')
+  
+  All_Results <- rbind(All_Results, 
+                       tibble(
+                         Accuracy = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[1]],
+                         Kappa = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[2]],
+                         AccuracyLower  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[3]],
+                         AccuracyUpper  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[4]],
+                         AccuracyNull = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[5]],
+                         Model = "Naïve Bayes"))
+  
+  x = nrow(All_Results)
+  if (x >= 300){
+    break
+  }
+}
+
+# Boosted Tree 
+repeat {
+  Balanced <- groupdata2::balance(PCA_Coord,
+                                  size = "mean",
+                                  cat_col = "New_Art.Type")
+  
+  Model <- train(frmla, 
+                 Balanced,
+                 method = "gbm",
+                 trControl = trControl,
+                 preProc = c("center", "scale"), 
+                 metric = "Accuracy")
+  
+  All_Results <- rbind(All_Results, 
+                       tibble(
+                         Accuracy = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[1]],
+                         Kappa = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[2]],
+                         AccuracyLower  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[3]],
+                         AccuracyUpper  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[4]],
+                         AccuracyNull = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[5]],
+                         Model = "Boosted Tree"))
+  
+  x = nrow(All_Results)
+  if (x >= 300){
+    break
+  }
+}
+```
+
+## 3. Results
 
 ## 7. References
 
