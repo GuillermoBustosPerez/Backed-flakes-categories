@@ -215,6 +215,19 @@ the parameter **“mean”** for size. This means that each group will be up
 or down sampled to the result of dividing data set size between number
 of groups (46.3333333).
 
+1.  A `tibble()` called `All_Results` is set to store the results from
+    each model training.
+
+Each loop works in the following steps:
+
+1.  The original data set is randomly up and down sampled for each
+    target category.  
+2.  Model is trained following the provided hyperparameters and data
+    pre-processing.  
+3.  Results from the trained model are extracted and binned to the
+    `All_Results` tibble.  
+4.  Steps 2 to 4 are repeated 30 times per model.
+
 ``` r
 #### Train the models
 
