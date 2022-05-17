@@ -140,6 +140,38 @@ easily differentiate the above-mentioned categories from one another.
 Testing this hypothesis would support the use of these backed flakes
 categories in the classification of lithic assemblages.
 
+The following code loads attribute data from the experimental assemblage
+and packages employed for the analysis.
+
+``` r
+# Load packages
+list.of.packages <- c("tidyverse", "caret", "Morpho")
+lapply(list.of.packages, library, character.only = TRUE)
+```
+
+    ## [[1]]
+    ##  [1] "forcats"   "stringr"   "dplyr"     "purrr"     "readr"     "tidyr"    
+    ##  [7] "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices"
+    ## [13] "utils"     "datasets"  "methods"   "base"     
+    ## 
+    ## [[2]]
+    ##  [1] "caret"     "lattice"   "forcats"   "stringr"   "dplyr"     "purrr"    
+    ##  [7] "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"    
+    ## [13] "graphics"  "grDevices" "utils"     "datasets"  "methods"   "base"     
+    ## 
+    ## [[3]]
+    ##  [1] "Morpho"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"    
+    ##  [7] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse"
+    ## [13] "stats"     "graphics"  "grDevices" "utils"     "datasets"  "methods"  
+    ## [19] "base"
+
+``` r
+rm(list.of.packages)
+
+# Load 
+Att <- read.csv("Data/Attributes data.csv")
+```
+
 ## 2. Method
 
 ### 2.1 Experimental assemblage
@@ -242,32 +274,7 @@ clearly differentiable due to their triangular off-axis morphology.
 ### 1.1 Load packages, data and procrustes analysis
 
 ``` r
-# Load packages
-list.of.packages <- c("tidyverse", "caret", "Morpho")
-lapply(list.of.packages, library, character.only = TRUE)
-```
-
-    ## [[1]]
-    ##  [1] "forcats"   "stringr"   "dplyr"     "purrr"     "readr"     "tidyr"    
-    ##  [7] "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices"
-    ## [13] "utils"     "datasets"  "methods"   "base"     
-    ## 
-    ## [[2]]
-    ##  [1] "caret"     "lattice"   "forcats"   "stringr"   "dplyr"     "purrr"    
-    ##  [7] "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"    
-    ## [13] "graphics"  "grDevices" "utils"     "datasets"  "methods"   "base"     
-    ## 
-    ## [[3]]
-    ##  [1] "Morpho"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"    
-    ##  [7] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse"
-    ## [13] "stats"     "graphics"  "grDevices" "utils"     "datasets"  "methods"  
-    ## [19] "base"
-
-``` r
-rm(list.of.packages)
-
 load("Data/Flakes LM rotated.RData")
-Att <- read.csv("Data/Attributes data.csv")
 ```
 
 ``` r
