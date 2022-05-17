@@ -168,7 +168,7 @@ lapply(list.of.packages, library, character.only = TRUE)
 ``` r
 rm(list.of.packages)
 
-# Load 
+# Load attribute data
 Att <- read.csv("Data/Attributes data.csv")
 ```
 
@@ -270,6 +270,34 @@ the scars from previous removals, or more rarely be cortical.
 Pseudo-Levallois points share with core edge flakes with a limited back
 the deviation of symmetry from the axis of percussion, but they are
 clearly differentiable due to their triangular off-axis morphology.
+
+The following table presents the distribution of backed flakes types,
+following the previously established definitions. Due to the centripetal
+nature of the knapping methods employed to generate the experimental
+assemblage, most of the backed flakes fall within the definition of core
+edge flakes with a limited back (66.91%). Cortex distribution according
+to backed flake category (Figure 2) shows that slightly (\~25%) or
+non-cortical products dominate among the three categories, adding up to
+more than 65% in the three cases (90% core edge flakes, 68.82% core edge
+flakes with a limited back, and 87.5% pseudo-Levallois points).
+
+``` r
+Att %>% group_by(Strategy, ARTIFACTTYPE) %>% 
+  summarise(
+    Count = n(),
+    Percent = (Count/139)*100)
+```
+
+    ## # A tibble: 6 x 4
+    ## # Groups:   Strategy [2]
+    ##   Strategy  ARTIFACTTYPE                Count Percent
+    ##   <chr>     <chr>                       <int>   <dbl>
+    ## 1 Discoid   Core Edge Flake                11    7.91
+    ## 2 Discoid   Core edge with limited back    47   33.8 
+    ## 3 Discoid   pseudo-Levallois Point         12    8.63
+    ## 4 Levallois Core Edge Flake                19   13.7 
+    ## 5 Levallois Core edge with limited back    46   33.1 
+    ## 6 Levallois pseudo-Levallois Point          4    2.88
 
 ### 1.1 Load packages, data and procrustes analysis
 
