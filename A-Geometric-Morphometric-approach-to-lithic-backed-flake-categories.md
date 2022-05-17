@@ -48,20 +48,28 @@ discoidal
 
 ## 1. Introduction
 
-Lithic artifacts constitute some of the most important and abundant
-remains in Paleolithic sites. When analyzing lithic assemblages, in
-addition to taking metric measurements and attributes it is common to
-classify unretouched flakes according to their morphology and
-technological features. This classification is a crucial part of lithic
-analysis since it classifies flakes into technological categories. These
-categories are technological because the retained features and
-morphology are indicative of the knapping method from which they were
-generated. These technological products usually reflect different
-knapping strategies, different stages of reduction, but also variations
-in the organization of removals and exploitation of the surface. Well
-known examples of technological classifications of flakes are the
-bipolar/on anvil flakes ([Callahan, 1996](#ref-callahan_bipolar_1996);
-[Hayden, 1980](#ref-hayden_confusion_1980));
+    Lithic artifacts regularly constitute the most important and abundant remains found on Paleolithic sites. When analyzing lithic assemblages, in addition to taking metric measurements and noting attributes, it is common to classify unmodified flakes according to their morphologies and technological features. This is a crucial part of lithic analysis because it classifies flakes into technological categories in the sense that the retained features and morphology are indicative of the production method by which they were generated. These technological products usually reflect different knapping strategies, stages of reduction as well as variations in the organization of removals and surface exploitation. Well-known examples of technological classifications of flakes include bipolar/on anvil flakes  [@callahan_bipolar_1996; @hayden_confusion_1980], overshot flakes [@cotterell_formation_1987], bifacial-thinning flakes [@raab_debitage_1979], byproducts of blade production, such as core tablets or crested blades [@pelegrin_technologie_1995; @shea_upper_2013], kombewa flakes [@tixier_prehistoire_1980; @tixier_kombewa_1999] and lateral tranchet blows [@bourguignon_analyse_1992]. While the use of technological categories is common and helps increase the resolution of lithic analysis, it is important to bear in mind that lithic artifacts are characterized by a high degree of morphological variability, which, in many cases, results in overlapping features. Consequently, several categories remain underused because of this high morphological variability, their overlapping features, and their similar roles in the volumetric management of the core along the reduction process.     
+
+The Middle Paleolithic in Western Europe is characterized by the
+diversification of an increase in knapping methods, resulting in what
+are generally flake-dominated assemblages ([Delagnes and Meignen,
+2006](#ref-hovers_diversity_2006); [Kuhn, 2013](#ref-kuhn_roots_2013)).
+For the analysis of Middle Paleolithic lithic assemblages, lists of
+technological products are common and tend to reflect individual
+knapping methods, the organization of flake removals, and their
+morphology ([Duran and Abelanet, 2004](#ref-duran_mousterien_2004);
+[Duran and Soler, 2006](#ref-duran_variabilite_2006); [Geneste,
+1988](#ref-rigaud_les_1988); [Shea, 2013](#ref-shea_middle_2013)). These
+technological lists are usually dominated by categories of technological
+products related to Levallois and discoidal knapping methods ([Boëda,
+1995](#ref-dibble_levallois:_1995), [1993](#ref-boeda_debitage_1993);
+[Boëda et al., 1990](#ref-boeda_identification_1990)), which constitute
+an important part of Middle Paleolithic lithic variability. Various
+discoidal and Levallois products have been identified and first appear
+approximately at 400,000 ka, in a vast area from eastern Asia to the
+Atlantic coast of Western Europe through Siberia and Central Asia, the
+Levant, Eastern and Central Europe (see bibliography in [Romagnoli et
+al., 2022](#ref-romagnoli_neanderthal_2022))
 
 ### 1.1 Load packages, data and procrustes analysis
 
@@ -538,18 +546,93 @@ repeat {
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-callahan_bipolar_1996" class="csl-entry">
+<div id="ref-dibble_levallois:_1995" class="csl-entry">
 
-Callahan, E., 1996. The bipolar technique: The simplest way to make
-stone tools for survival. Bulletin of Primitive Technology 12, 16–20.
+Boëda, E., 1995. Levallois: A Volumetric Construction, Methods, A
+Technique, in: Dibble, H.L., Bar-Yosef, O. (Eds.), The Definition and
+Interpretation of Levallois Technology, Monographs in World Archaeology.
+Prehistory Press, Madison, Wisconsin, pp. 41–68.
 
 </div>
 
-<div id="ref-hayden_confusion_1980" class="csl-entry">
+<div id="ref-boeda_debitage_1993" class="csl-entry">
 
-Hayden, B., 1980. Confusion in the Bipolar World: Bashed Pebbles and
-Splintered Pieces. Lithic Technology 9, 2–7.
-<https://doi.org/10.1080/01977261.1980.11754456>
+Boëda, E., 1993. Le débitage discoïde et le débitage Levallois récurrent
+centripède. Bulletin de la Société Préhistorique Française 90, 392–404.
+<https://doi.org/10.3406/bspf.1993.9669>
+
+</div>
+
+<div id="ref-boeda_identification_1990" class="csl-entry">
+
+Boëda, E., Geneste, J.-M., Meignen, L., 1990. Identification de chaînes
+opératoires lithiques du Paléolithique ancien et moyen. Paléo 2, 43–80.
+
+</div>
+
+<div id="ref-hovers_diversity_2006" class="csl-entry">
+
+Delagnes, A., Meignen, L., 2006. Diversity of Lithic Production Systems
+During the Middle Paleolithic in France. Are There Any Chronological
+Trends?, in: Hovers, E., Kuhn, S.L., Jochim, M. (Eds.), Transitions
+Before the Transition Evolution and Stability in the Middle Paleolithic
+and Middle Stone Age. Springer, pp. 85–107.
+
+</div>
+
+<div id="ref-duran_mousterien_2004" class="csl-entry">
+
+Duran, J.-P., Abelanet, J., 2004. Un Moustérien Méditerranéen à bifaces:
+Le gisement de Moutou-la-Joliette. Préhistoire Anthropologie
+Méditerranéennes 13, 7–27.
+
+</div>
+
+<div id="ref-duran_variabilite_2006" class="csl-entry">
+
+Duran, J.-P., Soler, N., 2006. Variabilité des modalités de débitage et
+des productions lithiques dans les industries moustériennes de la grotte
+de l’Arbreda, secteur alpha (Serinyà, Espagne). Bulletin de la Société
+Préhistorique Française 103, 241–262.
+
+</div>
+
+<div id="ref-rigaud_les_1988" class="csl-entry">
+
+Geneste, J.-M., 1988. Les Industries De La Grotte Vaufrey: Technologie
+du debitage, economie et circulation de la matiere premiere lithique,
+in: Rigaud, J.-P. (Ed.), La Grotte Vaufrey à Cenac Et Saint-Julien
+(Dordogne) : Paléoenvironnements, Chronologie Et Activités Humaines,
+Mémoires de La Société Préhistorique Française (Revue). Société
+préhistorique française, Paris, pp. 441–517.
+
+</div>
+
+<div id="ref-kuhn_roots_2013" class="csl-entry">
+
+Kuhn, S.L., 2013. Roots of the Middle Paleolithic in Eurasia. Current
+Anthropology 54, S255–S268. <https://doi.org/10.1086/673529>
+
+</div>
+
+<div id="ref-romagnoli_neanderthal_2022" class="csl-entry">
+
+Romagnoli, F., Chabai, V., Hérisson, D., Hovers, E., Moncel, M.-H.,
+Peresani, M., Uthmeier, T., Bourguignon, L., Chacón, M.G., Di Modica,
+K., Faivre, J.-P., Malinsky-Buller, A., Neruda, P., Rios Garaizar, J.,
+Weiss, Ma., Wiśniewski, A., Wragg Sykes, R., 2022. Neanderthal
+technological variability: A wide-range geographical perspective of the
+final Middle Palaeolithic, in: Romagnoli, F., Rivals, F., Benazzi, S.
+(Eds.), Updating Neanderthals. Understanding Behavioral Complexity in
+the Late Middle Paleolithic. Academic Press.
+
+</div>
+
+<div id="ref-shea_middle_2013" class="csl-entry">
+
+Shea, J., J., 2013. The Middle Paleolithic, in: Stone Tools in the
+Paleolithic and Neolithic Near East : A Guide. Cambridge University
+Press, New York, pp. 82–116.
 
 </div>
 
