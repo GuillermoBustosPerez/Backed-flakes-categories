@@ -196,6 +196,49 @@ oriented in such a way that the core edge is perpendicular to the
 predetermined products; (5) the fracture planes of the products are
 secant; (6) the technique employed is direct hard-hammer percussion.
 
+A total of 139 unretouched backed flakes (independent of the type of
+termination) were obtained from the different experimental reduction
+sequences, 70 from discoidal reduction sequences and 69 from Levallois
+recurrent centripetal reduction sequences. The following criteria were
+followed for the classification of backed flakes:
+
+Core edge flakes / *eclat débordant* ([Beyries and Boëda,
+1983](#ref-beyries_etude_1983); [Boëda, 1993](#ref-boeda_debitage_1993);
+[Boëda et al., 1990](#ref-boeda_identification_1990)) have a cutting
+edge opposite and usually (although not always) parallel to an abrupt
+margin. This abrupt margin, or backed edge (dos), commonly results from
+the removal of a portion of the periphery of the core and can be plain,
+bear the scars from previous removals, be cortical, or present a mix of
+the three. Classic “core edge flakes” ([Boëda,
+1993](#ref-boeda_debitage_1993); [Boëda et al.,
+1990](#ref-boeda_identification_1990)), which are sometimes referred as
+“core edge flakes with non-limited back” / *“éclat débordant à dos non
+limité”* ([Duran, 2005](#ref-duran_lindustrie_2005); [Duran and Soler,
+2006](#ref-duran_variabilite_2006)) have a morphological axis that
+follows the axis of percussion, although it may deviate slightly
+([Beyries and Boëda, 1983](#ref-beyries_etude_1983)).  
+“Core edge flakes with a limited back” / *“éclat débordant à dos
+limité”* share with core edge flakes the morphological feature of having
+a cutting edge opposite a back. However, the main difference resides in
+their having a morphological axis clearly offset in respect to the axis
+of percussion ([Meignen, 1996](#ref-meignen_persistance_1996); [Meignen,
+1993](#ref-meignen_les_1993); [Pasty et al.,
+2004](#ref-pasty_etude_2004)). Because of this deviation from the axis
+of percussion, the backed edge is usually not completely parallel and
+does not span the entire length of the sharp edge.  
+Pseudo-Levallois points ([Boëda, 1993](#ref-boeda_debitage_1993); [Boëda
+et al., 1990](#ref-boeda_identification_1990); [Bordes,
+1961](#ref-bordes_typologie_1961), [1953](#ref-bordes_notules_1953);
+[Slimak, 2003](#ref-peresani_les_2003)) are backed products in which the
+edge opposite the back has a triangular morphology. This triangular
+morphology is usually the result of the convergence of two or more
+removals. As with core edge flakes, the back usually results from the
+removal of one of the lateral edges of the core and can be plain, retain
+the scars from previous removals, or more rarely be cortical.
+Pseudo-Levallois points share with core edge flakes with a limited back
+the deviation of symmetry from the axis of percussion, but they are
+clearly differentiable due to their triangular off-axis morphology.
+
 ### 1.1 Load packages, data and procrustes analysis
 
 ``` r
@@ -683,6 +726,15 @@ Southern Caucasus. Science 345, 1609–1613.
 
 </div>
 
+<div id="ref-beyries_etude_1983" class="csl-entry">
+
+Beyries, S., Boëda, E., 1983. Étude technoloogique et traces
+d’utilisation des éclats débordants de Corbehem (Pas-de-Calais).
+Bulletin de la Société préhistorique française 80, 275–279.
+https://doi.org/<https://doi.org/10.3406/bspf.1983.5455>
+
+</div>
+
 <div id="ref-blinkhorn_directional_2021" class="csl-entry">
 
 Blinkhorn, J., Groucutt, H.S., Scerri, E.M.L., Petraglia, M.D.,
@@ -720,6 +772,23 @@ centripède. Bulletin de la Société Préhistorique Française 90, 392–404.
 
 Boëda, E., Geneste, J.-M., Meignen, L., 1990. Identification de chaînes
 opératoires lithiques du Paléolithique ancien et moyen. Paléo 2, 43–80.
+
+</div>
+
+<div id="ref-bordes_typologie_1961" class="csl-entry">
+
+Bordes, F., 1961. Typologie du Paléolithique ancien et moyen,
+Publications de l’institut de préhistoire de l’université de Bordeaux.
+CNRS Editions, Bordeaux.
+
+</div>
+
+<div id="ref-bordes_notules_1953" class="csl-entry">
+
+Bordes, F., 1953. Notules de typologie paléolithique II : Pointes
+Levalloisiennes et pointes pseudo-levalloisiennes. Bulletin de la
+Société préhistorique de France 50, 311–313.
+<https://doi.org/10.3406/bspf.1953.3057>
 
 </div>
 
@@ -780,6 +849,13 @@ During the Middle Paleolithic in France. Are There Any Chronological
 Trends?, in: Hovers, E., Kuhn, S.L., Jochim, M. (Eds.), Transitions
 Before the Transition Evolution and Stability in the Middle Paleolithic
 and Middle Stone Age. Springer, pp. 85–107.
+
+</div>
+
+<div id="ref-duran_lindustrie_2005" class="csl-entry">
+
+Duran, J.-P., 2005. L’industrie moustérienne des ànecs (Rodès,
+Pyrénées-orientales, France). PYRENAE 36, 11–39.
 
 </div>
 
@@ -910,6 +986,15 @@ Press, New York, pp. 82–116.
 Shea, J., J., 2013a. The Upper Paleolithic, in: Stone Tools in the
 Paleolithic and Neolithic Near East : A Guide. Cambridge University
 Press, New York, pp. 117–160.
+
+</div>
+
+<div id="ref-peresani_les_2003" class="csl-entry">
+
+Slimak, L., 2003. Les Debitages discoïdes mousteriens: Evaluation d’un
+concept technologique, in: Peresani, M. (Ed.), Discoid Lithic
+Technology. Advances and Implications, BAR International Series.
+Archaeopress, Oxford, pp. 33–65.
 
 </div>
 
