@@ -99,7 +99,29 @@ Levallois products have been identified and first appear approximately
 at 400,000 ka, in a vast area from eastern Asia to the Atlantic coast of
 Western Europe through Siberia and Central Asia, the Levant, Eastern and
 Central Europe (see bibliography in [Romagnoli et al.,
-2022](#ref-romagnoli_neanderthal_2022))
+2022](#ref-romagnoli_neanderthal_2022)), and Africa ([Adler et al.,
+2014](#ref-adler_early_2014); [Blinkhorn et al.,
+2021](#ref-blinkhorn_directional_2021)). The identification of discoidal
+and Levallois products therefore appears widespread in lithic analysis
+across various traditions of lithic studies and is designed to create a
+comparable dataset, explore specific technological adaptations in
+different ecological contexts, and discuss long-term techno-cultural
+traditions and technological change. One special category of such
+products are backed flakes that exhibit remnants of the core on one of
+their lateral edges. Backed flakes are usually classified into two
+technological categories: “core edge flakes” (*eclat débordant*) and
+“pseudo-Levallois points.” A third category, “core edge flakes with a
+limited back” (*éclat débordant à dos limité*), has also been defined
+([Meignen, 1996](#ref-meignen_persistance_1996); [Meignen,
+1993](#ref-meignen_les_1993); [Pasty et al.,
+2004](#ref-pasty_etude_2004)), although its use is not widespread
+([Duran and Abelanet, 2004](#ref-duran_mousterien_2004); [Duran and
+Soler, 2006](#ref-duran_variabilite_2006); [Geneste,
+1988](#ref-rigaud_les_1988); [Shea, 2013b](#ref-shea_middle_2013)). One
+reason for this may be their overlapping features, morphology, and
+having a similar role in core reduction compared to classic core edge
+flakes. This usually results in their absorption into the group of core
+edge flakes when technological lists of products are employed.
 
 ### 1.1 Load packages, data and procrustes analysis
 
@@ -576,6 +598,27 @@ repeat {
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 
+<div id="ref-adler_early_2014" class="csl-entry">
+
+Adler, D.S., Wilkinson, K.N., Blockley, S., Mark, D.F., Pinhasi, R.,
+Schmidt-Magee, B.A., Nahapetyan, S., Mallol, C., Berna, F., Glauberman,
+P.J., Raczynski-Henk, Y., Wales, N., Frahm, E., Jöris, O., MacLeod, A.,
+Smith, V.C., Cullen, V.L., Gasparian, B., 2014. Early Levallois
+technology and the Lower to Middle Paleolithic transition in the
+Southern Caucasus. Science 345, 1609–1613.
+<https://doi.org/10.1126/science.1256484>
+
+</div>
+
+<div id="ref-blinkhorn_directional_2021" class="csl-entry">
+
+Blinkhorn, J., Groucutt, H.S., Scerri, E.M.L., Petraglia, M.D.,
+Blockley, S., 2021. Directional changes in Levallois core technologies
+between Eastern Africa, Arabia, and the Levant during MIS 5. Scientific
+Reports 11, 11465. <https://doi.org/10.1038/s41598-021-90744-z>
+
+</div>
+
 <div id="ref-dibble_levallois:_1995" class="csl-entry">
 
 Boëda, E., 1995. Levallois: A Volumetric Construction, Methods, A
@@ -673,6 +716,31 @@ Splintered Pieces. Lithic Technology 9, 2–7.
 
 Kuhn, S.L., 2013. Roots of the Middle Paleolithic in Eurasia. Current
 Anthropology 54, S255–S268. <https://doi.org/10.1086/673529>
+
+</div>
+
+<div id="ref-meignen_persistance_1996" class="csl-entry">
+
+Meignen, L., 1996. Persistance des traditions techniques dans l’abri des
+Canalettes (Nant-Aveyron). Quaternaria Nova 6, 449–64.
+
+</div>
+
+<div id="ref-meignen_les_1993" class="csl-entry">
+
+Meignen, L., 1993. Les industries lithiques de l’abri des Canalettes:
+Cuche 2, in: Meignen, L. (Ed.), L’abri Des Canalettes. Un Habitat
+Moustérien Sur Les Grands Causses (Nant-Aveyron), Monographie Du CRA.
+CNRS Ed., Paris, pp. 238–328.
+
+</div>
+
+<div id="ref-pasty_etude_2004" class="csl-entry">
+
+Pasty, J.-F., Liegard, S., Alix, P., 2004. Étude de l’industrie lithique
+du site paléolithique moyen des Fendeux (Coulanges, Allier). Bulletin de
+la Société préhistorique française 101, 5–25.
+<https://doi.org/10.3406/bspf.2004.12945>
 
 </div>
 
