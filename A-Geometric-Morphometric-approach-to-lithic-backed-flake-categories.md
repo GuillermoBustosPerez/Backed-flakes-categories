@@ -303,6 +303,33 @@ Att %>% group_by(Strategy, ARTIFACTTYPE) %>%
 assemblage and their
 classification](Figures/Backed%20flakes%20types.png)
 
+``` r
+# Cortex per class
+Att %>% group_by(ARTIFACTTYPE) %>% 
+  count(CORTEX) %>% 
+  
+  mutate(Percentage = round(n/sum(n)*100, 2)) %>% 
+  
+  ggplot(aes(CORTEX, Percentage, fill = ARTIFACTTYPE)) +
+  geom_col(position = "dodge") +
+  ggsci::scale_fill_aaas(alpha = 0.95) +
+  xlab(NULL) +
+  geom_text(aes(label = paste0(Percentage, "%")), 
+            vjust= -0.2, size = 2.65,
+            position = position_dodge(.9)) +
+  geom_text(aes(label = paste("n =", n)), 
+            vjust= "top", size = 2.65,
+            position = position_dodge(.9)) +
+  labs(fill = NULL) +
+  
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    axis.text = element_text(color = "black", size = 8))
+```
+
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/unnamed-chunk-3-1.png)
+
 ### 1.1 Load packages, data and procrustes analysis
 
 ``` r
