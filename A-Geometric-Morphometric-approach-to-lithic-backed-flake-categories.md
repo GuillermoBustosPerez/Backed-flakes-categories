@@ -307,7 +307,6 @@ classification](Figures/Backed%20flakes%20types.png)
 # Cortex per class
 Att %>% group_by(ARTIFACTTYPE) %>% 
   count(CORTEX) %>% 
-  
   mutate(Percentage = round(n/sum(n)*100, 2)) %>% 
   
   ggplot(aes(CORTEX, Percentage, fill = ARTIFACTTYPE)) +
@@ -328,7 +327,7 @@ Att %>% group_by(ARTIFACTTYPE) %>%
     axis.text = element_text(color = "black", size = 8))
 ```
 
-![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Cortex%20distribution%20per%20artefact%20type-1.png)
 
 ### 1.1 Load packages, data and procrustes analysis
 
@@ -417,7 +416,7 @@ PCA_Coord %>% group_by(ARTIFACTTYPE) %>%
     axis.text = element_text(color = "black", size = 8))
 ```
 
-![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Cortex%20distribution%20per%20artefact%20type-1.png)
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 ### 2.2 Geometric Morphometrics
 
