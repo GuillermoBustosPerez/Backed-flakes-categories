@@ -276,10 +276,10 @@ following the previously established definitions. Due to the centripetal
 nature of the knapping methods employed to generate the experimental
 assemblage, most of the backed flakes fall within the definition of core
 edge flakes with a limited back (66.91%). Cortex distribution according
-to backed flake category (Figure 2) shows that slightly (\~25%) or
-non-cortical products dominate among the three categories, adding up to
-more than 65% in the three cases (90% core edge flakes, 68.82% core edge
-flakes with a limited back, and 87.5% pseudo-Levallois points).
+to backed flake category shows that slightly (\~25%) or non-cortical
+products dominate among the three categories, adding up to more than 65%
+in the three cases (90% core edge flakes, 68.82% core edge flakes with a
+limited back, and 87.5% pseudo-Levallois points).
 
 ``` r
 Att %>% group_by(Strategy, ARTIFACTTYPE) %>% 
@@ -298,6 +298,10 @@ Att %>% group_by(Strategy, ARTIFACTTYPE) %>%
     ## 4 Levallois Core Edge Flake                19   13.7 
     ## 5 Levallois Core edge with limited back    46   33.1 
     ## 6 Levallois pseudo-Levallois Point          4    2.88
+
+![Figure 1. Backed artifacts classification types from the experimental
+assemblage and their
+classification](Figures/Backed%20flakes%20types.png)
 
 ### 1.1 Load packages, data and procrustes analysis
 
