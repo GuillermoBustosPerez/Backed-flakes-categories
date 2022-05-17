@@ -123,6 +123,79 @@ having a similar role in core reduction compared to classic core edge
 flakes. This usually results in their absorption into the group of core
 edge flakes when technological lists of products are employed.
 
+The present study seeks to evaluate whether “core edge flakes with a
+limited back” are a discrete category that can be easily separated from
+classic core edge flakes and pseudo-Levallois points based on their
+morphological features. To test the discreteness of these categories, an
+experimental sample of backed flakes produced by discoidal and recurrent
+centripetal Levallois reduction is classified, following their
+technological definitions. Geometric morphometrics on 3D meshes are
+employed to quantify the morphological variability of the experimental
+assemblage. To test for the discreteness of these categories, machine
+learning algorithms are employed to classify the flakes according to
+their technological category. Our hypothesis is that, although some
+degree of overlap is expected due to the high degree of morphological
+variability among lithic artifacts, machine learning models should
+easily differentiate the above-mentioned categories from one another.
+Testing this hypothesis would support the use of these backed flakes
+categories in the classification of lithic assemblages.
+
+## 2. Method
+
+### 2.1 Experimental assemblage
+
+The present study uses an experimental assemblage that was the result of
+nine knapping sequences. Seven cores were knapped on Bergerac flint
+([Fernandes et al., 2012](#ref-fernandes_silex_2012)) and two cores were
+knapped on Miocene flint from South of Madrid ([Bustillo et al.,
+2012](#ref-bustillo_caracterizacion_2012); [Bustillo and Pérez-Jiménez,
+2005](#ref-bustillo_caracteristicas_2005)). Five cores were knapped
+following the Discoid “sensu stricto” concept, which strongly
+corresponds to Boëda’s original technological definition of the knapping
+system ([Boëda, 1995](#ref-dibble_levallois:_1995),
+[1994](#ref-boeda_concept_1994), [1993](#ref-boeda_debitage_1993)), and
+five experimental cores were knapped following the Levallois recurrent
+centripetal system ([Boëda, 1995](#ref-dibble_levallois:_1995),
+[1994](#ref-boeda_concept_1994), [1993](#ref-boeda_debitage_1993);
+[Lenoir and Turq, 1995](#ref-dibble_recurrent_1995)).
+
+Six technological characteristics define the Levallois concept ([Boëda,
+1994](#ref-boeda_concept_1994), [1993](#ref-boeda_debitage_1993)): (1)
+the volume of the core is conceived as two convex asymmetric surfaces;
+(2) these two surfaces are hierarchical and not interchangeable. They
+maintain their roles as striking platforms and debitage (or
+exploitation) surfaces, respectively, throughout the entire reduction
+process; (3) the distal and lateral convexities of the debitage surface
+are maintained to obtain predetermined flakes; (4) the fracture plane of
+the predetermined products is parallel to the intersection between both
+surfaces; (5) the striking platform is perpendicular to the overhang
+(the core edge, at the intersection between the two core surfaces); (6)
+the technique employed during the knapping process is direct hard-hammer
+percussion. Depending on the organization of the debitage surface
+Levallois cores are usually classified into the preferential method
+(where a single predetermined Levallois flake is obtained from the
+debitage surface) or recurrent methods (where several predetermined
+flakes are produced from the debitage surface), with removals being
+either unidirectional, bidirectional, or centripetal ([Boëda,
+1995](#ref-dibble_levallois:_1995); [Boëda et al.,
+1990](#ref-boeda_identification_1990); [Delagnes,
+1995](#ref-dibble_variability_1995); [Delagnes and Meignen,
+2006](#ref-hovers_diversity_2006)).
+
+According to Boëda ([1995](#ref-dibble_levallois:_1995),
+[1994](#ref-boeda_concept_1994), [1993](#ref-boeda_debitage_1993)),
+there are six technological criteria that define the Discoid “sensu
+stricto” method: (1) the volume of the core is conceived as two oblique
+asymmetric convex surfaces delimited by an intersecting plane; (2) these
+two surfaces are not hierarchical, with it being possible to alternate
+between the roles of striking platforms and exploitation surfaces; (3)
+the peripheral convexity of the debitage surface is managed to control
+lateral and distal extractions, thus allowing for a degree of
+predetermination; (4) the surfaces of the striking platforms are
+oriented in such a way that the core edge is perpendicular to the
+predetermined products; (5) the fracture planes of the products are
+secant; (6) the technique employed is direct hard-hammer percussion.
+
 ### 1.1 Load packages, data and procrustes analysis
 
 ``` r
@@ -628,6 +701,13 @@ Prehistory Press, Madison, Wisconsin, pp. 41–68.
 
 </div>
 
+<div id="ref-boeda_concept_1994" class="csl-entry">
+
+Boëda, E., 1994. Le concept Levallois: Variabilité des méthodes, CNRS
+éditions. CNRS.
+
+</div>
+
 <div id="ref-boeda_debitage_1993" class="csl-entry">
 
 Boëda, E., 1993. Le débitage discoïde et le débitage Levallois récurrent
@@ -652,6 +732,23 @@ Eyzies-de-Tayac, Dordogne). Paléo 4, 69–89.
 
 </div>
 
+<div id="ref-bustillo_caracteristicas_2005" class="csl-entry">
+
+Bustillo, M.A., Pérez-Jiménez, J.L., 2005. Características diferenciales
+y génesis de los niveles silíceos explotados en el yacimiento
+arqueológico de Casa Montero (Vicálvaro, Madrid). Geogaceta 38, 243–246.
+
+</div>
+
+<div id="ref-bustillo_caracterizacion_2012" class="csl-entry">
+
+Bustillo, M.Á., Pérez-Jiménez, J.L., Bustillo, M., 2012. Caracterización
+geoquímica de rocas sedimentarias formadas por silicificación como
+fuentes de suministro de utensilios líticos (Mioceno, cuenca de Madrid).
+Revista Mexicana de Ciencias Geológicas 29, 233–247.
+
+</div>
+
 <div id="ref-callahan_bipolar_1996" class="csl-entry">
 
 Callahan, E., 1996. The bipolar technique: The simplest way to make
@@ -663,6 +760,16 @@ stone tools for survival. Bulletin of Primitive Technology 12, 16–20.
 
 Cotterell, B., Kamminga, J., 1987. The Formation of Flakes. American
 Antiquity 52, 675–708.
+
+</div>
+
+<div id="ref-dibble_variability_1995" class="csl-entry">
+
+Delagnes, A., 1995. Variability within Uniformity: Three Levels of
+Variability within the Levallois System, in: Dibble, H.L., Bar-Yosef, O.
+(Eds.), The Definition and Interpretation of Levallois Technology,
+Monographs in World Archaeology. Prehistory Press, Madison, Wisconsin,
+pp. 201–211.
 
 </div>
 
@@ -693,6 +800,14 @@ Préhistorique Française 103, 241–262.
 
 </div>
 
+<div id="ref-fernandes_silex_2012" class="csl-entry">
+
+Fernandes, P., Morala, A., Schmidt, P., Séronie-Vivien, M.-R., Turq, A.,
+2012. Le silex du Bergeracois: État de la question. Quaternaire
+Continental d’Aquitaine, excursion AFEQ, ASF 2012 2012, 22–33.
+
+</div>
+
 <div id="ref-rigaud_les_1988" class="csl-entry">
 
 Geneste, J.-M., 1988. Les Industries De La Grotte Vaufrey: Technologie
@@ -716,6 +831,16 @@ Splintered Pieces. Lithic Technology 9, 2–7.
 
 Kuhn, S.L., 2013. Roots of the Middle Paleolithic in Eurasia. Current
 Anthropology 54, S255–S268. <https://doi.org/10.1086/673529>
+
+</div>
+
+<div id="ref-dibble_recurrent_1995" class="csl-entry">
+
+Lenoir, M., Turq, A., 1995. Recurrent Centripetal Debitage (Levallois
+and Discoidal): Continuity or Discontinuity?, in: Dibble, H.L.,
+Bar-Yosef, O. (Eds.), The Definition and Interpretation of Levallois
+Technology, Monographs in World Archaeology. Prehistory Press, Madison,
+Wisconsin, pp. 249–256.
 
 </div>
 
