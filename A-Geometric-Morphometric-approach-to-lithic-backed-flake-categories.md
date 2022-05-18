@@ -404,16 +404,16 @@ Fixed landmarks are indicated in red](Figures/Template%20and%20BE.png)
 In addition to geometric morphometrics, the following attributes were
 recorded for each of the flakes:
 
--   Technological length: measured in mm along the axis perpendicular to
-    the striking platform.  
--   Technological width: measured in mm along the axis perpendicular to
-    the technological width.  
--   Maximum thickness of the flake, measured in mm.  
--   External platform angle (EPA): measured in degrees with a manual
+-   **Technological length:** measured in mm along the axis
+    perpendicular to the striking platform.  
+-   **Technological width:** measured in mm along the axis perpendicular
+    to the technological width.  
+-   **Maximum thickness of the flake**, measured in mm.  
+-   **External platform angle (EPA):** measured in degrees with a manual
     goniometer.  
--   Internal platform angle (IPA): measured in degrees with a manual
+-   **Internal platform angle (IPA):** measured in degrees with a manual
     goniometer.  
--   Relative amount of cortex present at the dorsal face: recorded
+-   **Relative amount of cortex present at the dorsal face:** recorded
     according to its extension on the dorsal surface of the flake, with
     categories being as follows: 0 (no cortex), 1 (nearly 25% covered by
     cortex), 2 (nearly 50% covered by cortex), 3 (nearly 75% covered by
@@ -423,11 +423,85 @@ recorded for each of the flakes:
 -   Weight: measured to a precision of 0.01 g.
 
 From the previous measures, the following variables are obtained:  
-\* Elongation index: flake length divided by width.  
-\* Carenated index: width or length (the one with the lowest value)
+\* **Elongation index:** flake length divided by width.  
+\* **Carenated index:** width or length (the one with the lowest value)
 divided by maximum thickness.  
-\* Ratio of width to thickness: flake width divided by maximum
+\* **Ratio of width to thickness:** flake width divided by maximum
 thickness.
+
+### 2.3 Machine learning and resampling techniques
+
+The present work tests ten machine learning models for the
+classification of flake categories.
+
+-   **Linear discriminant analysis (LDA):** reduces dimensionality in an
+    attempt to maximize the separation between classes, while decision
+    boundaries divide the predictor range into regions ([Fisher,
+    1936](#ref-fisher_use_1936); [James et al.,
+    2013](#ref-james_introduction_2013)).  
+-   **K-nearest neighbor (KNN):** classifies cases by assigning the
+    class of similar known cases. The “k” in KNN references the number
+    of cases (neighbors) to consider when assigning a class, and it must
+    be found by testing different values. Given that KNN uses distance
+    metrics to compute nearest neighbors and that each variable is in
+    different scales, it is necessary to scale and center the data prior
+    to fitting the model ([Cover and Hart,
+    1967](#ref-cover_nearest_1967); [Lantz,
+    2019](#ref-lantz_machine_2019)).  
+-   **Logistic regression:** essentially adapts continuous regression
+    predictions to categorical outcomes ([Cramer,
+    2004](#ref-cramer_early_2004); [Walker and Duncan,
+    1967](#ref-walker_estimation_1967)).  
+-   **Decision tree with C5.0 algorithm:** is an improvement on decision
+    trees for classification ([Quinlan, 2014](#ref-quinlan_c4_2014);
+    [Quinlan, 1996](#ref-quinlan_improved_1996)).  
+-   **Random forest:** Random forests are made of decision trees. Each
+    tree is grown from a random sample of the data and variables,
+    allowing for each tree to grow differently and better reflect the
+    complexity of the data ([Breiman,
+    2001](#ref-breiman_random_2001)).  
+-   **Generalized Boosted Model:** ([Greenwell et al.,
+    2019](#ref-greenwell_package_2019); [Ridgeway,
+    2007](#ref-ridgeway_generalized_2007)) which implements gradient
+    boosted machine ([Friedman, 2002](#ref-friedman_stochastic_2002),
+    [2001](#ref-friedman_greedy_2001)), allowing for the detection of
+    learning deficiencies and increase model accuracy for a set of
+    random forests.  
+-   **Supported vector machines (SVM):** fits hyperplanes into a
+    multidimensional space with the objective of creating homogeneous
+    partitions ([Cortes and Vapnik,
+    1995](#ref-cortes_support-vector_1995); [Frey and Slate,
+    1991](#ref-frey_letter_1991)). The present study tests SVM with
+    linear, radial, and polynomial kernels.
+-   **Naïve Bayes:** computes class probabilities using Bayes’s rule
+    ([Weihs et al., 2005](#ref-weihs_klar_2005)).
+
+As mentioned above, 66.91% of flakes fall into the definition of core
+edge flakes with a limited back, resulting in an unbalanced dataset. To
+counter the unbalanced nature of the experimental dataset, up-sampling
+was undertaken for the two minority classes, and down-sampling was
+undertaken for the majority class. Up-sampling categories in a dataset
+can be considered inappropriate for training machine learning models
+because it increases the overfit (samples used in the test set to
+evaluate the model are likely to have already been used in the training
+set). However, here, the up-sampling of the two minority groups
+increases the discreteness of these groups but does not affect the
+potential overlap with the majority class (core edge flakes with limited
+backs). On the other hand, down-sampling results in missing information
+because some of the data are removed.
+
+Random up- and down-sampling is conducted to obtain a balanced dataset
+and train the models. Because model performance metrics depend on random
+up- and down-sampling, this process is repeated 30 times, extracting
+model performance metrics each time and averaging the values. The model
+with the best performance metrics is then trained again with thirty
+cycles of up- and down-sampling. The reported variable importance and
+confusion matrix from which model metric performance are extracted are
+obtained from these additional cycles of down- and up-sampling.
+
+## 3. Results
+
+### 3.1 PCA and machine learning models
 
 ### 1.1 Load packages, data and procrustes analysis
 
@@ -974,6 +1048,13 @@ Eyzies-de-Tayac, Dordogne). Paléo 4, 69–89.
 
 </div>
 
+<div id="ref-breiman_random_2001" class="csl-entry">
+
+Breiman, L., 2001. Random Forests. Machine Learning 45, 5–32.
+<https://doi.org/10.1023/A:1010933404324>
+
+</div>
+
 <div id="ref-bustillo_caracteristicas_2005" class="csl-entry">
 
 Bustillo, M.A., Pérez-Jiménez, J.L., 2005. Características diferenciales
@@ -998,10 +1079,34 @@ stone tools for survival. Bulletin of Primitive Technology 12, 16–20.
 
 </div>
 
+<div id="ref-cortes_support-vector_1995" class="csl-entry">
+
+Cortes, C., Vapnik, V., 1995. Support-vector networks. Machine learning
+20, 273–297.
+
+</div>
+
 <div id="ref-cotterell_formation_1987" class="csl-entry">
 
 Cotterell, B., Kamminga, J., 1987. The Formation of Flakes. American
 Antiquity 52, 675–708.
+
+</div>
+
+<div id="ref-cover_nearest_1967" class="csl-entry">
+
+Cover, T., Hart, P., 1967. Nearest neighbor pattern classification. IEEE
+Transactions on Information Theory 13, 21–27.
+<https://doi.org/10.1109/TIT.1967.1053964>
+
+</div>
+
+<div id="ref-cramer_early_2004" class="csl-entry">
+
+Cramer, J.S., 2004. The early origins of the logit model. Studies in
+History and Philosophy of Science Part C: Studies in History and
+Philosophy of Biological and Biomedical Sciences 35, 613–626.
+<https://doi.org/10.1016/j.shpsc.2004.09.003>
 
 </div>
 
@@ -1057,6 +1162,35 @@ Continental d’Aquitaine, excursion AFEQ, ASF 2012 2012, 22–33.
 
 </div>
 
+<div id="ref-fisher_use_1936" class="csl-entry">
+
+Fisher, R.A., 1936. The use of multiple measurements in taxonomic
+problems. Annals of Eugenics 7, 179–188.
+
+</div>
+
+<div id="ref-frey_letter_1991" class="csl-entry">
+
+Frey, P.W., Slate, D.J., 1991. Letter recognition using Holland-style
+adaptive classifiers. Machine learning 6, 161–182.
+
+</div>
+
+<div id="ref-friedman_stochastic_2002" class="csl-entry">
+
+Friedman, J.H., 2002. Stochastic gradient boosting. Computational
+Statistics & Data Analysis 38, 367–378.
+<https://doi.org/10.1016/S0167-9473(01)00065-2>
+
+</div>
+
+<div id="ref-friedman_greedy_2001" class="csl-entry">
+
+Friedman, J.H., 2001. Greedy function approximation: A gradient boosting
+machine. Annals of statistics 29, 1189–1232.
+
+</div>
+
 <div id="ref-rigaud_les_1988" class="csl-entry">
 
 Geneste, J.-M., 1988. Les Industries De La Grotte Vaufrey: Technologie
@@ -1065,6 +1199,13 @@ in: Rigaud, J.-P. (Ed.), La Grotte Vaufrey à Cenac Et Saint-Julien
 (Dordogne) : Paléoenvironnements, Chronologie Et Activités Humaines,
 Mémoires de La Société Préhistorique Française (Revue). Société
 préhistorique française, Paris, pp. 441–517.
+
+</div>
+
+<div id="ref-greenwell_package_2019" class="csl-entry">
+
+Greenwell, B., Boehmke, B., Cunningham, J., Developers, G.B.M.,
+Greenwell, M.B., 2019. Package ‘gbm.’ R package version 2.
 
 </div>
 
@@ -1120,6 +1261,13 @@ Journal of Statistical Software 28.
 
 Kuhn, S.L., 2013. Roots of the Middle Paleolithic in Eurasia. Current
 Anthropology 54, S255–S268. <https://doi.org/10.1086/673529>
+
+</div>
+
+<div id="ref-lantz_machine_2019" class="csl-entry">
+
+Lantz, B., 2019. Machine learning with R: Expert techniques for
+predictive modeling. Packt publishing ltd.
 
 </div>
 
@@ -1190,11 +1338,32 @@ Roc-de-Combe (Lot) et de la Côte (Dordogne). CNRS, Paris.
 
 </div>
 
+<div id="ref-quinlan_c4_2014" class="csl-entry">
+
+Quinlan, J.R., 2014. C4. 5: Programs for machine learning. Elsevier.
+
+</div>
+
+<div id="ref-quinlan_improved_1996" class="csl-entry">
+
+Quinlan, J.R., 1996. Improved Use of Continuous Attributes in C4.5.
+Journal of Artificial Intelligence Research 4, 77–90.
+<https://doi.org/10.1613/jair.279>
+
+</div>
+
 <div id="ref-raab_debitage_1979" class="csl-entry">
 
 Raab, L.M., Cande, R.F., Stahle, D.W., 1979. Debitage graphs and archaic
 settlement patterns in the Arkansas Ozarks. Midcontinental Journal of
 Archaeology 4, 167–182.
+
+</div>
+
+<div id="ref-ridgeway_generalized_2007" class="csl-entry">
+
+Ridgeway, G., 2007. Generalized Boosted Models: A guide to the gbm
+package. R package vignette 2007.
 
 </div>
 
@@ -1269,6 +1438,22 @@ d’études Préhistoriques.
 
 Tixier, J., Turq, A., 1999. Kombewa et alii. Paléo 11, 135–143.
 <https://doi.org/10.3406/pal.1999.1174>
+
+</div>
+
+<div id="ref-walker_estimation_1967" class="csl-entry">
+
+Walker, S.H., Duncan, D.B., 1967. Estimation of the Probability of an
+Event as a Function of Several Independent Variables. Biometrika 54,
+167–179. <https://doi.org/10.2307/2333860>
+
+</div>
+
+<div id="ref-weihs_klar_2005" class="csl-entry">
+
+Weihs, C., Ligges, U., Luebke, K., Raabe, N., 2005. <span
+class="nocase">klaR</span> analyzing German business cycles, in: Data
+Analysis and Decision Support. Springer, pp. 335–343.
 
 </div>
 
