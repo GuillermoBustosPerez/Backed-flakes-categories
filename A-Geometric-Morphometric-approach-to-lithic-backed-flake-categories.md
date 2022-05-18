@@ -1029,6 +1029,19 @@ confusionMatrix(Conf_SVM_Poly$pred, Conf_SVM_Poly$obs)
 
 ### 3.2 Variable importance
 
+The following figure presents variable importance after 30 cycles of up-
+and down-sampling and k-fold cross-validation for the SVM with
+polynomial kernel models. Core edge flakes and pseudo-Levallois points
+share variable importance in terms of their identification, while core
+edge flakes with a limited back have their own variable importance.
+However, in both cases, there is agreement regarding which four PC are
+important for the classification of backed artefacts. In both cases, PC7
+is considered the most important, followed by PC4 and PC3. PC1 is
+considered the second most important PC for the identification of core
+edge flakes and pseudo-Levallois points (81.08), but its importance is
+diminished dramatically in the case of core edge flakes with a limited
+back (56.32).
+
 ``` r
 # Variable importance 
 ED_VarImp$Importance <- rowMeans(ED_VarImp[,2:31])
@@ -1078,6 +1091,58 @@ ncol = 2
 ```
 
 ![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/unnamed-chunk-7-1.png)
+
+None of the manually recorded metrics provided significant correlation
+with PC7 and PC4 scores. Visual evaluation indicates that PC7 is
+capturing flake morphology in plain view. Flakes with a triangular
+morphology have negative values, while more rectangular flakes tend to
+have 0 values. Flakes presenting shapes wider than they are long tend to
+have positive values. Although it is important to consider that the high
+variability in flake shape morphology is introducing underlying factors
+that affect PC7 scores.
+
+![Flake shape variation according to PC7 values. Figures represent flake
+morphology after Procrustes alignment (scale
+independent)](Figures/PC7.png)
+
+A visual evaluation of PC4 indicates that the values are likely the
+result of an interaction between the ratio of flake surface/volume to
+platform size and the angle between the backed edge and the platform.
+Flakes with high ratios of surface/volume to platform surface and open
+angles between the platform and backed edge tend to have negative
+values. On the other hand, flakes with large platforms (and therefore
+lower flake surface/volume ratios) and straight angles between the
+platform and backed edge have positive values.
+
+![Flake shape variation according to PC4 values. Figures represent flake
+morphology after Procrustes alignment (scale
+independent)](Figures/PC4.png)
+
+![Flake shape variation according to PC3 values. Figures represent flake
+morphology after Procrustes alignment (scale
+independent)](Figures/PC3.png)
+
+PC3 offers a much clearer interpretation. A visual evaluation of PC3
+values according to flake shape indicates that PC3 captures transversal
+flake morphology and the relationship between thickness and width. A
+multiple linear regression using the interaction between ratio of flake
+width to thickness and IPA as predictors shows a moderate correlation
+with PC3 values (p \< 0.001, adjusted *r*<sup>2</sup> = 0.65). The
+coefficient of interaction between the ratio of width to thickness and
+IPA is 0.17, while the coefficient of IPA is -0.77. A counterintuitive
+coefficient of -12.79 for the ratio of flake width to thickness is
+obtained in the interaction model. An individual regression of PC3
+values predicted from the ratio of flake width to thickness provides a
+moderate correlation (p \< 0.001; *r*<sup>2</sup> = 0.6), with a
+positive coefficient of 6.46. This indicates that the counterintuitive
+coefficient of -12.79 obtained for the width to thickness ratio in the
+interaction model is a result of a Simpson’s Paradox ([Simpson,
+1951](#ref-simpson_interpretation_1951)), in which the signal is
+reversed. It is also important to note the strong correlation between
+the carenated index and the ratio of flake width to thickness (p \<
+0.001; *r*<sup>2</sup> = 0.9). Thus, although PC3 regresses better with
+the ratio of width to thickness than with the carenated index, it can be
+considered that it is capturing flake thinness relative to thickness.
 
 ## 7. References
 
@@ -1558,6 +1623,15 @@ Press, New York, pp. 82–116.
 Shea, J., J., 2013a. The Upper Paleolithic, in: Stone Tools in the
 Paleolithic and Neolithic Near East : A Guide. Cambridge University
 Press, New York, pp. 117–160.
+
+</div>
+
+<div id="ref-simpson_interpretation_1951" class="csl-entry">
+
+Simpson, E.H., 1951. The Interpretation of Interaction in Contingency
+Tables. Journal of the Royal Statistical Society: Series B
+(Methodological) 13, 238–241.
+<https://doi.org/10.1111/j.2517-6161.1951.tb00088.x>
 
 </div>
 
