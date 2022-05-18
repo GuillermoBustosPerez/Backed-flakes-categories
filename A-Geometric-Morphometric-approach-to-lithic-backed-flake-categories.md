@@ -625,7 +625,7 @@ Each loop works in the following steps:
 4.  Steps 1 to 3 are repeated 30 times per model.
 
 ``` r
-#### Train the models
+# Train the models
 # Set tibble in which results of each model will be stored
 All_Results <- tibble()
 
@@ -925,7 +925,11 @@ repeat {
 
 ### 3.1 PCA and machine learning models
 
-## 3. Results
+The PCA results show that the 25 first principal components account for
+95% of the variance in the dataset, with PC1 accounting for 21.39% of
+variance and PC25 accounting for 0.36% of variance. This represents a
+substantial reduction in dimensionality from the original number of
+variables (1,524) and is lower than the sample size (139).
 
 ## 7. References
 
