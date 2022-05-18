@@ -929,10 +929,23 @@ The PCA results show that the 25 first principal components account for
 95% of the variance in the dataset, with PC1 accounting for 21.39% of
 variance and PC25 accounting for 0.36% of variance. This represents a
 substantial reduction in dimensionality from the original number of
-variables (1,524) and is lower than the sample size (139).
+variables (1,524) and is lower than the sample size (139).  
+The following presents the accuracy values for each model after their
+respective 30 cycles of random up- and down-sampling. Supported vector
+machines with a polynomial kernel had the highest average value for
+general accuracy (0.837), closely followed by the random forest model
+(0.829). The K-nearest neighbor model had the lowest average value for
+accuracy (0.681), followed by LDA model (0.690). Supported vector
+machines with a polynomial kernel had the lowest standard deviation in
+accuracy values (0.018). This indicates that, in addition to being the
+most precise model on average, SVM with a polynomial kernel is also the
+most consistent model, being less affected by random up- and
+down-sampling. The minimum accuracy value of SVM with a polynomial
+kernel is 0.801, indicating a high accuracy, even when up- and
+down-sampling result in similar objects.
 
 ``` r
-# Set the models factos
+# Set the models factors
 All_Results$Model <- factor(All_Results$Model,
                                 levels = c(
                                   "LDA", "KNN", "Log. Reg.",
@@ -966,6 +979,105 @@ All_Results %>%
 ```
 
 ![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Results%20from%20up%20and%20down%20sampling-1.png)
+
+The following table presents performance metrics of the SVM with a
+polynomial kernel for the classification of the three products. The
+prevalence/no information ratio was kept constant at 0.33 for all three
+categories as a result of random up- and down-sampling to obtain
+balanced datasets. In general, the three products had high values for
+performance metrics, with Pseudo-Levallois points standing out in this
+regard. Following pseudo-Levallois points, core edge flakes had the
+second-best general values, with a sensitivity close to 0.8. Core edge
+flakes with a limited back had the lowest values for performance
+metrics.
+
+``` r
+# Performance metrics of SVM with polynomial kernel
+confusionMatrix(Conf_SVM_Poly$pred, Conf_SVM_Poly$obs)
+```
+
+    ## Confusion Matrix and Statistics
+    ## 
+    ##           Reference
+    ## Prediction    ED  EDlb  p_Lp
+    ##       ED   53689 13937   144
+    ##       EDlb 14877 51943  4107
+    ##       p_Lp   434  3120 64749
+    ## 
+    ## Overall Statistics
+    ##                                           
+    ##                Accuracy : 0.8231          
+    ##                  95% CI : (0.8214, 0.8247)
+    ##     No Information Rate : 0.3333          
+    ##     P-Value [Acc > NIR] : < 2.2e-16       
+    ##                                           
+    ##                   Kappa : 0.7346          
+    ##                                           
+    ##  Mcnemar's Test P-Value : < 2.2e-16       
+    ## 
+    ## Statistics by Class:
+    ## 
+    ##                      Class: ED Class: EDlb Class: p_Lp
+    ## Sensitivity             0.7781      0.7528      0.9384
+    ## Specificity             0.8980      0.8624      0.9742
+    ## Pos Pred Value          0.7922      0.7323      0.9480
+    ## Neg Pred Value          0.8900      0.8746      0.9694
+    ## Prevalence              0.3333      0.3333      0.3333
+    ## Detection Rate          0.2594      0.2509      0.3128
+    ## Detection Prevalence    0.3274      0.3426      0.3300
+    ## Balanced Accuracy       0.8380      0.8076      0.9563
+
+### 3.2 Variable importance
+
+``` r
+# Variable importance 
+ED_VarImp$Importance <- rowMeans(ED_VarImp[,2:31])
+ED_VarImp$PC <- colnames(PCA_Coord)[1:25]
+
+EDlb_VarImp$Importance <- rowMeans(EDlb_VarImp[,2:31])
+EDlb_VarImp$PC <- colnames(PCA_Coord)[1:25]
+
+ggpubr::ggarrange(
+(ED_VarImp %>% select(Importance, PC) %>% 
+  top_n(15, Importance) %>% 
+  ggplot(aes(Importance, reorder(PC, Importance), fill = Importance)) +
+  geom_bar(stat= "identity", position = "dodge") +
+  geom_text(aes(label = round(Importance, 2)), 
+            position = position_stack(vjust = 0.5), size = 2) +
+  scale_fill_gradient(low = "red", high = "blue") +
+  guides(fill = "none") +
+  ylab(NULL) +
+  theme_light() +
+  labs(title = "PC importance for Core Edge Flakes and pseudo-Levallois\npoints") +
+  theme(
+    axis.text.y = element_text(color = "black", size = 7),
+    axis.text.x = element_text(color = "black", size = 7),
+    axis.title.x = element_text(color = "black", size = 7),
+    plot.title = element_text(color = "black", size = 7))
+),
+
+(EDlb_VarImp %>% select(Importance, PC) %>% 
+  top_n(15, Importance) %>% 
+  ggplot(aes(Importance, reorder(PC, Importance), fill = Importance)) +
+  geom_bar(stat= "identity", position = "dodge") +
+  geom_text(aes(label = round(Importance, 2)), 
+            position = position_stack(vjust = 0.5), size = 2) +
+  scale_fill_gradient(low = "red", high = "blue") +
+  guides(fill = "none") +
+  ylab(NULL) +
+  theme_light() +
+  labs(title = "PC importance for Core Edge Flakes With a Limited\nBack") +
+  theme(
+    axis.text.y = element_text(color = "black", size = 7),
+    axis.text.x = element_text(color = "black", size = 7),
+    axis.title.x = element_text(color = "black", size = 7),
+    plot.title = element_text(color = "black", size = 7))
+),
+ncol = 2
+)
+```
+
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 ## 7. References
 
