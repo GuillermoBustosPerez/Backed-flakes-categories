@@ -961,8 +961,8 @@ All_Results %>%
   theme(
     legend.position = "none",
     axis.text = element_text(color = "black", size = 8),
-    axis.title = element_text(color = "black", size = 8.5
-  ))
+    axis.title = element_text(color = "black", size = 8.5)
+    )
 ```
 
 ![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Results%20from%20up%20and%20down%20sampling-1.png)
