@@ -1453,6 +1453,28 @@ PCA_Coord %>%
 
 ![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Violin%20and%20box%20plots-1.png)
 
+## 4. Discussion
+
+Our results show that geometric morphometrics, along with machine
+learning models, can easily differentiate between core edge flakes, core
+edge flakes with a limited back, and pseudo-Levallois points from
+discoidal and recurrent centripetal Levallois reduction sequences. The
+best model (SVM with a polynomial kernel) obtained high general average
+precision values (0.837). When considering each technological product
+individually, pseudo-Levallois points stood out as the most clearly
+differentiable of the three categories considered, with performance
+metrics above 0.9. Following pseudo-Levallois points, core edge flakes
+were the most clearly identifiable technological products, with a
+notable sensitivity value (0.778). Although core edge flakes with a
+limited back are the technological product with the lowest sensitivity
+(0.753), this is not a low value or substantially different from core
+edge flakes’ sensitivity. This indicates that geometric morphometrics
+are capturing the technological features defining each category and that
+they are discrete categories with little overlap. Thus, their use (and,
+more specifically, the use of the core edge flakes with a limited back
+as a category) for analysis in lists of technological products is
+justifiable.
+
 ## 7. References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
