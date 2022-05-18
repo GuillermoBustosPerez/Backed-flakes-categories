@@ -329,6 +329,106 @@ Att %>% group_by(ARTIFACTTYPE) %>%
 
 ![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Cortex%20distribution%20per%20artefact%20type-1.png)
 
+### 2.2 Geometric Morphometrics
+
+All flakes were scanned with an Academia 20 structured light surface
+scanner (Creaform 3D) at a 0.2 mm resolution. Flakes were scanned in two
+parts, automatically aligned (or manually aligned in the case automatic
+alignment failure), and exported in STL format. Cloudcompare 2.11.3
+(<https://www.danielgm.net/cc/>) free software was employed to perform
+additional cleaning, mesh sampling, surface reconstruction and
+transformation into PLY files. Finally, all files were decimated to a
+quality of 50,000 faces using the Rvcg R package ([Schlager,
+2017](#ref-schlager_morpho_2017)).
+
+The protocol for the digitalizing landmarks on flakes is based on
+previous studies ([Archer et al., 2021](#ref-archer_quantifying_2021),
+[2018](#ref-archer_geometric_2018)). This included the positioning of a
+total of three fixed landmarks, 85 curve semi-landmarks, and 420 surface
+semi-landmarks ([Bookstein, 1997a](#ref-bookstein_landmark_1997),
+[1997b](#ref-bookstein_morphometric_1997); [Gunz et al.,
+2005](#ref-gunz_semilandmarks_2005); [Gunz and Mitteroecker,
+2013](#ref-gunz_semilandmarks_2013); [Mitteroecker and Gunz,
+2009](#ref-mitteroecker_advances_2009)). This resulted in a total of 508
+landmarks and semi-landmarks. The three fixed landmarks correspond to
+both laterals of the platform and the percussion point. The 85 curve
+semi-landmarks correspond to the internal and exterior curve outlines of
+the platform (15 semi-landmarks each) and the edge of the flake (55
+semi-landmarks). Sixty surface semi-landmarks correspond to the platform
+surface. The dorsal and ventral surfaces of the flakes are defined by
+180 semi-landmarks each. The workflow for digitalizing landmarks and
+semi-landmarks included the creation of a template/atlas on an arbitrary
+selected flake. After this, landmarks and semi-landmarks were positioned
+in each specimen and relaxed to minimize bending energy ([Bookstein,
+1997a](#ref-bookstein_landmark_1997),
+[1997b](#ref-bookstein_morphometric_1997)). A complete workflow of
+landmark and semi-landmark digitalization and relaxation to minimize
+bending energy was created in Viewbox Version 4.1.0.12
+(<http://www.dhal.com/viewbox.htm>), and the resulting point coordinates
+were exported into .xlsx files.
+
+Procrustes superimposition ([Kendall, 1984](#ref-kendall_shape_1984);
+[Mitteroecker and Gunz, 2009](#ref-mitteroecker_advances_2009);
+[O’Higgins, 2000](#ref-ohiggins_study_2000)) was performed using the
+Morpho package ([Schlager, 2017](#ref-schlager_morpho_2017)) on RStudio
+IDE ([R. C. Team, 2019](#ref-r_core_team_r_2019); [Rs. Team,
+2019](#ref-rstudio_team_rstudio_2019)). After performing Procrustes
+superimposition and obtaining a new set of coordinates, principal
+component analysis (PCA) was performed to reduce the dimensionality of
+the data ([James et al., 2013](#ref-james_introduction_2013); [Pearson,
+1901](#ref-pearson_lines_1901)). There are multiple reasons to use
+dimensionality reduction when dealing with high-dimension data on
+classification: to avoid having more predictors than observations (p \>
+n), avoid collinearity of predictors, reduce the dimensions of the
+feature space, and avoid overfitting due to an excessive number of
+degrees of freedom (simple structure with lower number of variables).
+Principal component analysis achieves dimensionality reduction by
+identifying the linear combinations that best represent the predictors
+on an unsupervised manner. The principal components (PCs) of a PCA aim
+to capture as high a variance as possible for the complete data ([James
+et al., 2013](#ref-james_introduction_2013)), and PCs that capture the
+highest variance need not necessarily be the best for classification.
+For the present work, PCs that represent 95% of variance are selected as
+predictors for training the machine learning models. The threshold of
+95% of variance is arbitrarily selected because it balances retaining
+most of the dataset variance with a reduced number of variables. The
+identification of best PCs for classification is performed automatically
+by the machine learning models using the caret package ([Kuhn,
+2008](#ref-kuhn_building_2008)).
+
+![Figure 3. Top: template/atlas for a randomly selected flake with the
+defined landmarks, curves, and surfaces. Bottom: landmark positioning
+after sliding to minimize bending energy on a pseudo-Levallois point.
+Fixed landmarks are indicated in red](Figures/Template%20and%20BE.png)
+
+In addition to geometric morphometrics, the following attributes were
+recorded for each of the flakes:
+
+-   Technological length: measured in mm along the axis perpendicular to
+    the striking platform.  
+-   Technological width: measured in mm along the axis perpendicular to
+    the technological width.  
+-   Maximum thickness of the flake, measured in mm.  
+-   External platform angle (EPA): measured in degrees with a manual
+    goniometer.  
+-   Internal platform angle (IPA): measured in degrees with a manual
+    goniometer.  
+-   Relative amount of cortex present at the dorsal face: recorded
+    according to its extension on the dorsal surface of the flake, with
+    categories being as follows: 0 (no cortex), 1 (nearly 25% covered by
+    cortex), 2 (nearly 50% covered by cortex), 3 (nearly 75% covered by
+    cortex), and 4 (nearly all of the surface covered by cortex). This
+    variable is employed to evaluate the distribution among the
+    experimental assemblage (Figure 2).  
+-   Weight: measured to a precision of 0.01 g.
+
+From the previous measures, the following variables are obtained:  
+\* Elongation index: flake length divided by width.  
+\* Carenated index: width or length (the one with the lowest value)
+divided by maximum thickness.  
+\* Ratio of width to thickness: flake width divided by maximum
+thickness.
+
 ### 1.1 Load packages, data and procrustes analysis
 
 ``` r
@@ -390,33 +490,6 @@ PCA_Coord %>% group_by(ARTIFACTTYPE) %>%
     ## 1 Core Edge Flake                30
     ## 2 Core edge with limited back    93
     ## 3 pseudo-Levallois Point         16
-
-``` r
-# Cortex per artefact type
-PCA_Coord %>% group_by(ARTIFACTTYPE) %>% 
-  count(CORTEX) %>% 
-  
-  mutate(Percentage = round(n/sum(n)*100, 2)) %>% 
-  
-  ggplot(aes(CORTEX, Percentage, fill = ARTIFACTTYPE)) +
-  geom_col(position = "dodge") +
-  ggsci::scale_fill_aaas() +
-  xlab(NULL) +
-  geom_text(aes(label = paste0(Percentage, "%")), 
-            vjust= -0.2, size = 2.5,
-            position = position_dodge(.9)) +
-  geom_text(aes(label = paste("n =", n)), 
-            vjust= "top", size = 2.5,
-            position = position_dodge(.9)) +
-  labs(fill = NULL) +
-  
-  theme_classic() +
-  theme(
-    legend.position = "bottom",
-    axis.text = element_text(color = "black", size = 8))
-```
-
-![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 ### 2.2 Geometric Morphometrics
 
@@ -791,6 +864,26 @@ Southern Caucasus. Science 345, 1609–1613.
 
 </div>
 
+<div id="ref-archer_quantifying_2021" class="csl-entry">
+
+Archer, W., Djakovic, I., Brenet, M., Bourguignon, L., Presnyakova, D.,
+Schlager, S., Soressi, M., McPherron, S.P., 2021. Quantifying
+differences in hominin flaking technologies with 3D shape analysis.
+Journal of Human Evolution 150, 102912.
+<https://doi.org/10.1016/j.jhevol.2020.102912>
+
+</div>
+
+<div id="ref-archer_geometric_2018" class="csl-entry">
+
+Archer, W., Pop, C.M., Rezek, Z., Schlager, S., Lin, S.C., Weiss, M.,
+Dogandžić, T., Desta, D., McPherron, S.P., 2018. A geometric
+morphometric relationship predicts stone flake shape and size
+variability. Archaeological and Anthropological Sciences 10, 1991–2003.
+<https://doi.org/10.1007/s12520-017-0517-2>
+
+</div>
+
 <div id="ref-beyries_etude_1983" class="csl-entry">
 
 Beyries, S., Boëda, E., 1983. Étude technoloogique et traces
@@ -837,6 +930,21 @@ centripède. Bulletin de la Société Préhistorique Française 90, 392–404.
 
 Boëda, E., Geneste, J.-M., Meignen, L., 1990. Identification de chaînes
 opératoires lithiques du Paléolithique ancien et moyen. Paléo 2, 43–80.
+
+</div>
+
+<div id="ref-bookstein_landmark_1997" class="csl-entry">
+
+Bookstein, F.L., 1997a. Landmark methods for forms without landmarks:
+Morphometrics of group differences in outline shape. Medical Image
+Analysis 1, 225–243. <https://doi.org/10.1016/S1361-8415(97)85012-8>
+
+</div>
+
+<div id="ref-bookstein_morphometric_1997" class="csl-entry">
+
+Bookstein, F.L., 1997b. Morphometric tools for landmark data. Cambridge
+University Press.
 
 </div>
 
@@ -960,11 +1068,51 @@ préhistorique française, Paris, pp. 441–517.
 
 </div>
 
+<div id="ref-gunz_semilandmarks_2013" class="csl-entry">
+
+Gunz, P., Mitteroecker, P., 2013. Semilandmarks: A method for
+quantifying curves and surfaces. Hystrix 24, 103–109.
+<https://doi.org/10.4404/hystrix-24.1-6292>
+
+</div>
+
+<div id="ref-gunz_semilandmarks_2005" class="csl-entry">
+
+Gunz, P., Mitteroecker, P., Bookstein, F.L., 2005. Semilandmarks in
+three dimensions, in: Modern Morphometrics in Physical Anthropology.
+Springer, New York, pp. 73–98.
+
+</div>
+
 <div id="ref-hayden_confusion_1980" class="csl-entry">
 
 Hayden, B., 1980. Confusion in the Bipolar World: Bashed Pebbles and
 Splintered Pieces. Lithic Technology 9, 2–7.
 <https://doi.org/10.1080/01977261.1980.11754456>
+
+</div>
+
+<div id="ref-james_introduction_2013" class="csl-entry">
+
+James, G., Witten, D., Hastie, T., Tibshirani, R., 2013. An Introduction
+to Statistical Learning with Applications in R, Second Edition. ed.
+Springer.
+
+</div>
+
+<div id="ref-kendall_shape_1984" class="csl-entry">
+
+Kendall, D.G., 1984. Shape Manifolds, Procrustean Metrics, and Complex
+Projective Spaces. Bulletin of the London Mathematical Society 16,
+81–121. <https://doi.org/10.1112/blms/16.2.81>
+
+</div>
+
+<div id="ref-kuhn_building_2008" class="csl-entry">
+
+Kuhn, M., 2008. Building Predictive Models in R using the caret Package.
+Journal of Statistical Software 28.
+<https://doi.org/10.18637/jss.v028.i05>
 
 </div>
 
@@ -1001,12 +1149,37 @@ CNRS Ed., Paris, pp. 238–328.
 
 </div>
 
+<div id="ref-mitteroecker_advances_2009" class="csl-entry">
+
+Mitteroecker, P., Gunz, P., 2009. Advances in Geometric Morphometrics.
+Evolutionary Biology 36, 235–247.
+<https://doi.org/10.1007/s11692-009-9055-x>
+
+</div>
+
+<div id="ref-ohiggins_study_2000" class="csl-entry">
+
+O’Higgins, P., 2000. The study of morphological variation in the hominid
+fossil record: Biology, landmarks and geometry. Journal of Anatomy 197,
+103–120. <https://doi.org/10.1046/j.1469-7580.2000.19710103.x>
+
+</div>
+
 <div id="ref-pasty_etude_2004" class="csl-entry">
 
 Pasty, J.-F., Liegard, S., Alix, P., 2004. Étude de l’industrie lithique
 du site paléolithique moyen des Fendeux (Coulanges, Allier). Bulletin de
 la Société préhistorique française 101, 5–25.
 <https://doi.org/10.3406/bspf.2004.12945>
+
+</div>
+
+<div id="ref-pearson_lines_1901" class="csl-entry">
+
+Pearson, K., 1901. On lines and planes of closest fit to systems of
+points in space. The London, Edinburgh, and Dublin Philosophical
+Magazine and Journal of Science 2, 559–572.
+<https://doi.org/10.1080/14786440109462720>
 
 </div>
 
@@ -1038,6 +1211,14 @@ the Late Middle Paleolithic. Academic Press.
 
 </div>
 
+<div id="ref-schlager_morpho_2017" class="csl-entry">
+
+Schlager, S., 2017. Morpho and Rvcg–Shape Analysis in R: R-Packages for
+geometric morphometrics, shape analysis and surface manipulations, in:
+Statistical Shape and Deformation Analysis. Elsevier, pp. 217–256.
+
+</div>
+
 <div id="ref-shea_middle_2013" class="csl-entry">
 
 Shea, J., J., 2013b. The Middle Paleolithic, in: Stone Tools in the
@@ -1060,6 +1241,19 @@ Slimak, L., 2003. Les Debitages discoïdes mousteriens: Evaluation d’un
 concept technologique, in: Peresani, M. (Ed.), Discoid Lithic
 Technology. Advances and Implications, BAR International Series.
 Archaeopress, Oxford, pp. 33–65.
+
+</div>
+
+<div id="ref-r_core_team_r_2019" class="csl-entry">
+
+Team, R.C., 2019. R: A language and environment for statistical
+computing.
+
+</div>
+
+<div id="ref-rstudio_team_rstudio_2019" class="csl-entry">
+
+Team, Rs., 2019. RStudio: Integrated Development for R.
 
 </div>
 
