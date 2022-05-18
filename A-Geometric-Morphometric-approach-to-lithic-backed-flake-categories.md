@@ -500,11 +500,31 @@ cycles of up- and down-sampling. The reported variable importance and
 confusion matrix from which model metric performance are extracted are
 obtained from these additional cycles of down- and up-sampling.
 
-### 2.4 Pre processing and training the models
+### 2.4 Performance of procrustes, PCA and model training
+
+The following line of code performs procrustes alignment and
+superimposition using the Morpho package ([Schlager,
+2017](#ref-schlager_morpho_2017)). Aligned coordinates are extracted and
+stored as a data frame named LM.DF.
 
 ``` r
-load("Data/Flakes LM rotated.RData")
+# Load raw landmarks
+load("Data/Raw landmarks.RData")
+
+# Procrustes alignment
+proc <- Morpho::ProcGPA(Flakes_LM, 
+                CSinit = TRUE, 
+                silent = FALSE)
+
+# Extract coordinates
+Proc.Rot <- proc$rotated
+LM.DF <- data.frame(matrix(Proc.Rot, nrow = length(filenames), byrow = TRUE))
 ```
+
+The following code performs PCA on the rotated landmarks and extracts
+the PC values of each case. Additionally, ID’s of each case are added as
+an additional variable and employed in a `left join()` with the
+attribute dataset.
 
 ``` r
 # PCA on rotated landmarks
@@ -545,6 +565,10 @@ PCA_Coord$Core <- str_sub(PCA_Coord$ID, end = 2)
 PCA_Coord <- left_join(PCA_Coord, Att, by = "ID")
 ```
 
+Prior to model training it is necessary to preprocess the data. Labels
+of each artifact are changed using the `case_when()` function and new
+variable is set as factor with corresponding labels.
+
 ``` r
 #### Pre processing data
 # Change syntax of output
@@ -562,6 +586,9 @@ PCA_Coord$New_Art.Type <- factor(
   levels = c("ED", "EDlb", "p_Lp"),
   labels = c("ED", "EDlb", "p_Lp"))
 ```
+
+Formula and validation (k fold corss validation) are set prior to model
+training.
 
 ``` r
 # Set formula and validation
