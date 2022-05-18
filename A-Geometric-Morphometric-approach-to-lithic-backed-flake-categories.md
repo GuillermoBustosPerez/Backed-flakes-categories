@@ -1383,6 +1383,76 @@ legend = "bottom"
 
 ![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Biplots-2.png)
 
+As mentioned above, PC4 is interpreted as capturing the relationships
+between platform size, flake volume, and the angle between the backed
+lateral edge and the platform. The three defined technological products
+show differences regarding this component. Core edge flakes generally
+have positive values (mean = 6.14, SD = 9.32). These generally positive
+values are indicative of large platforms, while the platform and the
+backed edge form an angle close to 90º. Biplot visualization is
+especially informative in this respect, because it results in core edge
+flakes being clustered in positive values. Core edge flakes with a
+limited back and pseudo-Levallois points have similar negative values
+for PC4, with a high degree of overlap (respective means of -1.29 and
+-4.01 and SDs of 10.1 and 13.7). These negative values indicate the
+importance of small platforms relative to the volume of the product and
+the open angle between the platform and the backed lateral of the flake.
+This open angle can be associated with the deviation between the
+morphological and percussion axes.  
+Although PC3 and PC1 are considered the third and fourth most important
+variables for discriminating between the defined technological products,
+the distribution of the main values shows some tendencies of interest.
+PC3 is capturing the interaction between IPA and the ratio of flake
+width to thickness. The mean value for core edge flakes (-6.41)
+indicates that they tend to be less wide with respect to their
+thickness, while the slightly positive mean values of core edge flakes
+with a limited back (1.59) and pseudo-Levallois points (2.78) indicate a
+general tendency to be wider with respect to their thickness.
+
+PC1 mostly captures the relationships of elongation and thickness, where
+elongated, thin products are characterized by negative values. Core edge
+flakes have a tendency toward negative values (mean = -8.26; SD = 16.3),
+indicating that they are generally elongated products. This relatively
+longer elongation can be associated with core edge flakes sharing the
+morphological and percussion axes. Pseudo-Levallois points share the
+opposite tendency, having generally positive values (mean = 8.14; SD =
+19.9), which are indicative of their being short non-elongated products.
+Core edge flakes with a limited back have a slightly positive tendency
+(mean = 1.26; SD = 17.5), which is indicative of their not usually being
+elongated products.
+
+``` r
+# Get variables of interest
+PCA_Coord %>% 
+  select(PC1, PC3, PC4, PC7, ARTIFACTTYPE) %>% 
+  pivot_longer(
+    cols = c(PC1, PC3, PC4, PC7),
+    names_to = "PC",
+    values_to = "Value") %>% 
+  
+# Plot
+  ggplot(aes(ARTIFACTTYPE, Value, fill = ARTIFACTTYPE)) +
+  geom_violin(alpha = 0.4, width = 0.75) +
+  geom_boxplot(alpha = 0.75,  width = 0.25, outlier.size = 0) +
+  facet_grid(~ PC, scales = "free") +
+  geom_jitter(width = 0.15, alpha = 1, size = 0.9, shape = 23, aes(fill = ARTIFACTTYPE)) +
+  coord_flip() +
+  theme_light() +
+  scale_x_discrete(labels = c("Core Edge\nFlake",
+                              "Core edge with\nlimited back",
+                              "pseudo-Levallois\nPoint")) +
+  xlab(NULL) +
+  ylab("PC value") +
+  ggsci::scale_fill_lancet() +
+  theme(strip.text = element_text(color = "black", face = "bold", size = 8),
+        strip.background = element_rect(fill = "white", colour = "black", size = 1),
+        legend.position = "none",
+        axis.text = element_text(color = "black", size = 7),
+        axis.title = element_text(color = "black", size = 7))
+```
+
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Violin%20and%20box%20plots-1.png)
+
 ## 7. References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
