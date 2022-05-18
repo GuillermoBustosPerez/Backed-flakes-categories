@@ -1144,6 +1144,39 @@ the carenated index and the ratio of flake width to thickness (p \<
 the ratio of width to thickness than with the carenated index, it can be
 considered that it is capturing flake thinness relative to thickness.
 
+``` r
+# Create new variables
+PCA_Coord <- PCA_Coord %>% mutate(
+  Rat_W_T = WIDTH/MAXTHICK,
+  Car.Index = case_when(
+    WIDTH > LENGHT ~ LENGHT/MAXTHICK,
+    WIDTH == LENGHT ~ LENGHT/MAXTHICK,
+    WIDTH < LENGHT ~ WIDTH/MAXTHICK))
+
+summary(lm(PC3 ~ Rat_W_T*IPA, PCA_Coord))
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = PC3 ~ Rat_W_T * IPA, data = PCA_Coord)
+    ## 
+    ## Residuals:
+    ##      Min       1Q   Median       3Q      Max 
+    ## -22.4659  -4.6226  -0.2159   4.8543  21.1260 
+    ## 
+    ## Coefficients:
+    ##              Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)  62.02025   17.75208   3.494 0.000645 ***
+    ## Rat_W_T     -12.79366    4.22008  -3.032 0.002917 ** 
+    ## IPA          -0.77034    0.15657  -4.920 2.48e-06 ***
+    ## Rat_W_T:IPA   0.17362    0.03855   4.503 1.43e-05 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 7.597 on 135 degrees of freedom
+    ## Multiple R-squared:  0.657,  Adjusted R-squared:  0.6494 
+    ## F-statistic: 86.21 on 3 and 135 DF,  p-value: < 2.2e-16
+
 ## 7. References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
