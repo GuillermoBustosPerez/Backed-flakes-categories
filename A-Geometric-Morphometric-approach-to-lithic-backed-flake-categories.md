@@ -1181,16 +1181,17 @@ summary(lm(PC3 ~ Rat_W_T*IPA, PCA_Coord))
 
 A multiple linear regression for the prediction of PC1 values shows a
 moderate correlation when the elongation index and carenated index are
-employed as predictors (p \< 0.001; adjusted r2 = 0.63). The elongation
-index has the highest significance and the highest estimated value
-(-39.27), while the carenated index has an estimated value of -4.26. The
-negative and high value of the estimate for the elongation index
-indicates that, as the tendency of a product to be elongated increases
-(becoming longer relative to its width), the values of PC1 will
-decrease, while all other variables will remain constant. The negative
-estimate of the carenated index also indicates that, as a product
-becomes thinner, the values of PC1 will decrease. Thus, the positive
-values of PC1 are representing thick products with a low elongation.
+employed as predictors (p \< 0.001; adjusted *r*<sup>2</sup> = 0.63).
+The elongation index has the highest significance and the highest
+estimated value (-39.27), while the carenated index has an estimated
+value of -4.26. The negative and high value of the estimate for the
+elongation index indicates that, as the tendency of a product to be
+elongated increases (becoming longer relative to its width), the values
+of PC1 will decrease, while all other variables will remain constant.
+The negative estimate of the carenated index also indicates that, as a
+product becomes thinner, the values of PC1 will decrease. Thus, the
+positive values of PC1 are representing thick products with a low
+elongation.
 
 ``` r
 # Muliple linear regression to get PC1
