@@ -1256,6 +1256,75 @@ CFM %>%
 
 ![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Confusion%20matrix%20of%20SVMP-1.png)
 
+Core edge flakes and core edge flakes with a limited back offer slightly
+higher frequencies of misidentifications, although they maintain high
+values for sensitivity and specificity. For the SVM with a polynomial
+kernel, it is more common to mislabel core edge flakes as core edge
+flakes with a limited back (7.19) than the reverse (6.73). For both
+technological groups of flakes, their incorrect identification as
+pseudo-Levallois flakes is minimal, although this incorrect
+identification has a higher frequency in core edge flakes with a limited
+back (1.51) than in core edge flakes (0.21).  
+The above interpretation of the PCs, biplot visualization
+
+``` r
+ggpubr::ggarrange(
+(PCA_Coord %>% ggplot(aes(PC7, PC4, fill = New_Art.Type)) +
+  geom_vline(xintercept = 0, alpha = 0.7, linetype = "dashed") +
+  geom_hline(yintercept = 0, alpha = 0.7, linetype = "dashed") +
+  stat_ellipse(geom = "polygon", alpha = 0.2, aes(fill = New_Art.Type),
+               level = 0.8) +
+  geom_point(aes(color = New_Art.Type), size = 1) +
+  xlab(paste0("PC7 (", round((summary(pca)$importance[2,7])*100, 2), "%)")) +
+  ylab(paste0("PC4 (", round((summary(pca)$importance[2,4])*100, 2), "%)")) +
+  ggsci::scale_fill_lancet(name = "Backed flake type",
+                         labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+  ggsci::scale_color_lancet(name = "Backed flake type",
+                          labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+  theme_light() +
+  guides(color = guide_legend(nrow = 1, title.position = "top"),
+         fill = guide_legend(nrow = 1, title.position = "top")) +
+  theme(
+    axis.text.y = element_text(color = "black", size = 7),
+    axis.text.x = element_text(color = "black", size = 7),
+    axis.title.x = element_text(color = "black", size = 9),
+    axis.title.y = element_text(color = "black", size = 9),
+    legend.title = element_text(color = "black", size = 9),
+    legend.text = element_text(color = "black", size = 9),
+    legend.position = "bottom")),
+
+(PCA_Coord %>% ggplot(aes(PC7, PC3, fill = New_Art.Type)) +
+  geom_vline(xintercept = 0, alpha = 0.7, linetype = "dashed") +
+  geom_hline(yintercept = 0, alpha = 0.7, linetype = "dashed") +
+  stat_ellipse(geom = "polygon", alpha = 0.2, aes(fill = New_Art.Type),
+               level = 0.8) +
+  geom_point(aes(color = New_Art.Type), size = 1) +
+  xlab(paste0("PC7 (", round((summary(pca)$importance[2,7])*100, 2), "%)")) +
+  ylab(paste0("PC3 (", round((summary(pca)$importance[2,3])*100, 2), "%)")) +
+  ggsci::scale_fill_lancet(name = "Backed flake type",
+                           labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+  ggsci::scale_color_lancet(name = "Backed flake type",
+                            labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+  theme_light() +
+  guides(color = guide_legend(nrow = 1, title.position = "top"),
+         fill = guide_legend(nrow = 1, title.position = "top")) +
+  theme(
+    axis.text.y = element_text(color = "black", size = 7),
+    axis.text.x = element_text(color = "black", size = 7),
+    axis.title.x = element_text(color = "black", size = 9),
+    axis.title.y = element_text(color = "black", size = 9),
+    legend.title = element_text(color = "black", size = 9),
+    legend.text = element_text(color = "black", size = 9),
+    legend.position = "bottom")),
+nrow = 1,
+ncol = 2,
+common.legend = TRUE,
+legend = "bottom"
+)
+```
+
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Biplots%20PC7,PC4,PC3-1.png)
+
 ## 7. References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
