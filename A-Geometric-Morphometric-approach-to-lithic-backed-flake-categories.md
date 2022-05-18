@@ -422,12 +422,13 @@ recorded for each of the flakes:
     experimental assemblage (Figure 2).  
 -   Weight: measured to a precision of 0.01 g.
 
-From the previous measures, the following variables are obtained:  
-\* **Elongation index:** flake length divided by width.  
-\* **Carenated index:** width or length (the one with the lowest value)
-divided by maximum thickness.  
-\* **Ratio of width to thickness:** flake width divided by maximum
-thickness.
+From the previous measures, the following variables are obtained:
+
+-   **Elongation index:** flake length divided by width.  
+-   **Carenated index:** width or length (the one with the lowest value)
+    divided by maximum thickness.  
+-   **Ratio of width to thickness:** flake width divided by maximum
+    thickness.
 
 ### 2.3 Machine learning and resampling techniques
 
