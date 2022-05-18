@@ -500,11 +500,7 @@ cycles of up- and down-sampling. The reported variable importance and
 confusion matrix from which model metric performance are extracted are
 obtained from these additional cycles of down- and up-sampling.
 
-## 3. Results
-
-### 3.1 PCA and machine learning models
-
-### 1.1 Load packages, data and procrustes analysis
+### 2.4 Pre processing and training the models
 
 ``` r
 load("Data/Flakes LM rotated.RData")
@@ -548,29 +544,6 @@ PCA_Coord$Core <- str_sub(PCA_Coord$ID, end = 2)
 # Left joined with the attribute database
 PCA_Coord <- left_join(PCA_Coord, Att, by = "ID")
 ```
-
-## 2. Methods
-
-### 2.1 Experimental assemblage
-
-``` r
-# Count artifact type per class 
-PCA_Coord %>% group_by(ARTIFACTTYPE) %>% 
-  summarise(Count = n())
-```
-
-    ## # A tibble: 3 x 2
-    ##   ARTIFACTTYPE                Count
-    ##   <chr>                       <int>
-    ## 1 Core Edge Flake                30
-    ## 2 Core edge with limited back    93
-    ## 3 pseudo-Levallois Point         16
-
-### 2.2 Geometric Morphometrics
-
-### 2.3 Machine Learning and resampling techniques
-
-### 2.4 Pre processing and training the models
 
 ``` r
 #### Pre processing data
@@ -920,6 +893,10 @@ repeat {
   }
 }
 ```
+
+## 3. Results
+
+### 3.1 PCA and machine learning models
 
 ## 3. Results
 
