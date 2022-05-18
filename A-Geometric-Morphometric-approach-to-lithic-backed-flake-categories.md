@@ -1220,7 +1220,41 @@ summary(lm(PC1 ~ Elong.Index + Car.Index, PCA_Coord))
 
 ### 3.3 Group discreteness through confusion matrix and PCA biplots
 
-The confusion matrix of SVM with a polynomial kernel
+The confusion matrix of SVM with a polynomial kernel illustrates the
+directionality of confusion between the predicted and true values of
+classified technological products. Pseudo-Levallois points have the best
+identification, in accordance with the reported sensitivity and
+specificity. In general, it is very difficult to mistake
+pseudo-Levallois points for any of the two considered technological
+products. Wrongly considering a pseudo-Levallois point a core edge flake
+is residual for the model (0.07). Although mistaking a pseudo-Levallois
+point for a core edge flake with a limited back is slightly more common
+(1.98), there is still a very low confusion value.
+
+``` r
+# Extract data for the confusion matrix
+CFM <- confusionMatrix(Conf_SVM_Poly$pred, Conf_SVM_Poly$obs)$table
+CFM <- reshape2::melt(CFM)
+CFM <- CFM %>% mutate(
+  Value = (value/sum(value))*100) 
+
+# Confusion matrix
+CFM %>% 
+  ggplot(aes(Reference, Prediction, fill = Value)) + 
+  geom_tile(alpha = 0.75) +
+  geom_text(aes(label = round(Value, 2)), size = 3) +
+  scale_fill_gradient(low = "white", high = "blue")  +
+  scale_x_discrete(position = "top") +
+  scale_y_discrete(limits=rev) +
+  theme_bw() +
+  coord_fixed() +
+  theme(legend.position = "none",
+        axis.title = element_text(size = 8, color = "black", face = "bold"),
+        axis.text = element_text(size = 7.5, color = "black"),
+        title = element_text(size = 8, color = "black", face = "bold"))
+```
+
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Confusion%20matrix%20of%20SVMP-1.png)
 
 ## 7. References
 
