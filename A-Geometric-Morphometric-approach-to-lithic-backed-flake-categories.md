@@ -1147,12 +1147,14 @@ considered that it is capturing flake thinness relative to thickness.
 ``` r
 # Create new variables
 PCA_Coord <- PCA_Coord %>% mutate(
+  Elong.Index = LENGHT/WIDTH,
   Rat_W_T = WIDTH/MAXTHICK,
   Car.Index = case_when(
     WIDTH > LENGHT ~ LENGHT/MAXTHICK,
     WIDTH == LENGHT ~ LENGHT/MAXTHICK,
     WIDTH < LENGHT ~ WIDTH/MAXTHICK))
 
+# Muliple linear regression to get PC3
 summary(lm(PC3 ~ Rat_W_T*IPA, PCA_Coord))
 ```
 
@@ -1176,6 +1178,48 @@ summary(lm(PC3 ~ Rat_W_T*IPA, PCA_Coord))
     ## Residual standard error: 7.597 on 135 degrees of freedom
     ## Multiple R-squared:  0.657,  Adjusted R-squared:  0.6494 
     ## F-statistic: 86.21 on 3 and 135 DF,  p-value: < 2.2e-16
+
+A multiple linear regression for the prediction of PC1 values shows a
+moderate correlation when the elongation index and carenated index are
+employed as predictors (p \< 0.001; adjusted r2 = 0.63). The elongation
+index has the highest significance and the highest estimated value
+(-39.27), while the carenated index has an estimated value of -4.26. The
+negative and high value of the estimate for the elongation index
+indicates that, as the tendency of a product to be elongated increases
+(becoming longer relative to its width), the values of PC1 will
+decrease, while all other variables will remain constant. The negative
+estimate of the carenated index also indicates that, as a product
+becomes thinner, the values of PC1 will decrease. Thus, the positive
+values of PC1 are representing thick products with a low elongation.
+
+``` r
+# Muliple linear regression to get PC1
+summary(lm(PC1 ~ Elong.Index + Car.Index, PCA_Coord))
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = PC1 ~ Elong.Index + Car.Index, data = PCA_Coord)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -34.306  -5.736   0.297   8.171  22.534 
+    ## 
+    ## Coefficients:
+    ##             Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)  59.0190     4.3058  13.707  < 2e-16 ***
+    ## Elong.Index -39.2654     2.6099 -15.045  < 2e-16 ***
+    ## Car.Index    -4.2556     0.6908  -6.161 7.69e-09 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 11.02 on 136 degrees of freedom
+    ## Multiple R-squared:  0.633,  Adjusted R-squared:  0.6276 
+    ## F-statistic: 117.3 on 2 and 136 DF,  p-value: < 2.2e-16
+
+### 3.3 Group discreteness through confusion matrix and PCA biplots
+
+The confusion matrix of SVM with a polynomial kernel
 
 ## 7. References
 
