@@ -931,6 +931,42 @@ variance and PC25 accounting for 0.36% of variance. This represents a
 substantial reduction in dimensionality from the original number of
 variables (1,524) and is lower than the sample size (139).
 
+``` r
+# Set the models factos
+All_Results$Model <- factor(All_Results$Model,
+                                levels = c(
+                                  "LDA", "KNN", "Log. Reg.",
+                                  "C5.0 Tree", "Random Forest", "Boosted Tree",
+                                  "SVM Linear", "SVM Radial",
+                                  "SVM Poly",
+                                  "Naïve Bayes"))
+
+# 
+All_Results %>% 
+  ggplot(aes(Model, Accuracy, fill = Model)) +
+  geom_violin(position = position_dodge(1), width = 0.4, alpha = 0.5) +
+  geom_boxplot(width = 0.4,
+               outlier.shape = NA, alpha = 0.5) +
+  geom_jitter(width = 0.15, alpha = 0.9, size = 0.9, shape = 23, aes(fill = Model)) +
+  theme_light() +
+  ylab("Accuracy after each cycle of up and down sampling") +
+  ggsci::scale_fill_aaas() +
+  scale_x_discrete(labels = c(
+    "LDA", "KNN", "Log. Reg.",
+    "C5.0\nTree", "Random\nForest", "Boosted\nTree",
+    "SVM\nLinear", "SVM\nRadial",
+    "SVM\nPoly",
+    "Naïve\nBayes")) +
+  xlab(NULL) +
+  theme(
+    legend.position = "none",
+    axis.text = element_text(color = "black", size = 8),
+    axis.title = element_text(color = "black", size = 8.5
+  ))
+```
+
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Results%20from%20up%20and%20down%20sampling-1.png)
+
 ## 7. References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
