@@ -1540,7 +1540,114 @@ Previous researchers have pointed out the morphological and
 technological differences between classic core edge flakes and core edge
 flakes with a limited back. [Beyries and Boëda](#ref-beyries_etude_1983)
 ([1983](#ref-beyries_etude_1983)) originally defined classic core edge
-flakes as having very similar morphological and percussion axes.
+flakes as having very similar morphological and percussion axes. Meignen
+([1996](#ref-meignen_persistance_1996); [1993](#ref-meignen_les_1993))
+used the “core edge flake with a limited back” category to classify core
+edge flakes in which the morphological and percussion axes were not
+aligned. Additionally, most of the examples presented ([Meignen,
+1996](#ref-meignen_persistance_1996)) had the flake back offset from the
+percussion axis. [Slimak](#ref-peresani_les_2003)
+([2003](#ref-peresani_les_2003)) also points out that, as a
+morphological feature, the flake back of core edge flakes with a limited
+back will be offset in regards the axis of percussion. These features of
+alignment between the flake back and percussion axis are captured by
+PC4, with pseudo-Levallois and core edge flakes with a limited back
+having similar negative values, indicative of an offset backed edge.
+
+[Slimak](#ref-peresani_les_2003) ([2003](#ref-peresani_les_2003)) also
+indicates that classic core edge flakes will be elongated as a result of
+percussion running parallel to the core edge. Following
+[Slimak](#ref-peresani_les_2003) ([2003](#ref-peresani_les_2003)), core
+edge flakes with a limited back will have length/width ratios close to 1
+as a result of percussion encountering ridges perpendicular to its
+direction. Although PC1 is the fourth most important variable for
+discrimination between backed products in the present study, it is
+clearly capturing the feature of elongation for the differentiation of
+classic core edge flakes. Classical core edge flakes have, on average,
+negative PC1 values, which are indicative of elongation. On the other
+hand, core edge flakes with a limited back and pseudo-Levallois points
+are characterized by, on average, positive PC1 values, which are
+indicative of their having similar values for width and length or even
+being wider than they are long.
+
+The directionality of the confusion matrixes shows that the main
+drawback reduced the identification of core edge flakes is their
+identification as core edge flakes with a limited back. Two underlying
+causes of confusion between core edge flakes and core edge flakes with a
+limited back can be considered: first, an increased deviation between
+the technological and morphological axes and, second, an increased angle
+between the platform and backed edge, which results in changing the
+morphological axis. These two factors of confusion can occur at the same
+time or individually, blurring the division between products in cases of
+similarity. This overlap is inherent in the morphological variability
+and defining features of both technological products. However, despite
+these overlapping features, a high degree of separation between both
+products is achieved by the machine learning model.
+
+The present study included all backed flakes from a series of
+experimental recurrent centripetal cores. As a result, backed artifacts
+that fall within the definition of “core edge flakes with a limited
+back” were the overwhelming majority (n = 93, 66.91%). Consequently, it
+was necessary to use up- and down-sampling techniques to obtain balanced
+datasets ([Ganganwar, 2012](#ref-ganganwar_overview_2012); [Kumar and
+Sheshadri, 2012](#ref-kumar_classification_2012)). The most up-sampled
+product (pseudo-Levallois) is also the one with the highest values for
+identification metrics, probably as a result of overfitting (the model
+is classifying repeated samples from the training set). Given the strict
+definition adopted to classify a backed artifact as either a core edge
+flake or a pseudo-Levallois point, their morphological variability is
+limited, and the likelihood of their overlapping is small. This is
+logical given their definitions and can be observed in the biplots of
+most important PCs for thee classification of backed products. In the
+four biplots, there is little overlapping of confidence ellipses of core
+edge flakes and pseudo-Levallois flakes. Moreover, the confidence
+ellipsis of core edge flakes with a limited back does seem to be
+intermediate between those of other two categories. Thus, although
+up-sampling imposes some limitations, it does not seem to affect the
+overall results regarding backed flake classification.
+
+Core edge flakes with a limited back were not up-sampled, thus avoiding
+the risk of overfitting their classification (having an observation on
+the training set repeated in the test set). The results show a very
+limited misidentification of core edge flakes as pseudo-Levallois points
+and their moderate confusion with core edge flakes. This indicates that
+core edge flakes with a limited back are being correctly identified
+despite the probable overfitting in the identification of core edge
+flakes and pseudo-Levallois points.
+
+Ambiguity and overlap between some technological categories of flakes
+are common. Combining quantitative methods and techniques has showed to
+be a useful approach to distinguish between backed products extracted
+during Discoid and recurrent centripetal Levallois knapping strategies.
+The present research shows that geometric morphometrics along with
+machine learning models is an effective way also to test for the
+discreteness of categories, the possible directionality of confusions
+between categories and to quantify the features which best characterize
+and define each category.
+
+## 5. Conclusions
+
+The present work was aimed to evaluate whether “core edge flakes with a
+limited back” are a discrete category that can be separated from
+classical core edge flakes and pseudo-Levallois points. These products
+are defined by a series of morphological and technological features
+(overall shape morphology, morphological symmetry, axis of percussion,
+and position and angle of the backed edge). These features and their
+variability can be quantitatively captured by geometric morphometrics
+and employed in machine learning models to test for the discreteness of
+the categories. The results indicate that, while some overlap exists
+between classical core edge flakes and core edge flakes with a limited
+back (pseudo-Levallois points are clearly differentiated), in general,
+they are easily distinguishable. Additionally, geometric morphometrics
+and machine learning also succeed in capturing the PC directly
+associated with morphological and technological features employed to
+define each technological category. Core edge flakes with a limited back
+are therefore clearly distinguishable from classic core edge flakes and
+that geometric morphometrics can be employed to test for the validity of
+defined technological categories, the directionality of confusions, and
+the features characterizing these categories.
+
+## 6. Acknowledgments
 
 ## 7. References
 
@@ -1846,6 +1953,14 @@ machine. Annals of statistics 29, 1189–1232.
 
 </div>
 
+<div id="ref-ganganwar_overview_2012" class="csl-entry">
+
+Ganganwar, V., 2012. An overview of classification algorithms for
+imbalanced datasets. International Journal of Emerging Technology and
+Advanced Engineering 2, 42–47.
+
+</div>
+
 <div id="ref-rigaud_les_1988" class="csl-entry">
 
 Geneste, J.-M., 1988. Les Industries De La Grotte Vaufrey: Technologie
@@ -1916,6 +2031,13 @@ Journal of Statistical Software 28.
 
 Kuhn, S.L., 2013. Roots of the Middle Paleolithic in Eurasia. Current
 Anthropology 54, S255–S268. <https://doi.org/10.1086/673529>
+
+</div>
+
+<div id="ref-kumar_classification_2012" class="csl-entry">
+
+Kumar, M., Sheshadri, H.S., 2012. On the classification of imbalanced
+datasets. International Journal of Computer Applications 44, 1–7.
 
 </div>
 
