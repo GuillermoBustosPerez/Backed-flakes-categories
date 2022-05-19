@@ -1473,7 +1473,73 @@ are capturing the technological features defining each category and that
 they are discrete categories with little overlap. Thus, their use (and,
 more specifically, the use of the core edge flakes with a limited back
 as a category) for analysis in lists of technological products is
-justifiable.
+justifiable.  
+[Sullivan and Rozen](#ref-sullivan_debitage_1985)
+([1985](#ref-sullivan_debitage_1985)) previously called attention to the
+use of technological categories of flakes. Their critique focuses on the
+lack of consistency in defining and using technological categories of
+flakes, along with a lack of consistency regarding the attributes
+employed to define them. Although their critique concerns flakes from
+bifacial retouch, it represents an important word of caution. The
+present study has shown that the three categories are well defined in
+terms of morphological and technological features (see also [Faivre et
+al., 2017](#ref-faivre_late_2017)). These morphological and
+technological features can be captured by geometric morphometrics and
+employed for accurate classifications. Thus, little ambiguity exists in
+the categories employed to classify backed flakes, which are connected
+to two of the main Middle Paleolithic flaking strategies (discoidal and
+recurrent centripetal Levallois). These morphological and technological
+features can be captured by geometric morphometrics and employed for
+accurate classifications. Thus, little ambiguity exists in the
+categories employed to classify backed flakes, which are connected to
+two of the main Middle Paleolithic flaking strategies (discoidal and
+recurrent centripetal Levallois).
+
+Meignen ([1996](#ref-meignen_persistance_1996);
+[1993](#ref-meignen_les_1993)) first proposed the category “core edge
+flake with a limited back” because better individualized and
+characterized the predominant centripetal debitage present at the site
+of Les Canalettes (Aveyron, France). The term has, however, seen limited
+use since, mainly employed when characterizing lithic assemblages
+produced via recurrent centripetal methods ([Bernard-Guelle,
+2004](#ref-bernard-guelle_site_2004); [Bourguignon and Meignen,
+2010](#ref-bourguignon_ioton_2010); [Duran and Abelanet,
+2004](#ref-duran_mousterien_2004); [Duran and Soler,
+2006](#ref-duran_variabilite_2006);
+[**duran_lindustrie_200?**](#ref-duran_lindustrie_200)). The use of the
+“core edge flake with a limited back” category is usually overlooked (or
+merged into the core edge flake category) when lists of technological
+products are employed for the analysis of Middle Paleolithic lithic
+assemblages ([Debénath and Dibble, 1994](#ref-debenath_handbook_1994);
+[Geneste, 1988](#ref-rigaud_les_1988); [Shea,
+2013b](#ref-shea_middle_2013)). Although their merger into the core edge
+flake category is perfectly valid for analyzing lithic assemblages,
+differentiating between classic core edge flakes and core edge flakes
+with a limited back in lists of technological products can increase the
+resolution of and enrich the analysis of lithic assemblages. This, of
+course, results in a better understanding of the technical choices and
+constraints faced by past groups and may allow for better understanding
+of the relationships between technology and raw material, as well as
+volumetric core management, and could contribute to improving
+comparisons between assemblages so as to avoid simple and overly generic
+technological definitions and to avoid merging what are clearly
+different reduction concepts. Such generic definitions are often used to
+discuss human behaviors and cultural traditions and even human
+migrations ([Blinkhorn et al., 2021](#ref-blinkhorn_directional_2021)),
+but they remain difficult to interpret ([Romagnoli et al.,
+2022](#ref-romagnoli_neanderthal_2022)). They do not always reflect the
+diversity and specificity of the technological choices and constraints
+past human groups faced. A more in-depth analysis of variability in the
+techno-morphological characteristics of stone artifacts, in association
+with other approaches, such as refitting and taphonomic analysis, could
+also allow archaeologists to better understand the processes of
+assemblage formation.
+
+Previous researchers have pointed out the morphological and
+technological differences between classic core edge flakes and core edge
+flakes with a limited back. [Beyries and Boëda](#ref-beyries_etude_1983)
+([1983](#ref-beyries_etude_1983)) originally defined classic core edge
+flakes as having very similar morphological and percussion axes.
 
 ## 7. References
 
@@ -1508,6 +1574,15 @@ Dogandžić, T., Desta, D., McPherron, S.P., 2018. A geometric
 morphometric relationship predicts stone flake shape and size
 variability. Archaeological and Anthropological Sciences 10, 1991–2003.
 <https://doi.org/10.1007/s12520-017-0517-2>
+
+</div>
+
+<div id="ref-bernard-guelle_site_2004" class="csl-entry">
+
+Bernard-Guelle, S., 2004. Un site moustérien dans le Jura suisse: La
+grotte de Cotencher (Rochefort, Neuchâtel) revisitée. Bulletin de la
+Société préhistorique française 101, 741–769.
+https://doi.org/<https://doi.org/10.3406/bspf.2004.13066>
 
 </div>
 
@@ -1601,6 +1676,15 @@ Eyzies-de-Tayac, Dordogne). Paléo 4, 69–89.
 
 </div>
 
+<div id="ref-bourguignon_ioton_2010" class="csl-entry">
+
+Bourguignon, L., Meignen, L., 2010. Ioton (Gard) 30 ans après :
+Nouvelles considérations technologiques et techno-économiques sur
+l’industrie moustérienne. Bulletin de la Société préhistorique française
+107, 433–451. <https://doi.org/10.3406/bspf.2010.13944>
+
+</div>
+
 <div id="ref-breiman_random_2001" class="csl-entry">
 
 Breiman, L., 2001. Random Forests. Machine Learning 45, 5–32.
@@ -1663,6 +1747,13 @@ Philosophy of Biological and Biomedical Sciences 35, 613–626.
 
 </div>
 
+<div id="ref-debenath_handbook_1994" class="csl-entry">
+
+Debénath, A., Dibble, H.L., 1994. Handbook of Paleolithic Typology.
+University of Pennsylvania Press.
+
+</div>
+
 <div id="ref-dibble_variability_1995" class="csl-entry">
 
 Delagnes, A., 1995. Variability within Uniformity: Three Levels of
@@ -1704,6 +1795,16 @@ Duran, J.-P., Soler, N., 2006. Variabilité des modalités de débitage et
 des productions lithiques dans les industries moustériennes de la grotte
 de l’Arbreda, secteur alpha (Serinyà, Espagne). Bulletin de la Société
 Préhistorique Française 103, 241–262.
+
+</div>
+
+<div id="ref-faivre_late_2017" class="csl-entry">
+
+Faivre, G.-P., Gravina, B., Bourguignon, L., Discamps, E., Turq, A.,
+2017. Late Middle Palaeolithic lithic technocomplexes (MIS 5-3) in the
+northeastern Aquitaine Basin: Advances and challenges. Quaternary
+International 433, 116–131.
+<https://doi.org/10.1016/j.quaint.2016.02.060>
 
 </div>
 
@@ -1972,6 +2073,14 @@ Slimak, L., 2003. Les Debitages discoïdes mousteriens: Evaluation d’un
 concept technologique, in: Peresani, M. (Ed.), Discoid Lithic
 Technology. Advances and Implications, BAR International Series.
 Archaeopress, Oxford, pp. 33–65.
+
+</div>
+
+<div id="ref-sullivan_debitage_1985" class="csl-entry">
+
+Sullivan, A.P., Rozen, K.C., 1985. Debitage Analysis and Archaeological
+Interpretation. American Antiquity 50, 755–779.
+<https://doi.org/10.2307/280165>
 
 </div>
 
