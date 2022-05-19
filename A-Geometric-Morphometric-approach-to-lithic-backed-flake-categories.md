@@ -1649,6 +1649,10 @@ the features characterizing these categories.
 
 ## 6. Acknowledgments
 
+This research has been supported by the project SI1/PJI/2019-00488
+funded by Comunidad Autónoma de Madrid and Universidad Autónoma de
+Madrid.
+
 ## 7. References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
