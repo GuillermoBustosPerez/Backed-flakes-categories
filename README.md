@@ -85,4 +85,18 @@ Reports (1.0). Zenodo. <https://doi.org/10.5281/zenodo.7085139>
 
 ## **Methodological information**
 
+All flakes were scanned with an Academia 20 structured light surface
+scanner (Creaform 3D) at a 0.2 mm resolution. Flakes were scanned in two
+parts, automatically aligned (or manually aligned in the case automatic
+alignment failure), and exported in STL format. Cloudcompare 2.11.3
+(<https://www.danielgm.net/cc/>) free software was employed to perform
+additional cleaning, mesh sampling, surface reconstruction and
+transformation into PLY files. Finally, all files were decimated to a
+quality of 50,000.
+
+Landmarks of each artifact were placed using Viewbox Version 4.1.0.12
+(<http://www.dhal.com/viewbox.htm>). Placement of landmarks was done
+using a flake template and landmarks were relaxed to minimize bending
+energy. Resulting point coordinates were exported into .xlsx files.
+
 </div>
