@@ -22,6 +22,38 @@ archéologiques, Domaine de Campagne, 242460 Campagne, France
 $^{(7)}$ Corresponding authors at: <guillermo.bustos@uam.es> \|
 <francesca.romagnoli@uam.es>
 
+**Abstract** Paleolithic lithic assemblages are usually dominated by
+flakes, which display a high degree of morphological variability. When
+analyzing Paleolithic lithic assemblages, it is common to classify
+flakes into categories based on their morphological and technological
+features, which are linked to the position of the flake in a reduction
+sequence and how removals are organized in a given production method.
+For the analysis of Middle Paleolithic lithic assemblages, two
+categories of flakes are commonly used: core edge flakes and
+pseudo-Levallois points. A third type, core edge flakes with a limited
+back, is also commonly found in the archaeological literature, providing
+an alternative category with a definition that does not match the two
+previous types but shares many of their morphological and technological
+features. The present study addresses whether these three flakes
+constitute discrete categories based on their morphological and
+technological attributes. Geometric morphometrics are employed on an
+experimental set composed of the three categories of flakes to quantify
+morphological variation. Machine learning models and principal
+components biplots are used to test the discreteness of the categories.
+The results indicate that geometric morphometrics succeed in capturing
+the morphological and technological features that characterize each type
+of product. Pseudo-Levallois points have the highest discreteness of the
+three technological products, and while some degree of mixture exists
+between core edge flakes and core edge flakes with a limited back, they
+are also highly distinguishable. We conclude that the three categories
+are discrete and can be employed in technological lists of products for
+the analysis of lithic assemblages and that geometric morphometrics is
+useful for testing for the validity of categories.
+
+**Key words:** lithic analysis; lithic technology; geometric
+morphometrics; machine learning; Middle Paleolithic; Levallois;
+discoidal
+
 ## Note for Reviewers
 
 The present repository contains all data and code of employed for the
