@@ -59,10 +59,21 @@ discoidal
 **Funding**  
 This research has been supported by the project SI1/PJI/2019-00488
 funded by Comunidad Autónoma de Madrid and Universidad Autónoma de
-Madrid.  
-\## **Access information**
+Madrid.
+
+## **Access information**
 
 **License**  
 The following data and code is publish under a **Non Commercial 4.0
 International (CC BY-NC 4.0) licnse**. For more details, see the
 [**License**](License.md) file.
+
+**Link to related datasets**
+
+3D meshes and coordinates are freely available as a Zenodo repository
+at:  
+Guillermo Bustos-Pérez, Brad Gravina, Michel Brenet, & Francesca
+Romagnoli. (2022). Research compendium: Combining quantitative
+approaches to differentiate between backed products from discoidal and
+Levallois reduction sequences. In Journal of Archaological Science:
+Reports (1.0). Zenodo. <https://doi.org/10.5281/zenodo.7085139>
