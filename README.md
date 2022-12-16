@@ -1,4 +1,4 @@
-## General information
+## **General information**
 
 **Title:** A geometric morphometric approach to testing discrete
 categories of backed flakes from recurrent centripetal core reduction.  
@@ -20,7 +20,8 @@ France
 $^{(6)}$ INRAP Grand Sud-Ouest, Centre mixte de recherches
 archéologiques, Domaine de Campagne, 242460 Campagne, France  
 $^{(7)}$ Corresponding authors at: <guillermo.bustos@uam.es> \|
-<francesca.romagnoli@uam.es>
+<francesca.romagnoli@uam.es>  
+**ORCID**: 0000-0002-1089-818X
 
 **Abstract**  
 Paleolithic lithic assemblages are usually dominated by flakes, which
@@ -55,19 +56,13 @@ useful for testing for the validity of categories.
 morphometrics; machine learning; Middle Paleolithic; Levallois;
 discoidal
 
-## Note for Reviewers
+**Funding**  
+This research has been supported by the project SI1/PJI/2019-00488
+funded by Comunidad Autónoma de Madrid and Universidad Autónoma de
+Madrid.  
+\## **Access information**
 
-The present repository contains all data and code of employed for the
-development of the present article.  
-Please note that this is a private repository intended for reviewers
-only. If the article is accepted for publication the present repository
-will be made public and published in Zenodo (<https://zenodo.org/>)
-under a DOI.
-
-Other examples of published data:
-
-- Bustos-Pérez, G., Baena, J., 2021. Predicting Flake Mass: A View from
-  Machine Learning. Lithic Technology 46, 130–142.
-  <https://doi.org/10.1080/01977261.2021.1881267>  
-- Link to Zenodo repository:
-  <https://zenodo.org/record/4603149#.YmZzKdpBwdU>
+**License**  
+The following data and code is publish under a **Non Commercial 4.0
+International (CC BY-NC 4.0) licnse**. For more details, see the file
+[**License.Md**](License.Md)
