@@ -64,5 +64,5 @@ Madrid.
 
 **License**  
 The following data and code is publish under a **Non Commercial 4.0
-International (CC BY-NC 4.0) licnse**. For more details, see the file
-[**License.Md**](License.Md)
+International (CC BY-NC 4.0) licnse**. For more details, see the
+[**License**](License.mdd) file.
