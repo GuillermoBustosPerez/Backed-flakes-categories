@@ -4,9 +4,12 @@
 
 **Title:** A geometric morphometric approach to testing discrete
 categories of backed flakes from recurrent centripetal core reduction.  
-**Authors:** Guillermo Bustos-Pérez$^{(1,2,3,7)}$; Brad
-Gravina$^{(4,5)}$; Michel Brenet$^{(5, 6)}$; Francesca
-Romagnoli$^{(1,7)}$
+**Authors:**
+
+Guillermo Bustos-Pérez$^{(1,2,3,7)}$  
+Brad Gravina$^{(4,5)}$  
+Michel Brenet$^{(5, 6)}$  
+Francesca Romagnoli$^{(1,7)}$
 
 $^{(1)}$ Departamento de Prehistoria y Arqueología, Universidad Autónoma
 de Madrid, Campus de Cantoblanco, 28049, Madrid, Spain  
@@ -79,5 +82,7 @@ Romagnoli. (2022). Research compendium: Combining quantitative
 approaches to differentiate between backed products from discoidal and
 Levallois reduction sequences. In Journal of Archaological Science:
 Reports (1.0). Zenodo. <https://doi.org/10.5281/zenodo.7085139>
+
+## **Methodological information**
 
 </div>
