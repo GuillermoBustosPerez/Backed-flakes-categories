@@ -1,17 +1,19 @@
+<div align="justify">
+
 # A geometric morphometric approach to testing discrete categories of backed flakes from recurrent centripetal core reduction.
 
-Guillermo Bustos-Pérez<sup>(1)</sup>  
-Brad Gravina<sup>(2,3)</sup>  
-Michel Brenet<sup>(3,4)</sup>  
-Francesca Romagnoli<sup>(1)</sup>
+Guillermo Bustos-Pérez$^{(1)}$  
+Brad Gravina$^{(2, 3)}$  
+Michel Brenet$^{(3, 4)}$  
+Francesca Romagnoli$^{(1)}$
 
-<sup>(1)</sup>Universidad Autónoma de Madrid. Departamento de
-Prehistoria y Arqueología, Campus de Cantoblanco, 28049 Madrid, Spain  
-<sup>(2)</sup>Musée national de Préhistoire, MC, 1 rue du Musée, 24260
-Les Eyzies de Tayac, France  
-<sup>(3)</sup>UMR-5199 PACEA, Université de Bordeaux, Bâtiment B8, Allée
+$^{(1)}$Universidad Autónoma de Madrid. Departamento de Prehistoria y
+Arqueología, Campus de Cantoblanco, 28049 Madrid, Spain  
+$^{(2)}$Musée national de Préhistoire, MC, 1 rue du Musée, 24260 Les
+Eyzies de Tayac, France  
+$^{(3)}$UMR-5199 PACEA, Université de Bordeaux, Bâtiment B8, Allée
 Geoffroy Saint Hilaire, CS 50023, 33615 PESSAC CEDEX, France  
-<sup>(4)</sup>INRAP Grand Sud-Ouest, Centre mixte de recherches
+$^{(4)}$INRAP Grand Sud-Ouest, Centre mixte de recherches
 archéologiques, Domaine de Campagne, 242460 Campagne, France
 
 **Abstract**
@@ -351,7 +353,7 @@ Att %>% group_by(ARTIFACTTYPE) %>%
     axis.text = element_text(color = "black", size = 8))
 ```
 
-![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Cortex%20distribution%20per%20artefact%20type-1.png)
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-gfm/Cortex%20distribution%20per%20artefact%20type-1.png)<!-- -->
 
 ### 2.2 Geometric Morphometrics
 
@@ -434,31 +436,31 @@ PC ([Bustos-Pérez et al. 2022a](#ref-bustos-perez_combining_2022)). In
 addition to geometric morphometrics, the following attributes were
 recorded for each of the flakes:
 
--   **Technological length:** measured in mm along the axis
-    perpendicular to the striking platform.  
--   **Technological width:** measured in mm along the axis perpendicular
-    to the technological width.  
--   **Maximum thickness of the flake**, measured in mm.  
--   **External platform angle (EPA):** measured in degrees with a manual
-    goniometer.  
--   **Internal platform angle (IPA):** measured in degrees with a manual
-    goniometer.  
--   **Relative amount of cortex present at the dorsal face:** recorded
-    according to its extension on the dorsal surface of the flake, with
-    categories being as follows: 0 (no cortex), 1 (nearly 25% covered by
-    cortex), 2 (nearly 50% covered by cortex), 3 (nearly 75% covered by
-    cortex), and 4 (nearly all of the surface covered by cortex). This
-    variable is employed to evaluate the distribution among the
-    experimental assemblage (Figure 2).  
--   Weight: measured to a precision of 0.01 g.
+- **Technological length:** measured in mm along the axis perpendicular
+  to the striking platform.  
+- **Technological width:** measured in mm along the axis perpendicular
+  to the technological width.  
+- **Maximum thickness of the flake**, measured in mm.  
+- **External platform angle (EPA):** measured in degrees with a manual
+  goniometer.  
+- **Internal platform angle (IPA):** measured in degrees with a manual
+  goniometer.  
+- **Relative amount of cortex present at the dorsal face:** recorded
+  according to its extension on the dorsal surface of the flake, with
+  categories being as follows: 0 (no cortex), 1 (nearly 25% covered by
+  cortex), 2 (nearly 50% covered by cortex), 3 (nearly 75% covered by
+  cortex), and 4 (nearly all of the surface covered by cortex). This
+  variable is employed to evaluate the distribution among the
+  experimental assemblage (Figure 2).  
+- Weight: measured to a precision of 0.01 g.
 
 From the previous measures, the following variables are obtained:
 
--   **Elongation index:** flake length divided by width.  
--   **Carenated index:** width or length (the one with the lowest value)
-    divided by maximum thickness.  
--   **Ratio of width to thickness:** flake width divided by maximum
-    thickness.
+- **Elongation index:** flake length divided by width.  
+- **Carenated index:** width or length (the one with the lowest value)
+  divided by maximum thickness.  
+- **Ratio of width to thickness:** flake width divided by maximum
+  thickness.
 
 These measures and derived ratios are not employed as inputs for the
 Machine Learning models, but to explore the meaning of the PC through
@@ -483,47 +485,45 @@ shape.
 The present work tests ten machine learning models for the
 classification of flake categories.
 
--   **Linear discriminant analysis (LDA):** reduces dimensionality in an
-    attempt to maximize the separation between classes, while decision
-    boundaries divide the predictor range into regions ([Fisher
-    1936](#ref-fisher_use_1936); [James et al.
-    2013](#ref-james_introduction_2013)).  
--   **K-nearest neighbor (KNN):** classifies cases by assigning the
-    class of similar known cases. The “k” in KNN references the number
-    of cases (neighbors) to consider when assigning a class, and it must
-    be found by testing different values. Given that KNN uses distance
-    metrics to compute nearest neighbors and that each variable is in
-    different scales, it is necessary to scale and center the data prior
-    to fitting the model ([Cover and Hart
-    1967](#ref-cover_nearest_1967); [Lantz
-    2019](#ref-lantz_machine_2019)).  
--   **Logistic regression:** essentially adapts continuous regression
-    predictions to categorical outcomes ([Cramer
-    2004](#ref-cramer_early_2004); [Walker and Duncan
-    1967](#ref-walker_estimation_1967)).  
--   **Decision tree with C5.0 algorithm:** is an improvement on decision
-    trees for classification ([J. R. Quinlan
-    1996](#ref-quinlan_improved_1996); [J. Ross Quinlan
-    2014](#ref-quinlan_c4_2014)).  
--   **Random forest:** Random forests are made of decision trees. Each
-    tree is grown from a random sample of the data and variables,
-    allowing for each tree to grow differently and better reflect the
-    complexity of the data ([Breiman 2001](#ref-breiman_random_2001)).  
--   **Generalized Boosted Model:** ([Greenwell et al.
-    2019](#ref-greenwell_package_2019); [Ridgeway
-    2007](#ref-ridgeway_generalized_2007)) which implements gradient
-    boosted machine ([Friedman 2001](#ref-friedman_greedy_2001),
-    [2002](#ref-friedman_stochastic_2002)), allowing for the detection
-    of learning deficiencies and increase model accuracy for a set of
-    random forests.  
--   **Supported vector machines (SVM):** fits hyperplanes into a
-    multidimensional space with the objective of creating homogeneous
-    partitions ([Cortes and Vapnik
-    1995](#ref-cortes_support-vector_1995); [Frey and Slate
-    1991](#ref-frey_letter_1991)). The present study tests SVM with
-    linear, radial, and polynomial kernels.
--   **Naïve Bayes:** computes class probabilities using Bayes’s rule
-    ([Weihs et al. 2005](#ref-weihs_klar_2005)).
+- **Linear discriminant analysis (LDA):** reduces dimensionality in an
+  attempt to maximize the separation between classes, while decision
+  boundaries divide the predictor range into regions ([Fisher
+  1936](#ref-fisher_use_1936); [James et al.
+  2013](#ref-james_introduction_2013)).  
+- **K-nearest neighbor (KNN):** classifies cases by assigning the class
+  of similar known cases. The “k” in KNN references the number of cases
+  (neighbors) to consider when assigning a class, and it must be found
+  by testing different values. Given that KNN uses distance metrics to
+  compute nearest neighbors and that each variable is in different
+  scales, it is necessary to scale and center the data prior to fitting
+  the model ([Cover and Hart 1967](#ref-cover_nearest_1967); [Lantz
+  2019](#ref-lantz_machine_2019)).  
+- **Logistic regression:** essentially adapts continuous regression
+  predictions to categorical outcomes ([Cramer
+  2004](#ref-cramer_early_2004); [Walker and Duncan
+  1967](#ref-walker_estimation_1967)).  
+- **Decision tree with C5.0 algorithm:** is an improvement on decision
+  trees for classification ([J. R. Quinlan
+  1996](#ref-quinlan_improved_1996); [J. Ross Quinlan
+  2014](#ref-quinlan_c4_2014)).  
+- **Random forest:** Random forests are made of decision trees. Each
+  tree is grown from a random sample of the data and variables, allowing
+  for each tree to grow differently and better reflect the complexity of
+  the data ([Breiman 2001](#ref-breiman_random_2001)).  
+- **Generalized Boosted Model:** ([Greenwell et al.
+  2019](#ref-greenwell_package_2019); [Ridgeway
+  2007](#ref-ridgeway_generalized_2007)) which implements gradient
+  boosted machine ([Friedman 2001](#ref-friedman_greedy_2001),
+  [2002](#ref-friedman_stochastic_2002)), allowing for the detection of
+  learning deficiencies and increase model accuracy for a set of random
+  forests.  
+- **Supported vector machines (SVM):** fits hyperplanes into a
+  multidimensional space with the objective of creating homogeneous
+  partitions ([Cortes and Vapnik 1995](#ref-cortes_support-vector_1995);
+  [Frey and Slate 1991](#ref-frey_letter_1991)). The present study tests
+  SVM with linear, radial, and polynomial kernels.
+- **Naïve Bayes:** computes class probabilities using Bayes’s rule
+  ([Weihs et al. 2005](#ref-weihs_klar_2005)).
 
 As mentioned above, 66.91% of flakes fall into the definition of core
 edge flakes with a limited back, resulting in an unbalanced dataset. To
@@ -586,22 +586,22 @@ pca <- prcomp(LM.DF, scale. = TRUE)
 summary(pca)$importance[1:3, 1:25]
 ```
 
-    ##                             PC1      PC2      PC3      PC4      PC5      PC6     PC7
-    ## Standard deviation     18.05288 16.62783 12.83087 10.83128 10.42072 8.299316 7.73039
-    ## Proportion of Variance  0.21385  0.18142  0.10803  0.07698  0.07125 0.045200 0.03921
-    ## Cumulative Proportion   0.21385  0.39527  0.50330  0.58028  0.65153 0.696730 0.73594
-    ##                             PC8      PC9     PC10     PC11     PC12     PC13    PC14
-    ## Standard deviation     7.439897 6.710911 6.173021 5.368746 4.773021 4.562145 4.44228
-    ## Proportion of Variance 0.036320 0.029550 0.025000 0.018910 0.014950 0.013660 0.01295
-    ## Cumulative Proportion  0.772260 0.801810 0.826810 0.845730 0.860670 0.874330 0.88728
-    ##                            PC15     PC16    PC17    PC18     PC19    PC20     PC21     PC22
-    ## Standard deviation     3.803028 3.750857 3.54599 3.23142 2.956198 2.70170 2.649925 2.516422
-    ## Proportion of Variance 0.009490 0.009230 0.00825 0.00685 0.005730 0.00479 0.004610 0.004160
-    ## Cumulative Proportion  0.896770 0.906000 0.91425 0.92110 0.926840 0.93163 0.936240 0.940390
-    ##                            PC23    PC24     PC25
-    ## Standard deviation     2.466077 2.38239 2.327281
-    ## Proportion of Variance 0.003990 0.00372 0.003550
-    ## Cumulative Proportion  0.944380 0.94811 0.951660
+    ##                             PC1      PC2      PC3      PC4      PC5      PC6     PC7      PC8
+    ## Standard deviation     18.05288 16.62783 12.83087 10.83128 10.42072 8.299316 7.73039 7.439897
+    ## Proportion of Variance  0.21385  0.18142  0.10803  0.07698  0.07125 0.045200 0.03921 0.036320
+    ## Cumulative Proportion   0.21385  0.39527  0.50330  0.58028  0.65153 0.696730 0.73594 0.772260
+    ##                             PC9     PC10     PC11     PC12     PC13    PC14     PC15     PC16
+    ## Standard deviation     6.710911 6.173021 5.368746 4.773021 4.562145 4.44228 3.803028 3.750857
+    ## Proportion of Variance 0.029550 0.025000 0.018910 0.014950 0.013660 0.01295 0.009490 0.009230
+    ## Cumulative Proportion  0.801810 0.826810 0.845730 0.860670 0.874330 0.88728 0.896770 0.906000
+    ##                           PC17    PC18     PC19    PC20     PC21     PC22     PC23    PC24
+    ## Standard deviation     3.54599 3.23142 2.956198 2.70170 2.649925 2.516422 2.466077 2.38239
+    ## Proportion of Variance 0.00825 0.00685 0.005730 0.00479 0.004610 0.004160 0.003990 0.00372
+    ## Cumulative Proportion  0.91425 0.92110 0.926840 0.93163 0.936240 0.940390 0.944380 0.94811
+    ##                            PC25
+    ## Standard deviation     2.327281
+    ## Proportion of Variance 0.003550
+    ## Cumulative Proportion  0.951660
 
 ``` r
 # store PCA values in a dataframe and add ID's
@@ -661,8 +661,8 @@ the parameter **“mean”** for size. This means that each group will be up
 or down sampled to the result of dividing data set size between number
 of groups (46.3333333).
 
--   A `tibble()` called `All_Results` is set to store the results from
-    each model training.
+- A `tibble()` called `All_Results` is set to store the results from
+  each model training.
 
 Each loop works in the following steps:
 
@@ -1017,7 +1017,7 @@ ggpubr::ggarrange(
   ncol = 2)
 ```
 
-![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 The PCA results show that the 25 first principal components account for
 95% of the variance in the dataset, with PC1 accounting for 21.39% of
@@ -1072,7 +1072,7 @@ All_Results %>%
     )
 ```
 
-![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Results%20from%20up%20and%20down%20sampling-1.png)
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-gfm/Results%20from%20up%20and%20down%20sampling-1.png)<!-- -->
 
 The following table presents performance metrics of the SVM with a
 polynomial kernel for the classification of the three products. The
@@ -1184,7 +1184,7 @@ ncol = 2
 )
 ```
 
-![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 None of the manually recorded metrics provided significant correlation
 with PC7 and PC4 scores. Visual evaluation indicates that PC7 is
@@ -1225,22 +1225,22 @@ values according to flake shape indicates that PC3 captures transversal
 flake morphology and the relationship between thickness and width. A
 multiple linear regression using the interaction between ratio of flake
 width to thickness and IPA as predictors shows a moderate correlation
-with PC3 values (p \< 0.001, adjusted *r*<sup>2</sup> = 0.65). The
-coefficient of interaction between the ratio of width to thickness and
-IPA is 0.17, while the coefficient of IPA is -0.77. A counterintuitive
-coefficient of -12.79 for the ratio of flake width to thickness is
-obtained in the interaction model. An individual regression of PC3
-values predicted from the ratio of flake width to thickness provides a
-moderate correlation (p \< 0.001; *r*<sup>2</sup> = 0.6), with a
-positive coefficient of 6.46. This indicates that the counterintuitive
-coefficient of -12.79 obtained for the width to thickness ratio in the
-interaction model is a result of a Simpson’s Paradox ([Simpson
-1951](#ref-simpson_interpretation_1951)), in which the signal is
-reversed. It is also important to note the strong correlation between
-the carenated index and the ratio of flake width to thickness (p \<
-0.001; *r*<sup>2</sup> = 0.9). Thus, although PC3 regresses better with
-the ratio of width to thickness than with the carenated index, it can be
-considered that it is capturing flake thinness relative to thickness.
+with PC3 values (p \< 0.001, adjusted $r^2$ = 0.65). The coefficient of
+interaction between the ratio of width to thickness and IPA is 0.17,
+while the coefficient of IPA is -0.77. A counterintuitive coefficient of
+-12.79 for the ratio of flake width to thickness is obtained in the
+interaction model. An individual regression of PC3 values predicted from
+the ratio of flake width to thickness provides a moderate correlation (p
+\< 0.001; $r^2$ = 0.6), with a positive coefficient of 6.46. This
+indicates that the counterintuitive coefficient of -12.79 obtained for
+the width to thickness ratio in the interaction model is a result of a
+Simpson’s Paradox ([Simpson 1951](#ref-simpson_interpretation_1951)), in
+which the signal is reversed. It is also important to note the strong
+correlation between the carenated index and the ratio of flake width to
+thickness (p \< 0.001; $r^2$ = 0.9). Thus, although PC3 regresses better
+with the ratio of width to thickness than with the carenated index, it
+can be considered that it is capturing flake thinness relative to
+thickness.
 
 ``` r
 # Create new variables
@@ -1279,14 +1279,14 @@ summary(lm(PC3 ~ Rat_W_T*IPA, PCA_Coord))
 
 A multiple linear regression for the prediction of PC1 values shows a
 moderate correlation when the elongation index and carenated index are
-employed as predictors (p \< 0.001; adjusted *r*<sup>2</sup> = 0.63).
-The elongation index has the highest significance and the highest
-estimated value (-39.27), while the carenated index has an estimated
-value of -4.26. The negative and high value of the estimate for the
-elongation index indicates that, as the tendency of a product to be
-elongated increases (becoming longer relative to its width), the values
-of PC1 will decrease, while all other variables will remain constant.
-The negative estimate of the carenated index also indicates that, as a
+employed as predictors (p \< 0.001; adjusted $r^2$ = 0.63). The
+elongation index has the highest significance and the highest estimated
+value (-39.27), while the carenated index has an estimated value of
+-4.26. The negative and high value of the estimate for the elongation
+index indicates that, as the tendency of a product to be elongated
+increases (becoming longer relative to its width), the values of PC1
+will decrease, while all other variables will remain constant. The
+negative estimate of the carenated index also indicates that, as a
 product becomes thinner, the values of PC1 will decrease. Thus, the
 positive values of PC1 are representing thick products with a low
 elongation.
@@ -1358,7 +1358,7 @@ CFM %>%
         title = element_text(size = 8, color = "black", face = "bold"))
 ```
 
-![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Confusion%20matrix%20of%20SVMP-1.png)
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-gfm/Confusion%20matrix%20of%20SVMP-1.png)<!-- -->
 
 Core edge flakes and core edge flakes with a limited back offer slightly
 higher frequencies of misidentifications, although they maintain high
@@ -1437,7 +1437,7 @@ legend = "bottom"
 )
 ```
 
-![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Biplots-1.png)
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-gfm/Biplots-1.png)<!-- -->
 
 ``` r
 ggpubr::ggarrange(
@@ -1495,7 +1495,7 @@ legend = "bottom"
 )
 ```
 
-![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Biplots-2.png)
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-gfm/Biplots-2.png)<!-- -->
 
 As mentioned above, PC4 is interpreted as capturing the relationships
 between platform size, flake volume, and the angle between the backed
@@ -1565,7 +1565,7 @@ PCA_Coord %>%
         axis.title = element_text(color = "black", size = 7))
 ```
 
-![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-markdown_github/Violin%20and%20box%20plots-1.png)
+![](A-Geometric-Morphometric-approach-to-lithic-backed-flake-categories_files/figure-gfm/Violin%20and%20box%20plots-1.png)<!-- -->
 
 ## 4. Discussion
 
@@ -1774,16 +1774,31 @@ Madrid.
 
 ## 7. References
 
+</div>
+
+<div id="refs" class="references csl-bib-body hanging-indent"
+line-spacing="2">
+
+<div id="ref-adler_early_2014" class="csl-entry">
+
 Adler, D. S., Wilkinson, K. N., Blockley, S., Mark, D. F., Pinhasi, R.,
 Schmidt-Magee, B. A., et al. (2014). Early Levallois technology and the
 Lower to Middle Paleolithic transition in the Southern Caucasus.
 *Science*, *345*(6204), 1609–1613.
 <https://doi.org/10.1126/science.1256484>
 
+</div>
+
+<div id="ref-archer_quantifying_2021" class="csl-entry">
+
 Archer, W., Djakovic, I., Brenet, M., Bourguignon, L., Presnyakova, D.,
 Schlager, S., et al. (2021). Quantifying differences in hominin flaking
 technologies with 3D shape analysis. *Journal of Human Evolution*,
 *150*, 102912. <https://doi.org/10.1016/j.jhevol.2020.102912>
+
+</div>
+
+<div id="ref-archer_geometric_2018" class="csl-entry">
 
 Archer, W., Pop, C. M., Rezek, Z., Schlager, S., Lin, S. C., Weiss, M.,
 et al. (2018). A geometric morphometric relationship predicts stone
@@ -1791,70 +1806,134 @@ flake shape and size variability. *Archaeological and Anthropological
 Sciences*, *10*(8), 1991–2003.
 <https://doi.org/10.1007/s12520-017-0517-2>
 
+</div>
+
+<div id="ref-bernard-guelle_site_2004" class="csl-entry">
+
 Bernard-Guelle, S. (2004). Un site moustérien dans le Jura suisse: La
 grotte de Cotencher (Rochefort, Neuchâtel) revisitée. *Bulletin de la
 Société préhistorique française*, *101*(4), 741–769.
 https://doi.org/<https://doi.org/10.3406/bspf.2004.13066>
+
+</div>
+
+<div id="ref-beyries_etude_1983" class="csl-entry">
 
 Beyries, S., & Boëda, E. (1983). Étude technoloogique et traces
 d’utilisation des éclats débordants de Corbehem (Pas-de-Calais).
 *Bulletin de la Société préhistorique française*, *80*(9), 275–279.
 https://doi.org/<https://doi.org/10.3406/bspf.1983.5455>
 
+</div>
+
+<div id="ref-blinkhorn_directional_2021" class="csl-entry">
+
 Blinkhorn, J., Groucutt, H. S., Scerri, E. M. L., Petraglia, M. D., &
 Blockley, S. (2021). Directional changes in Levallois core technologies
 between Eastern Africa, Arabia, and the Levant during MIS 5. *Scientific
 Reports*, *11*(1), 11465. <https://doi.org/10.1038/s41598-021-90744-z>
 
+</div>
+
+<div id="ref-boeda_debitage_1993" class="csl-entry">
+
 Boëda, E. (1993). Le débitage discoïde et le débitage Levallois
 récurrent centripède. *Bulletin de la Société Préhistorique Française*,
 *90*(6), 392–404. <https://doi.org/10.3406/bspf.1993.9669>
 
+</div>
+
+<div id="ref-boeda_concept_1994" class="csl-entry">
+
 Boëda, E. (1994). *Le concept Levallois: Variabilité des méthodes* (Vol.
 9). CNRS.
+
+</div>
+
+<div id="ref-dibble_levallois:_1995" class="csl-entry">
 
 Boëda, E. (1995). Levallois: A Volumetric Construction, Methods, A
 Technique. In H. L. Dibble & O. Bar-Yosef (Eds.), *The Definition and
 Interpretation of Levallois Technology* (Vol. 23, pp. 41–68). Madison,
 Wisconsin: Prehistory Press.
 
+</div>
+
+<div id="ref-boeda_identification_1990" class="csl-entry">
+
 Boëda, E., Geneste, J.-M., & Meignen, L. (1990). Identification de
 chaînes opératoires lithiques du Paléolithique ancien et moyen. *Paléo*,
 *2*, 43–80.
+
+</div>
+
+<div id="ref-bookstein_landmark_1997" class="csl-entry">
 
 Bookstein, F. L. (1997a). Landmark methods for forms without landmarks:
 Morphometrics of group differences in outline shape. *Medical Image
 Analysis*, *1*(3), 225–243.
 <https://doi.org/10.1016/S1361-8415(97)85012-8>
 
+</div>
+
+<div id="ref-bookstein_morphometric_1997" class="csl-entry">
+
 Bookstein, F. L. (1997b). *Morphometric tools for landmark data*.
 Cambridge University Press.
+
+</div>
+
+<div id="ref-bordes_notules_1953" class="csl-entry">
 
 Bordes, F. (1953). Notules de typologie paléolithique II : Pointes
 Levalloisiennes et pointes pseudo-levalloisiennes. *Bulletin de la
 Société préhistorique de France*, *50*(5), 311–313.
 <https://doi.org/10.3406/bspf.1953.3057>
 
+</div>
+
+<div id="ref-bordes_typologie_1961" class="csl-entry">
+
 Bordes, F. (1961). *Typologie du Paléolithique ancien et moyen*.
 Bordeaux: CNRS Editions.
+
+</div>
+
+<div id="ref-bourguignon_analyse_1992" class="csl-entry">
 
 Bourguignon, L. (1992). Analyse du processus opératoire des coups de
 tranchet latéraux dans l’industrie moustérienne de l’abri du Musée (Les
 Eyzies-de-Tayac, Dordogne). *Paléo*, *4*(1), 69–89.
 <https://doi.org/10.3406/pal.1992.1195>
 
+</div>
+
+<div id="ref-bourguignon_ioton_2010" class="csl-entry">
+
 Bourguignon, L., & Meignen, L. (2010). Ioton (Gard) 30 ans après :
 Nouvelles considérations technologiques et techno-économiques sur
 l’industrie moustérienne. *Bulletin de la Société préhistorique
 française*, *107*(3), 433–451. <https://doi.org/10.3406/bspf.2010.13944>
 
+</div>
+
+<div id="ref-breiman_random_2001" class="csl-entry">
+
 Breiman, L. (2001). Random Forests. *Machine Learning*, *45*(1), 5–32.
 <https://doi.org/10.1023/A:1010933404324>
+
+</div>
+
+<div id="ref-bustillo_caracteristicas_2005" class="csl-entry">
 
 Bustillo, M. A., & Pérez-Jiménez, J. L. (2005). Características
 diferenciales y génesis de los niveles silíceos explotados en el
 yacimiento arqueológico de Casa Montero (Vicálvaro, Madrid).
 *Geogaceta*, *38*, 243–246.
+
+</div>
+
+<div id="ref-bustillo_caracterizacion_2012" class="csl-entry">
 
 Bustillo, M. Á., Pérez-Jiménez, J. L., & Bustillo, M. (2012).
 Caracterización geoquímica de rocas sedimentarias formadas por
@@ -1862,11 +1941,19 @@ silicificación como fuentes de suministro de utensilios líticos
 (Mioceno, cuenca de Madrid). *Revista Mexicana de Ciencias Geológicas*,
 *29*(1), 233–247.
 
+</div>
+
+<div id="ref-bustos-perez_combining_2022" class="csl-entry">
+
 Bustos-Pérez, G., Gravina, B., Brenet, M., & Romagnoli, F. (2022a).
 Combining quantitative approaches to differentiate between backed
 products from discoidal and Levallois reduction sequences. *Journal of
 Archaeological Science: Reports*, *46*, 103723.
 <https://doi.org/10.1016/j.jasrep.2022.103723>
+
+</div>
+
+<div id="ref-bustos-perez_research_2022" class="csl-entry">
 
 Bustos-Pérez, G., Gravina, B., Brenet, M., & Romagnoli, F. (2022b,
 September). Research compendium: Combining quantitative approaches to
@@ -1874,32 +1961,64 @@ differentiate between backed products from discoidal and Levallois
 reduction sequences. Zenodo: Zenodo.
 <https://doi.org/10.5281/zenodo.7085139>
 
+</div>
+
+<div id="ref-callahan_bipolar_1996" class="csl-entry">
+
 Callahan, E. (1996). The bipolar technique: The simplest way to make
 stone tools for survival. *Bulletin of Primitive Technology*, *12*,
 16–20.
 
+</div>
+
+<div id="ref-cortes_support-vector_1995" class="csl-entry">
+
 Cortes, C., & Vapnik, V. (1995). Support-vector networks. *Machine
 learning*, *20*(3), 273–297.
+
+</div>
+
+<div id="ref-cotterell_formation_1987" class="csl-entry">
 
 Cotterell, B., & Kamminga, J. (1987). The Formation of Flakes. *American
 Antiquity*, *52*(4), 675–708.
 
+</div>
+
+<div id="ref-cover_nearest_1967" class="csl-entry">
+
 Cover, T., & Hart, P. (1967). Nearest neighbor pattern classification.
 *IEEE Transactions on Information Theory*, *13*(1), 21–27.
 <https://doi.org/10.1109/TIT.1967.1053964>
+
+</div>
+
+<div id="ref-cramer_early_2004" class="csl-entry">
 
 Cramer, J. S. (2004). The early origins of the logit model. *Studies in
 History and Philosophy of Science Part C: Studies in History and
 Philosophy of Biological and Biomedical Sciences*, *35*(4), 613–626.
 <https://doi.org/10.1016/j.shpsc.2004.09.003>
 
+</div>
+
+<div id="ref-debenath_handbook_1994" class="csl-entry">
+
 Debénath, A., & Dibble, H. L. (1994). *Handbook of Paleolithic Typology*
 (Vol. 1). University of Pennsylvania Press.
+
+</div>
+
+<div id="ref-dibble_variability_1995" class="csl-entry">
 
 Delagnes, A. (1995). Variability within Uniformity: Three Levels of
 Variability within the Levallois System. In H. L. Dibble & O. Bar-Yosef
 (Eds.), *The Definition and Interpretation of Levallois Technology*
 (Vol. 23, pp. 201–211). Madison, Wisconsin: Prehistory Press.
+
+</div>
+
+<div id="ref-hovers_diversity_2006" class="csl-entry">
 
 Delagnes, A., & Meignen, L. (2006). Diversity of Lithic Production
 Systems During the Middle Paleolithic in France. Are There Any
@@ -1907,17 +2026,33 @@ Chronological Trends? In E. Hovers, S. L. Kuhn, & M. Jochim (Eds.),
 *Transitions Before the Transition Evolution and Stability in the Middle
 Paleolithic and Middle Stone Age* (pp. 85–107). Springer.
 
+</div>
+
+<div id="ref-duran_lindustrie_2005" class="csl-entry">
+
 Duran, J.-P. (2005). L’industrie moustérienne des ànecs (Rodès,
 Pyrénées-orientales, France). *PYRENAE*, *36*(2), 11–39.
+
+</div>
+
+<div id="ref-duran_mousterien_2004" class="csl-entry">
 
 Duran, J.-P., & Abelanet, J. (2004). Un Moustérien Méditerranéen à
 bifaces: Le gisement de Moutou-la-Joliette. *Préhistoire Anthropologie
 Méditerranéennes*, *13*, 7–27.
 
+</div>
+
+<div id="ref-duran_variabilite_2006" class="csl-entry">
+
 Duran, J.-P., & Soler, N. (2006). Variabilité des modalités de débitage
 et des productions lithiques dans les industries moustériennes de la
 grotte de l’Arbreda, secteur alpha (Serinyà, Espagne). *Bulletin de la
 Société Préhistorique Française*, *103*(2), 241–262.
+
+</div>
+
+<div id="ref-faivre_late_2017" class="csl-entry">
 
 Faivre, G.-P., Gravina, B., Bourguignon, L., Discamps, E., & Turq, A.
 (2017). Late Middle Palaeolithic lithic technocomplexes (MIS 5-3) in the
@@ -1925,27 +2060,55 @@ northeastern Aquitaine Basin: Advances and challenges. *Quaternary
 International*, *433*, 116–131.
 <https://doi.org/10.1016/j.quaint.2016.02.060>
 
+</div>
+
+<div id="ref-fernandes_silex_2012" class="csl-entry">
+
 Fernandes, P., Morala, A., Schmidt, P., Séronie-Vivien, M.-R., & Turq,
 A. (2012). Le silex du Bergeracois: État de la question. *Quaternaire
 Continental d’Aquitaine, excursion AFEQ, ASF 2012*, *2012*, 22–33.
 
+</div>
+
+<div id="ref-fisher_use_1936" class="csl-entry">
+
 Fisher, R. A. (1936). The use of multiple measurements in taxonomic
 problems. *Annals of Eugenics*, *7*, 179–188.
 
+</div>
+
+<div id="ref-frey_letter_1991" class="csl-entry">
+
 Frey, P. W., & Slate, D. J. (1991). Letter recognition using
 Holland-style adaptive classifiers. *Machine learning*, *6*(2), 161–182.
+
+</div>
+
+<div id="ref-friedman_greedy_2001" class="csl-entry">
 
 Friedman, J. H. (2001). Greedy function approximation: A gradient
 boosting machine. *Annals of statistics*, *29*(5), 1189–1232.
 <https://www.jstor.org/stable/2699986>
 
+</div>
+
+<div id="ref-friedman_stochastic_2002" class="csl-entry">
+
 Friedman, J. H. (2002). Stochastic gradient boosting. *Computational
 Statistics & Data Analysis*, *38*(4), 367–378.
 <https://doi.org/10.1016/S0167-9473(01)00065-2>
 
+</div>
+
+<div id="ref-ganganwar_overview_2012" class="csl-entry">
+
 Ganganwar, V. (2012). An overview of classification algorithms for
 imbalanced datasets. *International Journal of Emerging Technology and
 Advanced Engineering*, *2*(4), 42–47.
+
+</div>
+
+<div id="ref-rigaud_les_1988" class="csl-entry">
 
 Geneste, J.-M. (1988). Les Industries De La Grotte Vaufrey: Technologie
 du debitage, economie et circulation de la matiere premiere lithique. In
@@ -1953,47 +2116,95 @@ J.-P. Rigaud (Ed.), *La grotte Vaufrey à Cenac et Saint-Julien
 (Dordogne) : Paléoenvironnements, chronologie et activités humaines*
 (pp. 441–517). Paris: Société préhistorique française.
 
+</div>
+
+<div id="ref-greenwell_package_2019" class="csl-entry">
+
 Greenwell, B., Boehmke, B., Cunningham, J., Developers, G. B. M., &
 Greenwell, M. B. (2019). Package “gbm.” *R package version*, *2*(5).
+
+</div>
+
+<div id="ref-gunz_semilandmarks_2013" class="csl-entry">
 
 Gunz, P., & Mitteroecker, P. (2013). Semilandmarks: A method for
 quantifying curves and surfaces. *Hystrix*, *24*(1), 103–109.
 <https://doi.org/10.4404/hystrix-24.1-6292>
 
+</div>
+
+<div id="ref-gunz_semilandmarks_2005" class="csl-entry">
+
 Gunz, P., Mitteroecker, P., & Bookstein, F. L. (2005). Semilandmarks in
 three dimensions. In *Modern morphometrics in physical anthropology*
 (pp. 73–98). New York: Springer.
+
+</div>
+
+<div id="ref-hayden_confusion_1980" class="csl-entry">
 
 Hayden, B. (1980). Confusion in the Bipolar World: Bashed Pebbles and
 Splintered Pieces. *Lithic Technology*, *9*(1), 2–7.
 <https://doi.org/10.1080/01977261.1980.11754456>
 
+</div>
+
+<div id="ref-james_introduction_2013" class="csl-entry">
+
 James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). *An
 Introduction to Statistical Learning with Applications in R* (Second
 Edition.). Springer.
 
+</div>
+
+<div id="ref-kendall_shape_1984" class="csl-entry">
+
 Kendall, D. G. (1984). Shape Manifolds, Procrustean Metrics, and Complex
 Projective Spaces. *Bulletin of the London Mathematical Society*,
 *16*(2), 81–121. <https://doi.org/10.1112/blms/16.2.81>
+
+</div>
+
+<div id="ref-klingenberg_visualizations_2013" class="csl-entry">
 
 Klingenberg, C. P. (2013). Visualizations in geometric morphometrics:
 How to read and how to make graphs showing shape changes. *Hystrix, the
 Italian Journal of Mammalogy*, *24*(1).
 <https://doi.org/10.4404/hystrix-24.1-7691>
 
+</div>
+
+<div id="ref-kuhn_building_2008" class="csl-entry">
+
 Kuhn, M. (2008). Building Predictive Models in R using the caret
 Package. *Journal of Statistical Software*, *28*(5).
 <https://doi.org/10.18637/jss.v028.i05>
 
+</div>
+
+<div id="ref-kuhn_roots_2013" class="csl-entry">
+
 Kuhn, S. L. (2013). Roots of the Middle Paleolithic in Eurasia. *Current
 Anthropology*, *54*(S8), S255–S268. <https://doi.org/10.1086/673529>
+
+</div>
+
+<div id="ref-kumar_classification_2012" class="csl-entry">
 
 Kumar, M., & Sheshadri, H. S. (2012). On the classification of
 imbalanced datasets. *International Journal of Computer Applications*,
 *44*(8), 1–7.
 
+</div>
+
+<div id="ref-lantz_machine_2019" class="csl-entry">
+
 Lantz, B. (2019). *Machine learning with R: Expert techniques for
 predictive modeling*. Packt publishing ltd.
+
+</div>
+
+<div id="ref-dibble_recurrent_1995" class="csl-entry">
 
 Lenoir, M., & Turq, A. (1995). Recurrent Centripetal Debitage (Levallois
 and Discoidal): Continuity or Discontinuity? In H. L. Dibble & O.
@@ -2001,51 +2212,99 @@ Bar-Yosef (Eds.), *The Definition and Interpretation of Levallois
 Technology* (Vol. 23, pp. 249–256). Madison, Wisconsin: Prehistory
 Press.
 
+</div>
+
+<div id="ref-meignen_les_1993" class="csl-entry">
+
 Meignen, Liliane. (1993). Les industries lithiques de l’abri des
 Canalettes: Cuche 2. In Liliane Meignen (Ed.), *L’abri des Canalettes.
 Un habitat moustérien sur les grands Causses (Nant-Aveyron)* (pp.
 238–328). Paris: CNRS Ed.
 
+</div>
+
+<div id="ref-meignen_persistance_1996" class="csl-entry">
+
 Meignen, Lilliane. (1996). Persistance des traditions techniques dans
 l’abri des Canalettes (Nant-Aveyron). *Quaternaria Nova*, *6*, 449–64.
+
+</div>
+
+<div id="ref-mitteroecker_advances_2009" class="csl-entry">
 
 Mitteroecker, P., & Gunz, P. (2009). Advances in Geometric
 Morphometrics. *Evolutionary Biology*, *36*(2), 235–247.
 <https://doi.org/10.1007/s11692-009-9055-x>
+
+</div>
+
+<div id="ref-ohiggins_study_2000" class="csl-entry">
 
 O’Higgins, P. (2000). The study of morphological variation in the
 hominid fossil record: Biology, landmarks and geometry. *Journal of
 Anatomy*, *197*(1), 103–120.
 <https://doi.org/10.1046/j.1469-7580.2000.19710103.x>
 
+</div>
+
+<div id="ref-pasty_etude_2004" class="csl-entry">
+
 Pasty, J.-F., Liegard, S., & Alix, P. (2004). Étude de l’industrie
 lithique du site paléolithique moyen des Fendeux (Coulanges, Allier).
 *Bulletin de la Société préhistorique française*, *101*(1), 5–25.
 <https://doi.org/10.3406/bspf.2004.12945>
+
+</div>
+
+<div id="ref-pearson_lines_1901" class="csl-entry">
 
 Pearson, K. (1901). On lines and planes of closest fit to systems of
 points in space. *The London, Edinburgh, and Dublin Philosophical
 Magazine and Journal of Science*, *2*(11), 559–572.
 <https://doi.org/10.1080/14786440109462720>
 
+</div>
+
+<div id="ref-pelegrin_technologie_1995" class="csl-entry">
+
 Pelegrin, J. (1995). *Technologie lithique: Le Châtelperronien de
 Roc-de-Combe (Lot) et de la Côte (Dordogne)*. Paris: CNRS.
+
+</div>
+
+<div id="ref-quinlan_improved_1996" class="csl-entry">
 
 Quinlan, J. R. (1996). Improved Use of Continuous Attributes in C4.5.
 *Journal of Artificial Intelligence Research*, *4*, 77–90.
 <https://doi.org/10.1613/jair.279>
 
+</div>
+
+<div id="ref-quinlan_c4_2014" class="csl-entry">
+
 Quinlan, J. Ross. (2014). *C4. 5: Programs for machine learning*.
 Elsevier.
+
+</div>
+
+<div id="ref-raab_debitage_1979" class="csl-entry">
 
 Raab, L. M., Cande, R. F., & Stahle, D. W. (1979). Debitage graphs and
 archaic settlement patterns in the Arkansas Ozarks. *Midcontinental
 Journal of Archaeology*, *4*(2), 167–182.
 <http://www.jstor.org/stable/20707837.>
 
+</div>
+
+<div id="ref-ridgeway_generalized_2007" class="csl-entry">
+
 Ridgeway, G. (2007). Generalized Boosted Models: A guide to the gbm
 package. *R package vignette*, 2007.
 <http://CRAN.R-project.org/package=gbm>
+
+</div>
+
+<div id="ref-romagnoli_neanderthal_2022" class="csl-entry">
 
 Romagnoli, F., Chabai, V., Hérisson, D., Hovers, E., Moncel, M.-H.,
 Peresani, M., et al. (2022). Neanderthal technological variability: A
@@ -2054,49 +2313,101 @@ F. Romagnoli, F. Rivals, & S. Benazzi (Eds.), *Updating Neanderthals.
 Understanding Behavioral Complexity in the Late Middle Paleolithic*.
 Academic Press.
 
+</div>
+
+<div id="ref-schlager_morpho_2017" class="csl-entry">
+
 Schlager, S. (2017). Morpho and Rvcg–Shape Analysis in R: R-Packages for
 geometric morphometrics, shape analysis and surface manipulations. In
 *Statistical shape and deformation analysis* (pp. 217–256). Elsevier.
+
+</div>
+
+<div id="ref-shea_middle_2013" class="csl-entry">
 
 Shea, J., J. (2013b). The Middle Paleolithic. In *Stone tools in the
 Paleolithic and Neolithic near East : A guide* (pp. 82–116). New York:
 Cambridge University Press.
 
+</div>
+
+<div id="ref-shea_upper_2013" class="csl-entry">
+
 Shea, J., J. (2013a). The Upper Paleolithic. In *Stone tools in the
 Paleolithic and Neolithic near East : A guide* (pp. 117–160). New York:
 Cambridge University Press.
+
+</div>
+
+<div id="ref-simpson_interpretation_1951" class="csl-entry">
 
 Simpson, E. H. (1951). The Interpretation of Interaction in Contingency
 Tables. *Journal of the Royal Statistical Society: Series B
 (Methodological)*, *13*(2), 238–241.
 <https://doi.org/10.1111/j.2517-6161.1951.tb00088.x>
 
+</div>
+
+<div id="ref-peresani_les_2003" class="csl-entry">
+
 Slimak, L. (2003). Les Debitages discoïdes mousteriens: Evaluation d’un
 concept technologique. In M. Peresani (Ed.), *Discoid Lithic Technology.
 Advances and Implications* (Vol. 1120, pp. 33–65). Oxford: Archaeopress.
+
+</div>
+
+<div id="ref-sullivan_debitage_1985" class="csl-entry">
 
 Sullivan, A. P., & Rozen, K. C. (1985). Debitage Analysis and
 Archaeological Interpretation. *American Antiquity*, *50*(4), 755–779.
 <https://doi.org/10.2307/280165>
 
+</div>
+
+<div id="ref-r_core_team_r_2019" class="csl-entry">
+
 Team, R. C. (2019). R: A language and environment for statistical
 computing. Vienna, Austria: R Foundation for Statistical Computing.
 <https://www.R-project.org/>
 
+</div>
+
+<div id="ref-rstudio_team_rstudio_2019" class="csl-entry">
+
 Team, Rs. (2019). RStudio: Integrated Development for R. Boston, MA:
 RStudio, Inc. <http://www.rstudio.com/>
+
+</div>
+
+<div id="ref-tixier_prehistoire_1980" class="csl-entry">
 
 Tixier, J., Inizan, M.-L., & Roche, H. (1980). *Préhistoire de la pierre
 taillée. 1.Terminologie et Technologie* (2nd ed.). Cercle de Recherches
 et d’études Préhistoriques.
 
+</div>
+
+<div id="ref-tixier_kombewa_1999" class="csl-entry">
+
 Tixier, J., & Turq, A. (1999). Kombewa et alii. *Paléo*, *11*, 135–143.
 <https://doi.org/10.3406/pal.1999.1174>
+
+</div>
+
+<div id="ref-walker_estimation_1967" class="csl-entry">
 
 Walker, S. H., & Duncan, D. B. (1967). Estimation of the Probability of
 an Event as a Function of Several Independent Variables. *Biometrika*,
 *54*(1/2), 167–179. <https://doi.org/10.2307/2333860>
 
+</div>
+
+<div id="ref-weihs_klar_2005" class="csl-entry">
+
 Weihs, C., Ligges, U., Luebke, K., & Raabe, N. (2005). <span
 class="nocase">klaR</span> analyzing German business cycles. In *Data
 analysis and decision support* (pp. 335–343). Springer.
+
+</div>
+
+</div>

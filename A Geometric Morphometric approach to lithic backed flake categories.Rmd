@@ -11,7 +11,7 @@ bibliography: References.bib
 csl: "arch-meth-theory.csl"
 link-citations: true
 ---
-
+<div align="justify">  
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -938,3 +938,4 @@ This research has been supported by the project SI1/PJI/2019-00488 funded by Com
 
 ## 7. References  
 
+</div>   
