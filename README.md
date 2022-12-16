@@ -6,10 +6,10 @@
 categories of backed flakes from recurrent centripetal core reduction.  
 **Authors:**
 
-Guillermo Bustos-Pérez$^{(1,2,3,7)}$  
-Brad Gravina$^{(4,5)}$  
-Michel Brenet$^{(5, 6)}$  
-Francesca Romagnoli$^{(1,7)}$
+- Guillermo Bustos-Pérez $^{(1,2,3,7)}$  
+- Brad Gravina $^{(4,5)}$  
+- Michel Brenet $^{(5, 6)}$  
+- Francesca Romagnoli $^{(1,7)}$
 
 $^{(1)}$ Departamento de Prehistoria y Arqueología, Universidad Autónoma
 de Madrid, Campus de Cantoblanco, 28049, Madrid, Spain  
