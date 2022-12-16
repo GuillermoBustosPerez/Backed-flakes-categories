@@ -6,7 +6,7 @@ output:
     toc: true
     toc_float: true  
   md_document:
-    variant: markdown_github
+    variant: gfm
 bibliography: References.bib
 csl: "arch-meth-theory.csl"
 link-citations: true

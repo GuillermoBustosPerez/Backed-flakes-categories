@@ -1,3 +1,5 @@
+<div align="justify">
+
 ## **General information**
 
 **Title:** A geometric morphometric approach to testing discrete
@@ -77,3 +79,5 @@ Romagnoli. (2022). Research compendium: Combining quantitative
 approaches to differentiate between backed products from discoidal and
 Levallois reduction sequences. In Journal of Archaological Science:
 Reports (1.0). Zenodo. <https://doi.org/10.5281/zenodo.7085139>
+
+</div>
