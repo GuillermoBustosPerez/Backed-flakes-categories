@@ -96,7 +96,9 @@ quality of 50,000.
 
 Landmarks of each artifact were placed using Viewbox Version 4.1.0.12
 (<http://www.dhal.com/viewbox.htm>). Placement of landmarks was done
-using a flake template and landmarks were relaxed to minimize bending
-energy. Resulting point coordinates were exported into .xlsx files.
+using a flake template (available at
+<https://doi.org/10.5281/zenodo.7085139>) and landmarks were relaxed to
+minimize bending energy. Resulting point coordinates were exported into
+.xlsx files.
 
 </div>
