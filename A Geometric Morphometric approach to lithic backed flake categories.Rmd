@@ -1,14 +1,13 @@
 ---
 title: "A Geometric Morphometric approach to lithic backed flake categories"
 output: 
-  pdf_document: default   
   html_document: 
     toc: true
     toc_float: true  
   md_document:
     variant: gfm
 bibliography: References.bib
-csl: "arch-meth-theory.csl"
+csl: "Journal-Paleolithic-Archaeology.csl"
 link-citations: true
 ---
 <div align="justify">  
