@@ -8,7 +8,7 @@ bibliography: References.bib
 csl: "Journal-Paleolithic-Archaeology.csl"
 link-citations: true
 ---
-
+<div align="justify">  
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```

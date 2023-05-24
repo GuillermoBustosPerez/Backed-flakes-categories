@@ -1,3 +1,5 @@
+<div align="justify">
+
 # A geometric morphometric approach to testing discrete categories of backed flakes from recurrent centripetal core reduction.
 
 Guillermo Bustos-Pérez$^{(1)}$  
