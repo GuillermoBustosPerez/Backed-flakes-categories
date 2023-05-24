@@ -2,18 +2,18 @@
 
 # A geometric morphometric approach to testing discrete categories of backed flakes from recurrent centripetal core reduction.
 
-Guillermo Bustos-Pérez$^{(1)}$  
-Brad Gravina$^{(2, 3)}$  
-Michel Brenet$^{(3, 4)}$  
-Francesca Romagnoli$^{(1)}$
+Guillermo Bustos-Pérez $^{(1)}$  
+Brad Gravina $^{(2, 3)}$  
+Michel Brenet $^{(3, 4)}$  
+Francesca Romagnoli $^{(1)}$
 
-$^{(1)}$Universidad Autónoma de Madrid. Departamento de Prehistoria y
+$^{(1)}$ Universidad Autónoma de Madrid. Departamento de Prehistoria y
 Arqueología, Campus de Cantoblanco, 28049 Madrid, Spain  
-$^{(2)}$Musée national de Préhistoire, MC, 1 rue du Musée, 24260 Les
+$^{(2)}$ Musée national de Préhistoire, MC, 1 rue du Musée, 24260 Les
 Eyzies de Tayac, France  
-$^{(3)}$UMR-5199 PACEA, Université de Bordeaux, Bâtiment B8, Allée
+$^{(3)}$ UMR-5199 PACEA, Université de Bordeaux, Bâtiment B8, Allée
 Geoffroy Saint Hilaire, CS 50023, 33615 PESSAC CEDEX, France  
-$^{(4)}$INRAP Grand Sud-Ouest, Centre mixte de recherches
+$^{(4)}$ INRAP Grand Sud-Ouest, Centre mixte de recherches
 archéologiques, Domaine de Campagne, 242460 Campagne, France
 
 **Abstract**
