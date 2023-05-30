@@ -113,7 +113,7 @@ All flakes were scanned with an Academia 20 structured light surface scanner (Cr
 
 Performance of 2D geometric morphometrics was done using screenshots of the upper view of each flake orientated along the technological axis and using free software MeshLab [@cignoni_meshlab_2008]. One thin-plate spline (tps) was generated using tpsUtil v.1.82, and the tpsDig v.2.32 [@rohlf_tps_2015] outline tool was employed to automatically trace the perimeter of each flake. Each outline was resampled to 100 equidistant landmarks (Figure 3) using Morpho v.2.11 [@schlager_morpho_2017]. 
 
-The following code sources the [21 Muggle 2D data](Scripts/21 Muggle 2D data.R) code. This code has been written to import the [2D-Upper-view.tps](Data/2D-Upper-view.tps) file. The file contains a landmark per pixel that defines the perimeter of the flake. After reading the file, the perimeter of each specimen is resampled to have 100 landmarks, and procrustes alignment is performed. A *nosymproc* [@schlager_morpho_2017] object called **Coord.2D** is created.  
+The following code sources the [21 Muggle 2D data](Scripts/21 Muggle 2D data.R) code. This code has been written to import the [2D-Upper-view.tps](Data/2D-Upper-view.tps) file. The file contains a landmark per pixel that defines the perimeter of the flake. After reading the file, the perimeter of each specimen is resampled to have 100 landmarks, and procrustes alignment is performed. A *nosymproc* [@schlager_morpho_2017] object called **Coord.2D** is created, which contains the orientated coordinates, mean shape and results from PC analysis.  
 
 ```{r eval=FALSE}
 source("Scripts/21 Muggle 2D data.R")
@@ -164,6 +164,18 @@ Procrustes superimposition [@kendall_shape_1984; @mitteroecker_advances_2009; @o
 
 ![Figure 3. Top: template/atlas for a randomly selected flake with the defined landmarks, curves, and surfaces. Bottom: landmark positioning after sliding to minimize bending energy on a pseudo-Levallois point. Fixed landmarks are indicated in red](Figures/Template and BE.png)
 
+#### 2.2.1 Performance of procrustes, PCA and model training      
+
+The following code sources the [22 Muggle 2D data](Scripts/22 Muggle 3D data.R) script. The [22 Muggle 2D data](Scripts/22 Muggle 3D data.R) loads all *.csv* files containing 3D coordinates, performs procrustes alignment using Morpho [@schlager_morpho_2017], and renames each specimen using the name of the *.csv* file on which they were stored.    
+
+A *nosymproc* [@schlager_morpho_2017] object called **Coord.3D** is created into the [Data](Data) folder. The *nosymproc* contains the orientated coordinates, mean shape and results from PC analysis.      
+
+
+```{r eval=FALSE}
+# Source over 3D data
+source("Scripts/22 Muggle 3D data.R")
+```
+
 
 ### 2.3	Machine learning and resampling techniques    
 
@@ -184,50 +196,7 @@ Random up- and down-sampling is conducted to obtain a balanced dataset and train
 
 3D meshes and data from landmark positioning and Procrustes alignment are already publicly available through the repository of a previous publication using the same experimental collection [@bustos-perez_research_2022; @bustos-perez_combining_2022]. 
 
-### 2.4 Performance of procrustes, PCA and model training      
 
-The following line of code performs procrustes alignment and superimposition using the Morpho package [@schlager_morpho_2017]. Aligned coordinates are extracted and stored as a data frame named LM.DF.   
-
-
-The following code performs PCA on the rotated landmarks and extracts the PC values of each case. Additionally, ID's of each case are added as an additional variable and employed in a `left join()` with the attribute dataset.  
-
-
-```{r PCA on procrustes, eval=FALSE}
-# PCA on rotated landmarks
-pca <- prcomp(LM.DF, scale. = TRUE)
-summary(pca)$importance[1:3, 1:25]
-
-# store PCA values in a dataframe and add ID's
-PCA_Coord <- as.data.frame(pca$x)
-PCA_Coord$ID <- filenames
-PCA_Coord$Core <- str_sub(PCA_Coord$ID, end = 2)
-```
-```{r Join PC and manually recorded attributes, eval=FALSE}
-# Left joined with the attribute database
-PCA_Coord <- left_join(PCA_Coord, Att, by = "ID")
-```
-
-Prior to model training it is necessary to preprocess the data. Labels of each artifact are changed using the `case_when()` function and new variable is set as factor with corresponding labels.   
-
-```{r Data Pre processing, eval=FALSE}
-#### Pre processing data
-# Change syntax of output
-PCA_Coord <- PCA_Coord %>% mutate(
-  New_Art.Type = 
-    case_when(
-      ARTIFACTTYPE == "Core Edge Flake" ~ "ED",
-      ARTIFACTTYPE == "Core edge with limited back" ~ "EDlb",
-      ARTIFACTTYPE == "pseudo-Levallois Point" ~ "p_Lp"
-    ))
-
-# Set factors
-PCA_Coord$New_Art.Type <- factor(
-  PCA_Coord$New_Art.Type, 
-  levels = c("ED", "EDlb", "p_Lp"),
-  labels = c("ED", "EDlb", "p_Lp"))
-```
-
-Formula and validation (k fold corss validation) are set prior to model training.   
 
 ```{r Set formula and validation, eval=FALSE}
 # Set formula and validation

@@ -387,7 +387,8 @@ The file contains a landmark per pixel that defines the perimeter of the
 flake. After reading the file, the perimeter of each specimen is
 resampled to have 100 landmarks, and procrustes alignment is performed.
 A *nosymproc* ([Schlager 2017](#ref-schlager_morpho_2017)) object called
-**Coord.2D** is created.
+**Coord.2D** is created, which contains the orientated coordinates, mean
+shape and results from PC analysis.
 
 ``` r
 source("Scripts/21 Muggle 2D data.R")
@@ -491,6 +492,25 @@ defined landmarks, curves, and surfaces. Bottom: landmark positioning
 after sliding to minimize bending energy on a pseudo-Levallois point.
 Fixed landmarks are indicated in red](Figures/Template%20and%20BE.png)
 
+#### 2.2.1 Performance of procrustes, PCA and model training
+
+The following code sources the [22 Muggle 2D
+data](Scripts/22%20Muggle%203D%20data.R) script. The [22 Muggle 2D
+data](Scripts/22%20Muggle%203D%20data.R) loads all *.csv* files
+containing 3D coordinates, performs procrustes alignment using Morpho
+([Schlager 2017](#ref-schlager_morpho_2017)), and renames each specimen
+using the name of the *.csv* file on which they were stored.
+
+A *nosymproc* ([Schlager 2017](#ref-schlager_morpho_2017)) object called
+**Coord.3D** is created into the [Data](Data) folder. The *nosymproc*
+contains the orientated coordinates, mean shape and results from PC
+analysis.
+
+``` r
+# Source over 3D data
+source("Scripts/22 Muggle 3D data.R")
+```
+
 ### 2.3 Machine learning and resampling techniques
 
 Different machine learning models treat the provided data differently.
@@ -593,59 +613,6 @@ are already publicly available through the repository of a previous
 publication using the same experimental collection ([Bustos-Pérez et al.
 2022](#ref-bustos-perez_combining_2022);
 [**bustos-perez_research_2022?**](#ref-bustos-perez_research_2022)).
-
-### 2.4 Performance of procrustes, PCA and model training
-
-The following line of code performs procrustes alignment and
-superimposition using the Morpho package ([Schlager
-2017](#ref-schlager_morpho_2017)). Aligned coordinates are extracted and
-stored as a data frame named LM.DF.
-
-The following code performs PCA on the rotated landmarks and extracts
-the PC values of each case. Additionally, ID’s of each case are added as
-an additional variable and employed in a `left join()` with the
-attribute dataset.
-
-``` r
-# PCA on rotated landmarks
-pca <- prcomp(LM.DF, scale. = TRUE)
-summary(pca)$importance[1:3, 1:25]
-
-# store PCA values in a dataframe and add ID's
-PCA_Coord <- as.data.frame(pca$x)
-PCA_Coord$ID <- filenames
-PCA_Coord$Core <- str_sub(PCA_Coord$ID, end = 2)
-```
-
-``` r
-# Left joined with the attribute database
-PCA_Coord <- left_join(PCA_Coord, Att, by = "ID")
-```
-
-Prior to model training it is necessary to preprocess the data. Labels
-of each artifact are changed using the `case_when()` function and new
-variable is set as factor with corresponding labels.
-
-``` r
-#### Pre processing data
-# Change syntax of output
-PCA_Coord <- PCA_Coord %>% mutate(
-  New_Art.Type = 
-    case_when(
-      ARTIFACTTYPE == "Core Edge Flake" ~ "ED",
-      ARTIFACTTYPE == "Core edge with limited back" ~ "EDlb",
-      ARTIFACTTYPE == "pseudo-Levallois Point" ~ "p_Lp"
-    ))
-
-# Set factors
-PCA_Coord$New_Art.Type <- factor(
-  PCA_Coord$New_Art.Type, 
-  levels = c("ED", "EDlb", "p_Lp"),
-  labels = c("ED", "EDlb", "p_Lp"))
-```
-
-Formula and validation (k fold corss validation) are set prior to model
-training.
 
 ``` r
 # Set formula and validation
