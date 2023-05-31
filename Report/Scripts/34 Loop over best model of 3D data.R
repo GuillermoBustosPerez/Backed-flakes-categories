@@ -22,7 +22,7 @@ Comb.TD.Att$New_Art.Type <- factor(
 
 # Set formula and train control
 frmla <- as.formula(
-  paste("New_Art.Type", paste(colnames(PC.scores.3D[,1:20]), collapse = " + "), sep = " ~ "))
+  paste("New_Art.Type", paste(colnames(PC.scores.3D[,1:22]), collapse = " + "), sep = " ~ "))
 
 trControl <- trainControl(method  = "repeatedcv",
                           verboseIter = TRUE,

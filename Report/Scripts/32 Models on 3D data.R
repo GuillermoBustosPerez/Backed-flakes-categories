@@ -22,7 +22,7 @@ Comb.TD.Att$New_Art.Type <- factor(
 
 # Set formula and train control
 frmla <- as.formula(
-  paste("New_Art.Type", paste(colnames(Comb.TD.Att[,1:20]), collapse = " + "), sep = " ~ "))
+  paste("New_Art.Type", paste(colnames(Comb.TD.Att[,1:22]), collapse = " + "), sep = " ~ "))
 
 trControl <- trainControl(method  = "repeatedcv",
                           verboseIter = TRUE,
@@ -325,7 +325,14 @@ repeat {
 }
 
 Models.3D <- All_Results
-
+Models.3D$Model <- factor(Models.3D$Model,
+                          levels = c(
+                            "LDA", "KNN", "Log. Reg.",
+                            "C5.0 Tree", "Random Forest", "GBM",
+                            "SVM Linear", "SVM Radial",
+                            "SVM Poly",
+                            "Naïve Bayes"
+                          ))
 save(
   Models.3D,
   file = "Report/Data/3D Results Up and Down sampling.RData")

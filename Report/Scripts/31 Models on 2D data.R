@@ -318,7 +318,7 @@ repeat {
                          AccuracyLower  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[3]],
                          AccuracyUpper  = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[4]],
                          AccuracyNull = confusionMatrix(Model$pred$pred, Model$pred$obs)$overall[[5]],
-                         Model = "Boosted Tree"))
+                         Model = "GBM"))
   
   x = nrow(All_Results)
   if (x >= 300){
@@ -327,6 +327,15 @@ repeat {
 }
 
 Models.2D <- All_Results
+
+Models.2D$Model <- factor(Models.2D$Model,
+                          levels = c(
+                            "LDA", "KNN", "Log. Reg.",
+                            "C5.0 Tree", "Random Forest", "GBM",
+                            "SVM Linear", "SVM Radial",
+                            "SVM Poly",
+                            "Naïve Bayes"
+                          ))
 
 save(
   Models.2D,

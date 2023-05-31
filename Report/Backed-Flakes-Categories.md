@@ -711,58 +711,81 @@ ggpubr::ggarrange(
 
 ![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
-The PCA results show that the 25 first principal components account for
-95% of the variance in the dataset, with PC1 accounting for 21.39% of
-variance and PC25 accounting for 0.36% of variance. This represents a
-substantial reduction in dimensionality from the original number of
-variables (1,524) and is lower than the sample size (139).  
-The following presents the accuracy values for each model after their
-respective 30 cycles of random up- and down-sampling. Supported vector
-machines with a polynomial kernel had the highest average value for
-general accuracy (0.837), closely followed by the random forest model
-(0.829). The K-nearest neighbor model had the lowest average value for
-accuracy (0.681), followed by LDA model (0.690). Supported vector
-machines with a polynomial kernel had the lowest standard deviation in
-accuracy values (0.018). This indicates that, in addition to being the
-most precise model on average, SVM with a polynomial kernel is also the
-most consistent model, being less affected by random up- and
-down-sampling. The minimum accuracy value of SVM with a polynomial
-kernel is 0.801, indicating a high accuracy, even when up- and
-down-sampling result in similar objects.
+The following figure presents the accuracy values for each model after
+their respective 30 cycles of random up- and down-sampling. On general,
+models trained on 3D data presented higher overall precision metrics.  
+In the case of the 2D data, the random forest model had the highest
+average value for general accuracy (0.779), closely followed by the
+decision tree (0.767) and the GBM (0.765). The LDA had the lowest
+average value for accuracy (0.511), followed by the logistic regression
+(0.522).  
+For the 3D data, supported vector machines with a polynomial kernel had
+the highest average value for general accuracy (0.844), closely followed
+by the random forest model (0.840). The K-nearest neighbor model had the
+lowest average value for accuracy (0.676), followed by LDA model
+(0.694). The minimum accuracy value of SVM with a polynomial kernel is
+0.807, indicating a high accuracy, even when up- and down-sampling
+result in different objects.
 
 ``` r
-# Set the models factors
-All_Results$Model <- factor(All_Results$Model,
-                                levels = c(
-                                  "LDA", "KNN", "Log. Reg.",
-                                  "C5.0 Tree", "Random Forest", "Boosted Tree",
-                                  "SVM Linear", "SVM Radial",
-                                  "SVM Poly",
-                                  "Naïve Bayes"))
+load("Data/2D Results Up and Down sampling.RData")
+load("Data/3D Results Up and Down sampling.RData")
 
-# 
-All_Results %>% 
-  ggplot(aes(Model, Accuracy, fill = Model)) +
-  geom_violin(position = position_dodge(1), width = 0.4, alpha = 0.5) +
-  geom_boxplot(width = 0.4,
-               outlier.shape = NA, alpha = 0.5) +
-  geom_jitter(width = 0.15, alpha = 0.9, size = 0.9, shape = 23, aes(fill = Model)) +
-  theme_light() +
-  ylab("Accuracy after each cycle of up and down sampling") +
-  ggsci::scale_fill_aaas() +
-  scale_x_discrete(labels = c(
-    "LDA", "KNN", "Log. Reg.",
-    "C5.0\nTree", "Random\nForest", "Boosted\nTree",
-    "SVM\nLinear", "SVM\nRadial",
-    "SVM\nPoly",
-    "Naïve\nBayes")) +
-  xlab(NULL) +
-  theme(
-    legend.position = "none",
-    axis.text = element_text(color = "black", size = 8),
-    axis.title = element_text(color = "black", size = 8.5)
-    )
+ggpubr::ggarrange(
+  (
+    Models.2D %>% 
+      ggplot(aes(Model, Accuracy, fill = Model)) +
+      geom_violin(position = position_dodge(1), width = 0.4, alpha = 0.5) +
+      geom_boxplot(width = 0.4,
+                   outlier.shape = NA, alpha = 0.5) +
+      geom_jitter(width = 0.15, alpha = 0.9, size = 0.9, shape = 23, aes(fill = Model)) +
+      scale_y_continuous(breaks = seq(0.4, 1, 0.2), lim = c(0.4, 1)) +
+      theme_light() +
+      ylab("Accuracy after each cycle of up and down sampling") +
+      ggsci::scale_fill_aaas() +
+      ggtitle(label = "2D data") +
+      scale_x_discrete(labels = c(
+        "LDA", "KNN", "Log. Reg.",
+        "C5.0\nTree", "Random\nForest", "GBM",
+        "SVM\nLinear", "SVM\nRadial",
+        "SVM\nPoly",
+        "Naïve\nBayes")) +
+      xlab(NULL) +
+      theme(
+        legend.position = "none",
+        axis.text = element_text(color = "black", size = 8),
+        axis.title = element_text(color = "black", size = 8.5),
+        plot.title = element_text(hjust = 0, vjust = 1, size = 9))
+  ),
+  (
+    Models.3D %>% 
+      ggplot(aes(Model, Accuracy, fill = Model)) +
+      geom_violin(position = position_dodge(1), width = 0.4, alpha = 0.5) +
+      geom_boxplot(width = 0.4,
+                   outlier.shape = NA, alpha = 0.5) +
+      geom_jitter(width = 0.15, alpha = 0.9, size = 0.9, shape = 23, aes(fill = Model)) +
+      scale_y_continuous(breaks = seq(0.4, 1, 0.2), lim = c(0.4, 1)) +
+      theme_light() +
+      ylab("Accuracy after each cycle of up and down sampling") +
+      ggtitle(label = "3D data") +
+      ggsci::scale_fill_aaas() +
+      scale_x_discrete(labels = c(
+        "LDA", "KNN", "Log. Reg.",
+        "C5.0\nTree", "Random\nForest", "GBM",
+        "SVM\nLinear", "SVM\nRadial",
+        "SVM\nPoly",
+        "Naïve\nBayes")) +
+      xlab(NULL) +
+      theme(
+        legend.position = "none",
+        axis.text = element_text(color = "black", size = 8),
+        axis.title = element_text(color = "black", size = 8.5),
+        plot.title = element_text(hjust = 0, vjust = 1, size = 9))
+        ),
+  nrow = 2)
 ```
+
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 The following table presents performance metrics of the SVM with a
 polynomial kernel for the classification of the three products. The
