@@ -897,75 +897,50 @@ ggpubr::ggarrange(
   ncol = 2)
 ```
 
-None of the manually recorded metrics provided significant correlation
-with PC7 and PC4 scores. Visual evaluation indicates that PC7 is
-capturing flake morphology in plain view. Flakes with a triangular
-morphology have negative values, while more rectangular flakes tend to
-have 0 values. Flakes presenting shapes wider than they are long tend to
-have positive values. Although it is important to consider that the high
-variability in flake shape morphology is introducing underlying factors
-that affect PC7 scores.
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
-![Flake shape variation according to PC7 values. Figures represent mean
-shape morphology after Procrustes alignment (scale
-independent)](Figures/PC7.png)
+PC2 (29.38% of variance) is considered the most important variable for
+discrimination when using the 2D data, followed by PC1 (39.33% of
+variance), PC5 (3.38% of variance) and PC3 (9.12% of variance). The
+following figure presents shape change according to these PCs. PC1 and
+PC2 capture the elongation of flakes along an asymmetric axis, but with
+different orientation. Positive values of PC1 or PC2 result in wider
+flakes. PC3 captures variance of flakes were the proximal part is much
+wider than the distal portion of the flake. PC5 appears to capture
+pointed extremes resulting from concave delineations of the middle
+portion of the laterals. This might be representing the presence of
+convergent extremes at either end of the flake.
 
-![Flake shape variation according to PC4 values. Figures represent mean
-shape morphology after Procrustes alignment (scale
-independent)](Figures/PC4.png)
+![Visualization of shape change according to PC for the 2D data.
+Differences towards mean shape have been magnified by a factor of
+three](Figures/2D%20PC%20meaning.png)
 
-A visual evaluation of PC4 indicates that the values are likely the
-result of an interaction between the ratio of flake surface/volume to
-platform size and the angle between the backed edge and the platform.
-Flakes with high ratios of surface/volume to platform surface and open
-angles between the platform and backed edge tend to have negative
-values. On the other hand, flakes with large platforms (and therefore
-lower flake surface/volume ratios) and straight angles between the
-platform and backed edge have positive values.
+In the case of 3D data, PC5 (5.5% of variance) is considered the most
+important variable for discrimination, followed by PC1 (31.32% of
+variance), PC6 (5.06% of variance), PC11 (1.45% of variance) and PC3
+(8.82% of variance).  
+PC5 is driven by the interaction of platform depth and flake thickness.
+Increasing values of PC5 result in flakes with platforms much wider than
+deep, with the width of the platform finding their continuation in one
+of the abrupt laterals. Increasing PC5 values also result in thinner
+flakes. The negative space of PC5 captures flakes with platforms much
+more deep than wide and thicker flakes. PC1 largely captures elongation
+along with platform size and thickness. Positive PC1 values result in
+very wide flakes with a reduced length and bigger platforms. This
+increase in width is slightly accompanied with an increase in thickness.
+Negative space values result in thin elongated flakes with a distal
+convergent edge and small platforms. Positive values of PC6 represent
+the convergence of one of the distal laterals into a pointed end. The
+negative space of PC6 results in flakes with a wide proximal portion
+which becomes narrower in the towards the distal part of the flake. PC3
+represents transversal flake morphology and the relationship between
+thickness, width and asymmetry. Increasing values of PC3 result in
+thicker and narrower flakes with a marked asymmetry which results from a
+thick back located at the left lateral.
 
-![Flake shape variation according to PC3 values. Figures represent mean
-shape morphology after Procrustes alignment (scale
-independent)](Figures/PC3.png)
-
-![Flake shape variation according to PC1 values. Figures represent mean
-shape morphology after Procrustes alignment (scale
-independent)](Figures/PC1.png)
-
-PC3 offers a much clearer interpretation. A visual evaluation of PC3
-values according to flake shape indicates that PC3 captures transversal
-flake morphology and the relationship between thickness and width. A
-multiple linear regression using the interaction between ratio of flake
-width to thickness and IPA as predictors shows a moderate correlation
-with PC3 values (p \< 0.001, adjusted $r^2$ = 0.65). The coefficient of
-interaction between the ratio of width to thickness and IPA is 0.17,
-while the coefficient of IPA is -0.77. A counterintuitive coefficient of
--12.79 for the ratio of flake width to thickness is obtained in the
-interaction model. An individual regression of PC3 values predicted from
-the ratio of flake width to thickness provides a moderate correlation (p
-\< 0.001; $r^2$ = 0.6), with a positive coefficient of 6.46. This
-indicates that the counterintuitive coefficient of -12.79 obtained for
-the width to thickness ratio in the interaction model is a result of a
-Simpson’s Paradox ([Simpson 1951](#ref-simpson_interpretation_1951)), in
-which the signal is reversed. It is also important to note the strong
-correlation between the carenated index and the ratio of flake width to
-thickness (p \< 0.001; $r^2$ = 0.9). Thus, although PC3 regresses better
-with the ratio of width to thickness than with the carenated index, it
-can be considered that it is capturing flake thinness relative to
-thickness.
-
-A multiple linear regression for the prediction of PC1 values shows a
-moderate correlation when the elongation index and carenated index are
-employed as predictors (p \< 0.001; adjusted $r^2$ = 0.63). The
-elongation index has the highest significance and the highest estimated
-value (-39.27), while the carenated index has an estimated value of
--4.26. The negative and high value of the estimate for the elongation
-index indicates that, as the tendency of a product to be elongated
-increases (becoming longer relative to its width), the values of PC1
-will decrease, while all other variables will remain constant. The
-negative estimate of the carenated index also indicates that, as a
-product becomes thinner, the values of PC1 will decrease. Thus, the
-positive values of PC1 are representing thick products with a low
-elongation.
+![Visualization of shape change according to PC of the 3D data.
+Differences towards mean shape have been magnified by a factor of
+three.](Figures/PC%20contribution%20to%20shape%20change.png)
 
 ### 3.3 Group discreteness through confusion matrix and PCA biplots
 
@@ -1983,15 +1958,6 @@ Cambridge University Press.
 Shea, J., J. (2013a). The Upper Paleolithic. In *Stone tools in the
 Paleolithic and Neolithic near East : A guide* (pp. 117–160). New York:
 Cambridge University Press.
-
-</div>
-
-<div id="ref-simpson_interpretation_1951" class="csl-entry">
-
-Simpson, E. H. (1951). The Interpretation of Interaction in Contingency
-Tables. *Journal of the Royal Statistical Society: Series B
-(Methodological)*, *13*(2), 238–241.
-<https://doi.org/10.1111/j.2517-6161.1951.tb00088.x>
 
 </div>
 
