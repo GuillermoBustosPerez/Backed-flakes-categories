@@ -214,14 +214,19 @@ source("Report/Scripts/31 Models on 2D data.R")
 source("Report/Scripts/31 Models on 3D data.R")
 ```
 
-Models trained are respective exported to the respective [2D Results Up and Down sampling](Report/Data/2D Results Up and Down sampling.RData) and [3D Results Up and Down sampling](Report/Data/3D Results Up and Down sampling.RData) files.   
+Models trained are exported to their respective [2D Results Up and Down sampling](Report/Data/2D Results Up and Down sampling.RData) and [3D Results Up and Down sampling](Report/Data/3D Results Up and Down sampling.RData) files.   
 
 ```{r include=FALSE, eval=FALSE}
 load("Data/Results Up and Down sampling.RData")
 load("Data/SVM Poly Results.RData")
 ```
 
-Once the bets model is determined, the loop is repeated in order to extract variable importance and predictions in order to construct the confusion matrix. 
+After determining the best model for each type of data, another loop is repeated in order to extract variable importance and predictions in order to construct the confusion matrix. The following code sources the R files that train and extract the necessary information.       
+
+```{r eval=FALSE}
+source("33 Loop over best model of 2D data.R")
+source("34 Loop over best model of 3D data.R")
+```
 
 
 ## 3. Results    
