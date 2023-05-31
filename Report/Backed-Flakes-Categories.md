@@ -1145,43 +1145,261 @@ ggpubr::ggarrange(
 
 ![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
-As mentioned above, PC4 is interpreted as capturing the relationships
-between platform size, flake volume, and the angle between the backed
-lateral edge and the platform. The three defined technological products
-show differences regarding this component. Core edge flakes generally
-have positive values (mean = 6.14, SD = 9.32). These generally positive
-values are indicative of large platforms, while the platform and the
-backed edge form an angle close to 90º. Biplot visualization is
-especially informative in this respect, because it results in core edge
-flakes being clustered in positive values. Core edge flakes with a
-limited back and pseudo-Levallois points have similar negative values
-for PC4, with a high degree of overlap (respective means of -1.29 and
--4.01 and SDs of 10.1 and 13.7). These negative values indicate the
-importance of small platforms relative to the volume of the product and
-the open angle between the platform and the backed lateral of the flake.
-This open angle can be associated with the deviation between the
-morphological and percussion axes.  
-Although PC3 and PC1 are considered the third and fourth most important
-variables for discriminating between the defined technological products,
-the distribution of the main values shows some tendencies of interest.
-PC3 is capturing the interaction between IPA and the ratio of flake
-width to thickness. The mean value for core edge flakes (-6.41)
-indicates that they tend to be less wide with respect to their
-thickness, while the slightly positive mean values of core edge flakes
-with a limited back (1.59) and pseudo-Levallois points (2.78) indicate a
-general tendency to be wider with respect to their thickness.
+For the 3D data pseudo-Levallois points were characterized by having
+high values of PC1 (mean = 0.031; SD = 0.055), low values of PC3 (mean =
+0.024; SD = 0.09) and negative values of PC5 (mean = -0.046; SD =
+0.059). Finally, pseudo-Levallois points also exhibit intermediate
+positive values of PC6 (mean = 0.018; SD = 0.05). The combination of
+these PC’s and their values indictes that the geometric morphometrics is
+capturing the low elongation (PC1), assymetry (PC3), and to some extent
+the triangular morphology resulting from the convergence of two edges
+(PC5 and PC6). Core edge flakes exhibited negative values of PC1 (mean =
+-0.078; SD = 0.136), positive values of PC5 (mean = 0.024; SD = 0.048)
+and PC6 (mean = 0.031; SD = 0.055). These PC’s capture the elongated
+nature (PC1) of core edge flakes (in comparisson to the other two
+categories), their lower ratio of legth compared to thickness (PC5) and
+the presence of a distal transversal edge which can result in distal
+pointed portions. Core edge flakes with a limited back are characterized
+by intermediate values of PC1 (mean = 0.012, SD = 0.142), PC3 (mean =
+-0.006, SD = 0.078) and PC5 (mean = 0.00; SD = 0.061) and slightly
+negative values of PC6 (mean = -0.013; SD = 0.058). The combination of
+values from these PC is indicative of the wide morphological variability
+of core edge flakes with a limited back were the main features are a low
+elongation (PC1), varing ratios of thickness and platform morphology
+(PC5) and strong variability of the plain view (PC6).
 
-PC1 mostly captures the relationships of elongation and thickness, where
-elongated, thin products are characterized by negative values. Core edge
-flakes have a tendency toward negative values (mean = -8.26; SD = 16.3),
-indicating that they are generally elongated products. This relatively
-longer elongation can be associated with core edge flakes sharing the
-morphological and percussion axes. Pseudo-Levallois points share the
-opposite tendency, having generally positive values (mean = 8.14; SD =
-19.9), which are indicative of their being short non-elongated products.
-Core edge flakes with a limited back have a slightly positive tendency
-(mean = 1.26; SD = 17.5), which is indicative of their not usually being
-elongated products.
+``` r
+PC.scores.3D <- data.frame(Coord.3D$PCscores) %>% 
+  mutate(ID = dimnames(Coord.3D$rotated)[[3]])
+
+PC.scores.3D <- left_join(PC.scores.3D, Att, by = "ID")
+
+ggpubr::ggarrange(
+  (
+    PC.scores.3D %>% 
+      ggplot(aes(PC5, PC1, fill = ARTIFACTTYPE)) +
+      geom_vline(xintercept = 0, alpha = 0.7, linetype = "dashed") +
+      geom_hline(yintercept = 0, alpha = 0.7, linetype = "dashed") +
+      stat_ellipse(geom = "polygon", alpha = 0.2, aes(fill = ARTIFACTTYPE),
+                   level = 0.8) +
+      geom_point(aes(color = ARTIFACTTYPE), size = 1) +
+      xlab(paste0("PC5 (", round(Coord.3D$Variance[5,2],2), "%)")) +
+      ylab(paste0("PC1 (", round(Coord.3D$Variance[1,2],2), "%)")) +
+      ggsci::scale_fill_lancet(name = "Backed flake type",
+                               labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      ggsci::scale_color_lancet(name = "Backed flake type",
+                                labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      theme_light() +
+      guides(color = guide_legend(nrow = 1, title.position = "top"),
+             fill = guide_legend(nrow = 1, title.position = "top")) +
+      theme(
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 9),
+        axis.title.y = element_text(color = "black", size = 9),
+        legend.title = element_text(color = "black", size = 9),
+        legend.text = element_text(color = "black", size = 9),
+        legend.position = "bottom")
+  ),
+  (
+    PC.scores.3D %>% 
+      ggplot(aes(PC6, PC11, fill = ARTIFACTTYPE)) +
+      geom_vline(xintercept = 0, alpha = 0.7, linetype = "dashed") +
+      geom_hline(yintercept = 0, alpha = 0.7, linetype = "dashed") +
+      stat_ellipse(geom = "polygon", alpha = 0.2, aes(fill = ARTIFACTTYPE),
+                   level = 0.8) +
+      geom_point(aes(color = ARTIFACTTYPE), size = 1) +
+      xlab(paste0("PC6 (", round(Coord.3D$Variance[6,2],2), "%)")) +
+      ylab(paste0("PC11 (", round(Coord.3D$Variance[11,2],2), "%)")) +
+      ggsci::scale_fill_lancet(name = "Backed flake type",
+                               labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      ggsci::scale_color_lancet(name = "Backed flake type",
+                                labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      theme_light() +
+      guides(color = guide_legend(nrow = 1, title.position = "top"),
+             fill = guide_legend(nrow = 1, title.position = "top")) +
+      theme(
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 9),
+        axis.title.y = element_text(color = "black", size = 9),
+        legend.title = element_text(color = "black", size = 9),
+        legend.text = element_text(color = "black", size = 9),
+        legend.position = "bottom")
+  ),
+  ncol = 2,
+  common.legend = TRUE,
+  legend = "bottom") %>%  
+  ggpubr::annotate_figure(fig.lab = "3D data", fig.lab.pos = "top.left", 
+                          fig.lab.size = 12, fig.lab.face = "bold")
+```
+
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+
+``` r
+### Group PCA ####
+
+# Group PCA 2d data 
+PCA.group.2D <- Morpho::groupPCA(
+  PC.scores.2D[,c(1:9)],
+  PC.scores.2D$ARTIFACTTYPE)
+
+df.GPCA.2D <- data.frame(PCA.group.2D$Scores)
+df.GPCA.2D$Class <- PCA.group.2D$groups
+
+# Group PCA 3d data 
+PCA.group.3D <- Morpho::groupPCA(
+  PC.scores.3D[,1:22],
+  PC.scores.3D$ARTIFACTTYPE)
+
+df.GPCA.3D <- data.frame(PCA.group.3D$Scores)
+df.GPCA.3D$Class <- PCA.group.3D$groups
+
+#### Plot together ####
+ggpubr::ggarrange(
+  (
+    df.GPCA.2D %>% 
+      ggplot(aes(X1, X2, fill = Class)) +
+      stat_ellipse(geom = "polygon", alpha = 0.2, aes(fill = Class),
+                   level = 0.8) +
+      geom_point(aes(color = Class), size = 1) +
+      coord_fixed() +
+      geom_vline(xintercept = 0, alpha = 0.7, linetype = "dashed") +
+      geom_hline(yintercept = 0, alpha = 0.7, linetype = "dashed") +
+      ggsci::scale_fill_lancet(name = "Backed flake type",
+                               labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      ggsci::scale_color_lancet(name = "Backed flake type",
+                                labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      theme_light() +
+      xlab(paste0("GPC1 (", round((PCA.group.2D$Variance[1,2])*100,2), "%)")) +
+      ylab(paste0("GPC2 (", round((PCA.group.2D$Variance[2,2])*100,2), "%)")) +
+      guides(color = guide_legend(nrow = 1, title.position = "top"),
+             fill = guide_legend(nrow = 1, title.position = "top")) +
+      labs(title = "2D data") +
+      theme(
+        title = element_text(color = "black", size = 8),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 9),
+        axis.title.y = element_text(color = "black", size = 9),
+        legend.title = element_text(color = "black", size = 9),
+        legend.text = element_text(color = "black", size = 9),
+        legend.position = "bottom")
+  ),
+  (
+    df.GPCA.3D %>% 
+      ggplot(aes(X1, X2, fill = Class)) +
+      geom_vline(xintercept = 0, alpha = 0.7, linetype = "dashed") +
+      geom_hline(yintercept = 0, alpha = 0.7, linetype = "dashed") +
+      geom_point(aes(color = Class), size = 1) +
+      stat_ellipse(geom = "polygon", alpha = 0.2, aes(fill = Class),
+                   level = 0.8) +
+      coord_fixed() +
+      ggsci::scale_fill_lancet(name = "Backed flake type",
+                               labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      ggsci::scale_color_lancet(name = "Backed flake type",
+                                labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      theme_light() +
+      xlab(paste0("GPC1 (", round((PCA.group.3D$Variance[1,2])*100,2), "%)")) +
+      ylab(paste0("GPC2 (", round((PCA.group.3D$Variance[2,2])*100,2), "%)")) +
+      guides(color = guide_legend(nrow = 1, title.position = "top"),
+             fill = guide_legend(nrow = 1, title.position = "top")) +
+      labs(title = "3D data") +
+      theme(
+        title = element_text(color = "black", size = 8),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 9),
+        axis.title.y = element_text(color = "black", size = 9),
+        legend.title = element_text(color = "black", size = 9),
+        legend.text = element_text(color = "black", size = 9),
+        legend.position = "bottom")
+  ),
+  ncol = 2,
+  common.legend = TRUE,
+  legend = "bottom",
+  align = "h"
+  
+)
+```
+
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+
+``` r
+#### Violin and boxplots of PC values ####
+
+ggpubr::ggarrange(
+  
+  (
+    PC.scores.2D %>% select(ARTIFACTTYPE, PC1, PC2, PC3, PC5) %>% 
+      pivot_longer(
+        PC1:PC5,
+        names_to = "PC",
+        values_to = "Values") %>% 
+      ggplot(aes(ARTIFACTTYPE, Values, fill = ARTIFACTTYPE)) +
+      geom_violin(alpha = 0.4, width = 0.75) +
+      geom_boxplot(alpha = 0.75,  width = 0.25, outlier.size = 0) +
+      facet_grid(~ PC, scales = "free") +
+      geom_jitter(width = 0.15, alpha = 1, size = 0.9, shape = 23, aes(fill = ARTIFACTTYPE)) +
+      coord_flip() +
+      theme_light() +
+      scale_x_discrete(labels = c("Core Edge\nFlake",
+                                  "Core edge with\nlimited back",
+                                  "pseudo-Levallois\nPoint")) +
+      xlab(NULL) +
+      ylab("PC value") +
+      ggsci::scale_fill_lancet() +
+      ggtitle(label = "2D data") +
+      theme(
+        axis.title = element_text(size = 8, color = "black", face = "bold"),
+        strip.text = element_text(color = "black", face = "bold", size = 8),
+        strip.background = element_rect(fill = "white", colour = "black", size = 1),
+        legend.position = "none",
+        axis.text = element_text(color = "black", size = 7),
+        plot.title = element_text(hjust = 0, vjust = 1, size = 9))
+  ),
+  
+  (
+    PC.scores.3D %>% select(ARTIFACTTYPE, PC1, PC3, PC5, PC6) %>% 
+      pivot_longer(
+        PC1:PC6,
+        names_to = "PC",
+        values_to = "Values") %>% 
+      ggplot(aes(ARTIFACTTYPE, Values, fill = ARTIFACTTYPE)) +
+      geom_violin(alpha = 0.4, width = 0.75) +
+      geom_boxplot(alpha = 0.75,  width = 0.25, outlier.size = 0) +
+      facet_grid(~ PC, scales = "free") +
+      geom_jitter(width = 0.15, alpha = 1, size = 0.9, shape = 23, aes(fill = ARTIFACTTYPE)) +
+      coord_flip() +
+      theme_light() +
+      scale_x_discrete(labels = c("Core Edge\nFlake",
+                                  "Core edge with\nlimited back",
+                                  "pseudo-Levallois\nPoint")) +
+      xlab(NULL) +
+      ylab("PC value") +
+      ggsci::scale_fill_lancet() +
+      ggtitle(label = "3D data") +
+      theme(
+        axis.title = element_text(size = 8, color = "black", face = "bold"),
+        strip.text = element_text(color = "black", face = "bold", size = 8),
+        strip.background = element_rect(fill = "white", colour = "black", size = 1),
+        legend.position = "none",
+        axis.text = element_text(color = "black", size = 7),
+        plot.title = element_text(hjust = 0, vjust = 1, size = 9))
+  ),
+  legend = "none",
+  common.legend = TRUE,
+  ncol = 1
+)
+```
+
+    ## Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
+    ## ℹ Please use the `linewidth` argument instead.
+    ## This warning is displayed once every 8 hours.
+    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+    ## generated.
+
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
 ## 4. Discussion
 
