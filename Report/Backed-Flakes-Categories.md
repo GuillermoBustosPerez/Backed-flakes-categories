@@ -944,176 +944,219 @@ three.](Figures/PC%20contribution%20to%20shape%20change.png)
 
 ### 3.3 Group discreteness through confusion matrix and PCA biplots
 
-The confusion matrix of SVM with a polynomial kernel illustrates the
-directionality of confusion between the predicted and true values of
-classified technological products. Pseudo-Levallois points have the best
-identification, in accordance with the reported sensitivity and
-specificity. In general, it is very difficult to mistake
+The confusion matrixes illustrate the directionality of confusion
+between the predicted and true values of classified technological
+products for the 2D and 3D data. In both types of data pseudo-Levallois
+points have the best identification, in accordance with the reported
+sensitivity and specificity. In general, it is very difficult to mistake
 pseudo-Levallois points for any of the two considered technological
 products. Wrongly considering a pseudo-Levallois point a core edge flake
-is residual for the model (0.07). Although mistaking a pseudo-Levallois
-point for a core edge flake with a limited back is slightly more common
-(1.98), there is still a very low confusion value.
+is very unlikely for the 2D data (2.39) and residual for the model on 3D
+data (0.21). Although mistaking a pseudo-Levallois point for a core edge
+flake with a limited back is slightly more common for both types of
+data, there is still a very low confusion value.
+
+Core edge flakes and core edge flakes with a limited back offer slightly
+higher frequencies of misidentifications, although they maintain high
+values for sensitivity and specificity for both types of data. For the
+Random Forest model based on the 2D data it is more common to mislabel
+core edge flakes with a limited back as core edge flakes (25.51) than
+the reverse (18.84).
+
+In the case of the SVM with polynomial kernel based on 3D data, the
+confusion between both categories diminishes lightly and it is balanced
+(17.61 and 16.27). On general, the 3D data identifies better core edge
+flakes with a limited back and core edge flakes than the model based on
+the 2D data. This greater precision is the result of a lower frequency
+in the incorrect identification of core edge flakes with a limited back
+as core edge flakes. The incorrect identification of backed flakes as
+pseudo-Levallois points is slightly more common when 2D data is
+employed. Their incorrect identification as pseudo-Levallois flakes is
+minimal in the case of the 3D data, although this incorrect
+identification has a higher frequency in core edge flakes with a limited
+back (6.63) than in core edge flakes (0.53).
 
 ``` r
-# Extract confusion matrix
-CFM <- confusionMatrix(Conf_SVM_Poly$pred, Conf_SVM_Poly$obs)$table
+#### Confusion Matrix 2D ####
+CFM.2D <- confusionMatrix(RF.Predictions$pred, RF.Predictions$obs)$table
+CFM.2D <- reshape2::melt(CFM.2D)
+
+CFM.2D <- CFM.2D %>% mutate(
+  Value = case_when(
+    Reference == "ED" ~ (value/sum(confusionMatrix(RF.Predictions$pred, RF.Predictions$obs)$table[1:3]))*100,
+    Reference == "EDlb" ~ (value/sum(confusionMatrix(RF.Predictions$pred, RF.Predictions$obs)$table[4:6]))*100,
+    Reference == "p_Lp" ~ (value/sum(confusionMatrix(RF.Predictions$pred, RF.Predictions$obs)$table[7:9]))*100)
+)
+
+#### Confusion matrix 3D data ####
+CFM <- confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)$table
 CFM <- reshape2::melt(CFM)
+
+x <- data.frame(confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)[[4]])
+xlsx::write.xlsx(x,
+                 file = "svmpoly results.xlsx")
 
 # Normalize the confusion matrix
 CFM <- CFM %>% mutate(
   Value = case_when(
-    Reference == "ED" ~ (value/sum(confusionMatrix(Conf_SVM_Poly$pred, Conf_SVM_Poly$obs)$table[1:3]))*100,
-    Reference == "EDlb" ~ (value/sum(confusionMatrix(Conf_SVM_Poly$pred, Conf_SVM_Poly$obs)$table[4:6]))*100,
-    Reference == "p_Lp" ~ (value/sum(confusionMatrix(Conf_SVM_Poly$pred, Conf_SVM_Poly$obs)$table[7:9]))*100)
+    Reference == "ED" ~ (value/sum(confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)$table[1:3]))*100,
+    Reference == "EDlb" ~ (value/sum(confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)$table[4:6]))*100,
+    Reference == "p_Lp" ~ (value/sum(confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)$table[7:9]))*100)
 )
 
-# and plot
-CFM %>% 
-  ggplot(aes(Reference, Prediction, fill = Value)) + 
-  geom_tile(alpha = 0.75) +
-  geom_text(aes(label = round(Value, 2)), size = 3) +
-  scale_fill_gradient(low = "white", high = "blue")  +
-  scale_x_discrete(position = "top") +
-  scale_y_discrete(limits=rev) +
-  theme_bw() +
-  coord_fixed() +
-  theme(legend.position = "none",
-        axis.title = element_text(size = 8, color = "black", face = "bold"),
-        axis.text = element_text(size = 7.5, color = "black"),
-        title = element_text(size = 8, color = "black", face = "bold"))
+#### Plot both confusion matrixes ####
+ggpubr::ggarrange(
+  (
+    CFM.2D %>% 
+      ggplot(aes(Reference, Prediction, fill = Value)) + 
+      geom_tile(alpha = 0.75) +
+      geom_text(aes(label = round(Value, 2)), size = 3) +
+      scale_fill_gradient(low = "white", high = "blue")  +
+      scale_x_discrete(position = "top") +
+      scale_y_discrete(limits=rev) +
+      theme_bw() +
+      coord_fixed() +
+      ggtitle(label = "2D data") +
+      theme(legend.position = "none",
+            axis.title = element_text(size = 8, color = "black", face = "bold"),
+            axis.text = element_text(size = 7.5, color = "black"),
+            plot.title = element_text(hjust = 0, vjust = 1, size = 9))),
+  
+  (
+    CFM %>% 
+      ggplot(aes(Reference, Prediction, fill = Value)) + 
+      geom_tile(alpha = 0.75) +
+      geom_text(aes(label = round(Value, 2)), size = 3) +
+      scale_fill_gradient(low = "white", high = "blue")  +
+      scale_x_discrete(position = "top") +
+      scale_y_discrete(limits=rev) +
+      theme_bw() +
+      ggtitle(label = "3D data") +
+      coord_fixed() +
+      theme(legend.position = "none",
+            axis.title = element_text(size = 8, color = "black", face = "bold"),
+            axis.text = element_text(size = 7.5, color = "black"),
+            plot.title = element_text(hjust = 0, vjust = 1, size = 9))),
+  ncol = 2)
 ```
 
-Core edge flakes and core edge flakes with a limited back offer slightly
-higher frequencies of misidentifications, although they maintain high
-values for sensitivity and specificity. For the SVM with a polynomial
-kernel, it is more common to mislabel core edge flakes as core edge
-flakes with a limited back (21.56) than the reverse (20.2). For both
-technological groups of flakes, their incorrect identification as
-pseudo-Levallois flakes is minimal, although this incorrect
-identification has a higher frequency in core edge flakes with a limited
-back (4.52) than in core edge flakes (0.63).
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 The above interpretation of the PCs, biplot visualization, and
 descriptive statistics of PC values allow us to evaluate the
-morphological features captured by the geometric morphometrics and the
-characterization of each type of technological backed flake.
-Pseudo-Levallois points are characterized by having negative values for
-PC7 (mean = -6.33; SD = 6.00), indicative of the importance of the
-triangular morphology in their identification. This is particularly
-observable on the biplots in which the clustering of pseudo-Levallois
-points on negative values results in a limited overlap with the
-remainder of the backed flake types.
+morphological features captured by the 2D and 3D geometric morphometrics
+and the characterization of each type of technological backed flake. On
+general, biplots from 2D data show much more overlapping than biplots
+from 3D data. The higher overlapping observed on PC biplot from the 2D
+data is also observed when a group PCA is performed using the most
+important variables for classification. Visual analysis of group PCA
+biplot from variables of the 3D data shows much less overlap between the
+three categories. While core edge flakes and pseudo-Levallois points
+show little overlap between each other, core edge flakes are situated as
+an intermediate product, pointing out to their wide morphological
+variability.
+
+For the 2D data pseudo-Levallois points are characterized by having
+positive values of PC1 (mean = 0.53; SD = 0.116) and PC2 (mean = 0.168;
+SD = 0.128). These generally positive values are indicative of the low
+elongation of pseudo-Levallois points. The triangular morphology
+characteristic of pseudo-Levallois points remains elusive for the 2D
+data and is only slightly captured by PC5 (mean = 0.002; SD = 0.028).
+Features which characterize core edge flakes are much better captured by
+the 2D geometric morphometrics. In the 2D data core edge flakes are
+characterized by having low values of PC1 (mean = -0.052; SD = 0.111)
+and PC2 (mean = -0.043; SD = 0.092) which are indicative of being
+elongated products. Core edge flakes (mean = -0.014, SD = 0.055) and
+pseudo-Levallois points (mean = -0.014, SD = 0.079) tend to have
+negative values of PC3. This indicated that, on general, neither of the
+two products had a distal part narrower than the proximal part. Core
+edge flakes with a limited back presented slightly positive values of
+PC1 (mean = 0.008; SD = 0.131) and PC2 (mean = 0.011; SD = 0.111)
+indicating that their elongation and asymmetry falls between core edge
+flakes and pseudo-Levallois points. Additional to this, core edge flakes
+with a limited back presented slightly positive values of PC3 (mean =
+0.007; SD = 0.06), indicating that it is more common for these types of
+products to present a narrower distal part.
 
 ``` r
-ggpubr::ggarrange(
-(PCA_Coord %>% ggplot(aes(PC7, PC4, fill = New_Art.Type)) +
-  geom_vline(xintercept = 0, alpha = 0.7, linetype = "dashed") +
-  geom_hline(yintercept = 0, alpha = 0.7, linetype = "dashed") +
-  stat_ellipse(geom = "polygon", alpha = 0.2, aes(fill = New_Art.Type),
-               level = 0.8) +
-  geom_point(aes(color = New_Art.Type), size = 1) +
-  xlab(paste0("PC7 (", round((summary(pca)$importance[2,7])*100, 2), "%)")) +
-  ylab(paste0("PC4 (", round((summary(pca)$importance[2,4])*100, 2), "%)")) +
-  ggsci::scale_fill_lancet(name = "Backed flake type",
-                         labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
-  ggsci::scale_color_lancet(name = "Backed flake type",
-                          labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
-  theme_light() +
-  guides(color = guide_legend(nrow = 1, title.position = "top"),
-         fill = guide_legend(nrow = 1, title.position = "top")) +
-  theme(
-    axis.text.y = element_text(color = "black", size = 7),
-    axis.text.x = element_text(color = "black", size = 7),
-    axis.title.x = element_text(color = "black", size = 9),
-    axis.title.y = element_text(color = "black", size = 9),
-    legend.title = element_text(color = "black", size = 9),
-    legend.text = element_text(color = "black", size = 9),
-    legend.position = "bottom")),
+PC.scores.2D <- data.frame(Coord.2D$PCscores) %>% 
+  mutate(ID = rownames(Coord.2D$PCscores))
 
-(PCA_Coord %>% ggplot(aes(PC7, PC3, fill = New_Art.Type)) +
-  geom_vline(xintercept = 0, alpha = 0.7, linetype = "dashed") +
-  geom_hline(yintercept = 0, alpha = 0.7, linetype = "dashed") +
-  stat_ellipse(geom = "polygon", alpha = 0.2, aes(fill = New_Art.Type),
-               level = 0.8) +
-  geom_point(aes(color = New_Art.Type), size = 1) +
-  xlab(paste0("PC7 (", round((summary(pca)$importance[2,7])*100, 2), "%)")) +
-  ylab(paste0("PC3 (", round((summary(pca)$importance[2,3])*100, 2), "%)")) +
-  ggsci::scale_fill_lancet(name = "Backed flake type",
-                           labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
-  ggsci::scale_color_lancet(name = "Backed flake type",
-                            labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
-  theme_light() +
-  guides(color = guide_legend(nrow = 1, title.position = "top"),
-         fill = guide_legend(nrow = 1, title.position = "top")) +
-  theme(
-    axis.text.y = element_text(color = "black", size = 7),
-    axis.text.x = element_text(color = "black", size = 7),
-    axis.title.x = element_text(color = "black", size = 9),
-    axis.title.y = element_text(color = "black", size = 9),
-    legend.title = element_text(color = "black", size = 9),
-    legend.text = element_text(color = "black", size = 9),
-    legend.position = "bottom")),
-nrow = 1,
-ncol = 2,
-common.legend = TRUE,
-legend = "bottom"
-)
+PC.scores.2D <- left_join(PC.scores.2D, Att, by = "ID")
 
 ggpubr::ggarrange(
-(PCA_Coord %>% ggplot(aes(PC4, PC3, fill = New_Art.Type)) +
-  geom_vline(xintercept = 0, alpha = 0.7, linetype = "dashed") +
-  geom_hline(yintercept = 0, alpha = 0.7, linetype = "dashed") +
-  stat_ellipse(geom = "polygon", alpha = 0.2, aes(fill = New_Art.Type),
-               level = 0.8) +
-  geom_point(aes(color = New_Art.Type), size = 1) +
-  xlab(paste0("PC4 (", round((summary(pca)$importance[2,4])*100, 2), "%)")) +
-  ylab(paste0("PC3 (", round((summary(pca)$importance[2,3])*100, 2), "%)")) +
-  ggsci::scale_fill_lancet(name = "Backed flake type",
-                           labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
-  ggsci::scale_color_lancet(name = "Backed flake type",
-                            labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
-  theme_light() +
-  guides(color = guide_legend(nrow = 1, title.position = "top"),
-         fill = guide_legend(nrow = 1, title.position = "top")) +
-  theme(
-    axis.text.y = element_text(color = "black", size = 7),
-    axis.text.x = element_text(color = "black", size = 7),
-    axis.title.x = element_text(color = "black", size = 9),
-    axis.title.y = element_text(color = "black", size = 9),
-    legend.title = element_text(color = "black", size = 9),
-    legend.text = element_text(color = "black", size = 9),
-    legend.position = "bottom")),
-
-(PCA_Coord %>% ggplot(aes(PC7, PC1, fill = New_Art.Type)) +
-  geom_vline(xintercept = 0, alpha = 0.7, linetype = "dashed") +
-  geom_hline(yintercept = 0, alpha = 0.7, linetype = "dashed") +
-  stat_ellipse(geom = "polygon", alpha = 0.2, aes(fill = New_Art.Type),
-               level = 0.8) +
-  geom_point(aes(color = New_Art.Type), size = 1) +
-  xlab(paste0("PC7 (", round((summary(pca)$importance[2,7])*100, 2), "%)")) +
-  ylab(paste0("PC1 (", round((summary(pca)$importance[2,1])*100, 2), "%)")) +
-  ggsci::scale_fill_lancet(name = "Backed flake type",
-                           labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
-  ggsci::scale_color_lancet(name = "Backed flake type",
-                            labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
-  theme_light() +
-  guides(color = guide_legend(nrow = 1, title.position = "top"),
-         fill = guide_legend(nrow = 1, title.position = "top")) +
-  theme(
-    axis.text.y = element_text(color = "black", size = 7),
-    axis.text.x = element_text(color = "black", size = 7),
-    axis.title.x = element_text(color = "black", size = 9),
-    axis.title.y = element_text(color = "black", size = 9),
-    legend.title = element_text(color = "black", size = 9),
-    legend.text = element_text(color = "black", size = 9),
-    legend.position = "bottom")),
-nrow = 1,
-ncol = 2,
-common.legend = TRUE,
-legend = "bottom"
-)
+  (
+    PC.scores.2D %>% 
+      ggplot(aes(PC2, PC1, fill = ARTIFACTTYPE)) +
+      geom_vline(xintercept = 0, alpha = 0.7, linetype = "dashed") +
+      geom_hline(yintercept = 0, alpha = 0.7, linetype = "dashed") +
+      stat_ellipse(geom = "polygon", alpha = 0.2, aes(fill = ARTIFACTTYPE),
+                   level = 0.8) +
+      geom_point(aes(color = ARTIFACTTYPE), size = 1) +
+      xlab(paste0("PC2 (", round(Coord.2D$Variance[2,2],2), "%)")) +
+      ylab(paste0("PC1 (", round(Coord.2D$Variance[1,2],2), "%)")) +
+      ggsci::scale_fill_lancet(name = "Backed flake type",
+                               labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      ggsci::scale_color_lancet(name = "Backed flake type",
+                                labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      theme_light() +
+      guides(color = guide_legend(nrow = 1, title.position = "top"),
+             fill = guide_legend(nrow = 1, title.position = "top")) +
+      theme(
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 9),
+        axis.title.y = element_text(color = "black", size = 9),
+        legend.title = element_text(color = "black", size = 9),
+        legend.text = element_text(color = "black", size = 9),
+        legend.position = "bottom")
+  ),
+  (
+    PC.scores.2D %>% 
+      ggplot(aes(PC5, PC3, fill = ARTIFACTTYPE)) +
+      geom_vline(xintercept = 0, alpha = 0.7, linetype = "dashed") +
+      geom_hline(yintercept = 0, alpha = 0.7, linetype = "dashed") +
+      stat_ellipse(geom = "polygon", alpha = 0.2, aes(fill = ARTIFACTTYPE),
+                   level = 0.8) +
+      geom_point(aes(color = ARTIFACTTYPE), size = 1) +
+      xlab(paste0("PC5 (", round(Coord.2D$Variance[5,2],2), "%)")) +
+      ylab(paste0("PC3 (", round(Coord.2D$Variance[3,2],2), "%)")) +
+      ggsci::scale_fill_lancet(name = "Backed flake type",
+                               labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      ggsci::scale_color_lancet(name = "Backed flake type",
+                                labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      theme_light() +
+      guides(color = guide_legend(nrow = 1, title.position = "top"),
+             fill = guide_legend(nrow = 1, title.position = "top")) +
+      theme(
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 9),
+        axis.title.y = element_text(color = "black", size = 9),
+        legend.title = element_text(color = "black", size = 9),
+        legend.text = element_text(color = "black", size = 9),
+        legend.position = "bottom")
+    ),
+  ncol = 2,
+  common.legend = TRUE,
+  legend = "bottom") %>% 
+  ggpubr::annotate_figure(fig.lab = "2D data", fig.lab.pos = "top.left", 
+                          fig.lab.size = 12, fig.lab.face = "bold")
 ```
+
+    ## Too few points to calculate an ellipse
+
+    ## Warning: Removed 1 rows containing missing values (`geom_point()`).
+
+    ## Too few points to calculate an ellipse
+
+    ## Warning: Removed 1 rows containing missing values (`geom_point()`).
+
+    ## Too few points to calculate an ellipse
+
+    ## Warning: Removed 1 rows containing missing values (`geom_point()`).
+
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 As mentioned above, PC4 is interpreted as capturing the relationships
 between platform size, flake volume, and the angle between the backed
