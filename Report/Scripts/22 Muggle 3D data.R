@@ -26,4 +26,5 @@ dimnames(Coord.3D$rotated)[[3]] <- IDs
 
 # Save 
 save(Coord.3D, 
-     file = "Report/Data/3D landmarks.RData")
+     file = "Report/Data/3D Data.RData")
+rm(list = ls())
