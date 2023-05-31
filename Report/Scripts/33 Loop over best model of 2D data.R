@@ -71,4 +71,4 @@ repeat {
 
 save(RF.Predictions,
      RF.varImport, 
-     file = "Data/2D model best varimp and cm.RData")
+     file = "Data/Best model 2D varimp and cm.RData")

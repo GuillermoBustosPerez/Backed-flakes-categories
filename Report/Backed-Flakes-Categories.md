@@ -718,7 +718,8 @@ In the case of the 2D data, the random forest model had the highest
 average value for general accuracy (0.779), closely followed by the
 decision tree (0.767) and the GBM (0.765). The LDA had the lowest
 average value for accuracy (0.511), followed by the logistic regression
-(0.522).  
+(0.522).
+
 For the 3D data, supported vector machines with a polynomial kernel had
 the highest average value for general accuracy (0.844), closely followed
 by the random forest model (0.840). The K-nearest neighbor model had the
@@ -787,21 +788,55 @@ ggpubr::ggarrange(
 
 ![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
-The following table presents performance metrics of the SVM with a
-polynomial kernel for the classification of the three products. The
-prevalence/no information ratio was kept constant at 0.33 for all three
-categories as a result of random up- and down-sampling to obtain
-balanced datasets. In general, the three products had high values for
-performance metrics, with Pseudo-Levallois points standing out in this
-regard. Following pseudo-Levallois points, core edge flakes had the
-second-best general values, with a sensitivity close to 0.8. Core edge
-flakes with a limited back had the lowest values for performance
-metrics.
+The following tables present performance metrics of the random forest
+model (on 2D data) and SVM with a polynomial kernel (on 3D data) for the
+classification of the three products. The prevalence/no information
+ratio was kept constant at 0.33 for all three categories as a result of
+random up- and down-sampling to obtain balanced datasets. General
+performance metrics values (F1 and balance accuracy) of pseudo-Levallois
+points and core edge flakes were similar for models trained on the 2D
+and 3D data. General performance metrics for the identification of core
+edge flakes with a limited back did increase when 3D data was employed
+instead of 2D data.
 
 ``` r
-# Performance metrics of SVM with polynomial kernel
-confusionMatrix(Conf_SVM_Poly$pred, Conf_SVM_Poly$obs)
+load("Data/Best model 2D varimp and cm.RData")
+load("Data/Best model 3D varimp and cm.RData")
+
+# Performance metrics of RF on 2D data
+confusionMatrix(RF.Predictions$pred, RF.Predictions$obs)[[4]]
 ```
+
+    ##             Sensitivity Specificity Pos Pred Value Neg Pred Value Precision
+    ## Class: ED     0.7615797   0.8604710      0.7318395      0.8783174 0.7318395
+    ## Class: EDlb   0.6516957   0.8872101      0.7428633      0.8359164 0.7428633
+    ## Class: p_Lp   0.9388986   0.9284058      0.8676738      0.9681417 0.8676738
+    ##                Recall        F1 Prevalence Detection Rate Detection Prevalence
+    ## Class: ED   0.7615797 0.7464135  0.3333333      0.2538599            0.3468792
+    ## Class: EDlb 0.6516957 0.6942995  0.3333333      0.2172319            0.2924251
+    ## Class: p_Lp 0.9388986 0.9018822  0.3333333      0.3129662            0.3606957
+    ##             Balanced Accuracy
+    ## Class: ED           0.8110254
+    ## Class: EDlb         0.7694529
+    ## Class: p_Lp         0.9336522
+
+``` r
+# Performance metrics of SVMP on 3D data
+confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)[[4]]
+```
+
+    ##             Sensitivity Specificity Pos Pred Value Neg Pred Value Precision
+    ## Class: ED     0.8185797   0.9178478      0.8328345      0.9100596 0.8328345
+    ## Class: EDlb   0.7710580   0.8844130      0.7693409      0.8854011 0.7693409
+    ## Class: p_Lp   0.9433188   0.9642174      0.9294843      0.9714469 0.9294843
+    ##                Recall        F1 Prevalence Detection Rate Detection Prevalence
+    ## Class: ED   0.8185797 0.8256456  0.3333333      0.2728599            0.3276280
+    ## Class: EDlb 0.7710580 0.7701985  0.3333333      0.2570193            0.3340773
+    ## Class: p_Lp 0.9433188 0.9363505  0.3333333      0.3144396            0.3382947
+    ##             Balanced Accuracy
+    ## Class: ED           0.8682138
+    ## Class: EDlb         0.8277355
+    ## Class: p_Lp         0.9537681
 
 ### 3.2 Variable importance
 

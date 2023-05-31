@@ -66,3 +66,7 @@ repeat {
     break
   }
 }
+
+save(SVMP.Predictions,
+     SVMP.varImport, 
+     file = "Data/Best model 3D varimp and cm.RData")
