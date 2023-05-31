@@ -1407,28 +1407,128 @@ Our results show that geometric morphometrics, along with machine
 learning models, can easily differentiate between core edge flakes, core
 edge flakes with a limited back, and pseudo-Levallois points from
 discoidal and recurrent centripetal Levallois reduction sequences. The
-best model (SVM with a polynomial kernel) obtained high general average
-precision values (0.837).Previous research has outlined the advantages
-of SVM’s when dealing with the classification of lithic products
-([Bustos-Pérez et al. 2022](#ref-bustos-perez_combining_2022)). Because
-of their features (hyperplane fitting, use of margins to find best
-separation, and use of a cost value for each misclassification), SVM’s
-seem to be well suited to deal with the classification of lithic
-categories and in the present study they outperformed other machine
-learning models. When considering each technological product
-individually, pseudo-Levallois points stood out as the most clearly
-differentiable of the three categories considered, with performance
-metrics above 0.9. Following pseudo-Levallois points, core edge flakes
-were the most clearly identifiable technological products, with a
-notable sensitivity value (0.778). Although core edge flakes with a
-limited back are the technological product with the lowest sensitivity
-(0.753), this is not a low value or substantially different from core
-edge flakes’ sensitivity. This indicates that geometric morphometrics
-are capturing the technological features defining each category and that
-they are discrete categories with little overlap. Thus, their use (and,
-more specifically, the use of the core edge flakes with a limited back
-as a category) for analysis in lists of technological products is
-justifiable.
+best model trained on the 2D data (random Forest) obtained a good
+general average precision value (0.779), while the best model trained on
+the 3D data (SVM with a polynomial kernel) obtained a high general
+average precision value (0.844). As expected, this indicates that when
+dealing with morphological objects which classification requires several
+views, more precise results will be obtained through the use of 3D data.
+Despite the differences in average precision values and performance
+measures for each of the categories, 2D geometric morphometrics were
+able to capture some of the morphological features which characterize
+the tree categories.
+
+Previous research has outlined the advantages of SVM’s when dealing with
+the classification of lithic products ([Bustos-Pérez et al.
+2022](#ref-bustos-perez_combining_2022),
+[2023](#ref-bustos-perez_what_2023)). Because of their features
+(hyperplane fitting, use of margins to find best separation, and use of
+a cost value for each misclassification), SVM’s seem to be well suited
+to deal with the classification of lithic categories and in the present
+study they outperformed other machine learning models. However, the
+random forest was selected as the best option when dealing with 2D data,
+and presented the second best performance metrics in the case of the 3D
+data. Random forest are common in lithic analysis for classification
+tasks ([Archer et al. 2021](#ref-archer_quantifying_2021);
+[González-Molina et al.
+2020](#ref-gonzalez-molina_distinguishing_2020)). The results from model
+performance on the 2D and 3D data indicate that random forests along
+with SVM with polynomial kernel are good options for classification when
+dealing with the variability observed in lithic artifacts.
+
+When considering each technological product individually,
+pseudo-Levallois points stood out as the most clearly differentiable of
+the three categories considered, with performance metrics above 0.9
+whether PC derived from the 2D or 3D data were used. Following
+pseudo-Levallois points, core edge flakes were the most clearly
+identifiable technological products, with a notable sensitivity value.
+The sensitivity value for the detection of core edge flakes were notably
+higher in the case of 3D data (81.86) than the ones obtained from the 2D
+data (76.16). The directionality of the confusion matrixes shows that
+the main drawback reduced the identification of core edge flakes is
+their identification as core edge flakes with a limited back in both
+types of data. Two underlying causes of confusion between core edge
+flakes and core edge flakes with a limited back can be considered:
+first, an increased deviation between the technological and
+morphological axes and, second, an increased angle between the platform
+and backed edge, which results in changing the morphological axis. These
+two factors of confusion can occur at the same time or individually,
+blurring the division between products in cases of similarity. This
+overlap is inherent in the morphological variability and defining
+features of both technological products. However, despite these
+overlapping features, a high degree of separation between both products
+is achieved by the machine learning model.
+
+This difference in the sensitivity values depending on the type of data
+is also observed in the case of core edge flakes with a limited back.
+The sensitivity value of the 3D data (77.11) was notably higher than the
+one obtained from the 2D data (65.17). In the present study core edge
+flakes with a limited back were the category of interest and on which
+down -sampling was applied, thus preventing overfitting. This indicates
+that geometric morphometrics are capturing the technological features
+defining each category and that they are discrete categories with little
+overlap. Thus, their use (and, more specifically, the use of the core
+edge flakes with a limited back as a category) for analysis in lists of
+technological products is justifiable.
+
+The present study included all backed flakes from a series of
+experimental recurrent centripetal cores. As a result, backed artifacts
+that fall within the definition of “core edge flakes with a limited
+back” were the overwhelming majority (n = 93, 66.91%). Consequently, it
+was necessary to use up- and down-sampling techniques to obtain balanced
+datasets ([Ganganwar 2012](#ref-ganganwar_overview_2012); [Kumar and
+Sheshadri 2012](#ref-kumar_classification_2012)). The most up-sampled
+product (pseudo-Levallois) is also the one with the highest values for
+identification metrics irrespective of the type of data (2D or 3D),
+probably as a result of overfitting (the model is classifying repeated
+samples from the training set). This overfitting is noteworthy in the
+case of the 2D data were the high level of sensitivity contrasts with
+the visual analysis of biplots obtained from PCA or group PCA were a
+high level of overlap can be observed. Unbalanced data is common in
+archaeological analysis and sampling approaches to overcome this
+drawback can result in overfitting when machine learning models are
+applied ([Domínguez-Rodrigo and Baquedano
+2018](#ref-dominguez-rodrigo_distinguishing_2018); [McPherron et al.
+2022](#ref-mcpherron_machine_2022)). Providing visual evaluation through
+biplots can help determine the extent of overfitting and the reliability
+of performance metrics from machine learning models.
+
+Given the strict definition adopted to classify a backed artifact as
+either a core edge flake or a pseudo-Levallois point, their
+morphological variability is limited, and the likelihood of their
+overlapping is small. This is logical given their definitions and can be
+observed in the biplots from 3D data of most important PCs for the
+classification of backed products. In the two biplots and the group PCA
+biplot, there is little overlapping of confidence ellipses of core edge
+flakes and pseudo-Levallois flakes. Moreover, the confidence ellipsis of
+core edge flakes with a limited back does seem to be intermediate
+between those of other two categories. Thus, although up-sampling
+imposes some limitations, it does not seem to affect the overall results
+regarding backed flake classification. Core edge flakes with a limited
+back were not up-sampled, thus avoiding the risk of overfitting their
+classification (having an observation on the training set repeated in
+the test set). The results show a very limited misidentification of core
+edge flakes as pseudo-Levallois points and their moderate confusion with
+core edge flakes. This indicates that core edge flakes with a limited
+back are being correctly identified despite the probable overfitting in
+the identification of core edge flakes and pseudo-Levallois points.
+
+The present study has compared the use of 2D and 3D geometric
+morphometrics. 2D geometric morphometrics have the advantage of being
+less time consuming, require less equipment, and being barely affected
+by camera positioning \[Cardini ([2014](#ref-cardini_missing_2014));
+macdonald_evaluating_2020\]
+
+(Cardini and Chiapelli 2020; Macdonald et al. 2020). However, previous
+works have outlined how, when working with volumetric structures, the
+use of 2D geometric morphometrics can result in a lower resolution of
+the analysis (Buser et al. 2018; Cardini 2014). As previously mentioned,
+the best model based on 2D geometric morphometrics presented lower
+performance metrics than the best model based on the 3D data. However,
+despite providing a lower resolution of analysis, 2D geometric can be
+considered a highly useful tool for lithic analysis when performing
+lithic taxonomic studies (Serwatka and Riede 2016) or comparative
+studies (Borel et al. 2017; Buchanan and Collard 2010; Costa 2010).
 
 Sullivan and Rozen ([1985](#ref-sullivan_debitage_1985)) previously
 called attention to the use of technological categories of flakes. Their
@@ -1777,6 +1877,14 @@ silicificación como fuentes de suministro de utensilios líticos
 
 </div>
 
+<div id="ref-bustos-perez_what_2023" class="csl-entry">
+
+Bustos-Pérez, G., Baena, J., & Vaquero, M. (2023). What lies in between:
+Levallois, discoid and intermediate methods. *Journal of Lithic
+Studies*, *10*.
+
+</div>
+
 <div id="ref-bustos-perez_combining_2022" class="csl-entry">
 
 Bustos-Pérez, G., Gravina, B., Brenet, M., & Romagnoli, F. (2022).
@@ -1792,6 +1900,15 @@ Archaeological Science: Reports*, *46*, 103723.
 Callahan, E. (1996). The bipolar technique: The simplest way to make
 stone tools for survival. *Bulletin of Primitive Technology*, *12*,
 16–20.
+
+</div>
+
+<div id="ref-cardini_missing_2014" class="csl-entry">
+
+Cardini, A. (2014). Missing the third dimension in geometric
+morphometrics: How to assess if 2D images really are a good proxy for 3D
+structures? *Hystrix, the Italian Journal of Mammalogy*, *25*(2).
+<https://doi.org/10.4404/hystrix-25.2-10993>
 
 </div>
 
@@ -1857,6 +1974,15 @@ Systems During the Middle Paleolithic in France. Are There Any
 Chronological Trends? In E. Hovers, S. L. Kuhn, & M. Jochim (Eds.),
 *Transitions Before the Transition Evolution and Stability in the Middle
 Paleolithic and Middle Stone Age* (pp. 85–107). Springer.
+
+</div>
+
+<div id="ref-dominguez-rodrigo_distinguishing_2018" class="csl-entry">
+
+Domínguez-Rodrigo, M., & Baquedano, E. (2018). Distinguishing butchery
+cut marks from crocodile bite marks through machine learning methods.
+*Scientific Reports*, *8*(1), 5786.
+<https://doi.org/10.1038/s41598-018-24071-1>
 
 </div>
 
@@ -1947,6 +2073,15 @@ du debitage, economie et circulation de la matiere premiere lithique. In
 J.-P. Rigaud (Ed.), *La grotte Vaufrey à Cenac et Saint-Julien
 (Dordogne) : Paléoenvironnements, chronologie et activités humaines*
 (pp. 441–517). Paris: Société préhistorique française.
+
+</div>
+
+<div id="ref-gonzalez-molina_distinguishing_2020" class="csl-entry">
+
+González-Molina, I., Jiménez-García, B., Maíllo-Fernández, J.-M.,
+Baquedano, E., & Domínguez-Rodrigo, M. (2020). Distinguishing Discoid
+and Centripetal Levallois methods through machine learning. *PLOS ONE*,
+*15*(12), e0244288. <https://doi.org/10.1371/journal.pone.0244288>
 
 </div>
 
@@ -2043,6 +2178,16 @@ and Discoidal): Continuity or Discontinuity? In H. L. Dibble & O.
 Bar-Yosef (Eds.), *The definition and interpretation of Levallois
 Technology* (Vol. 23, pp. 249–256). Madison, Wisconsin: Prehistory
 Press.
+
+</div>
+
+<div id="ref-mcpherron_machine_2022" class="csl-entry">
+
+McPherron, S. P., Archer, W., Otárola-Castillo, E. R., Torquato, M. G.,
+& Keevil, T. L. (2022). Machine learning, bootstrapping, null models,
+and why we are still not 100% sure which bone surface modifications were
+made by crocodiles. *Journal of Human Evolution*, *164*, 103071.
+<https://doi.org/10.1016/j.jhevol.2021.103071>
 
 </div>
 
