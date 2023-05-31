@@ -353,56 +353,58 @@ confusionMatrix(RF.Predictions$pred, RF.Predictions$obs)[[4]]
 confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)[[4]]
 ```
 
-### 3.2 Variable importance    
+### 3.2 Feature importance    
 
-The following figure presents variable importance after 30 cycles of up- and down-sampling and k-fold cross-validation for the SVM with polynomial kernel models. Core edge flakes and pseudo-Levallois points share variable importance in terms of their identification, while core edge flakes with a limited back have their own variable importance. However, in both cases, there is agreement regarding which four PC are important for the classification of backed artefacts. In both cases, PC7 is considered the most important, followed by PC4 and PC3. PC1 is considered the second most important PC for the identification of core edge flakes and pseudo-Levallois points (81.08), but its importance is diminished dramatically in the case of core edge flakes with a limited back (56.32).    
+The following figure presents average variable importance for the three products after 30 cycles of up- and down-sampling and k-fold cross-validation. The random forest trained on 2D data consider four sets of principal components important in terms of classification. The SVM with polynomial kernel trained on 3D data considers five sets of principal components in terms of classification.       
 
 ```{r, eval=FALSE}
 # Variable importance 
-ED_VarImp$Importance <- rowMeans(ED_VarImp[,2:31])
-ED_VarImp$PC <- colnames(PCA_Coord)[1:25]
 
-EDlb_VarImp$Importance <- rowMeans(EDlb_VarImp[,2:31])
-EDlb_VarImp$PC <- colnames(PCA_Coord)[1:25]
+SVMP.varImport$Mean.Imp <- rowMeans(SVMP.varImport[,2:4])
+
+SVMP.varImport <- SVMP.varImport %>% group_by(PCs) %>% 
+  summarise(Importance = mean(Mean.Imp)) 
 
 ggpubr::ggarrange(
-(ED_VarImp %>% select(Importance, PC) %>% 
-  top_n(15, Importance) %>% 
-  ggplot(aes(Importance, reorder(PC, Importance), fill = Importance)) +
-  geom_bar(stat= "identity", position = "dodge") +
-  geom_text(aes(label = round(Importance, 2)), 
-            position = position_stack(vjust = 0.5), size = 2) +
-  scale_fill_gradient(low = "red", high = "blue") +
-  guides(fill = "none") +
-  ylab(NULL) +
-  theme_light() +
-  labs(title = "PC importance for Core Edge Flakes and pseudo-Levallois\npoints") +
-  theme(
-    axis.text.y = element_text(color = "black", size = 7),
-    axis.text.x = element_text(color = "black", size = 7),
-    axis.title.x = element_text(color = "black", size = 7),
-    plot.title = element_text(color = "black", size = 7))
-),
-
-(EDlb_VarImp %>% select(Importance, PC) %>% 
-  top_n(15, Importance) %>% 
-  ggplot(aes(Importance, reorder(PC, Importance), fill = Importance)) +
-  geom_bar(stat= "identity", position = "dodge") +
-  geom_text(aes(label = round(Importance, 2)), 
-            position = position_stack(vjust = 0.5), size = 2) +
-  scale_fill_gradient(low = "red", high = "blue") +
-  guides(fill = "none") +
-  ylab(NULL) +
-  theme_light() +
-  labs(title = "PC importance for Core Edge Flakes With a Limited\nBack") +
-  theme(
-    axis.text.y = element_text(color = "black", size = 7),
-    axis.text.x = element_text(color = "black", size = 7),
-    axis.title.x = element_text(color = "black", size = 7),
-    plot.title = element_text(color = "black", size = 7))
-),
-ncol = 2
-)
+  (
+    RF.varImport %>% group_by(PCs) %>% 
+      summarise(
+        Importance = mean(Overall)) %>% 
+      top_n(15, Importance) %>% 
+      ggplot(aes(Importance, reorder(PCs, Importance), fill = Importance)) +
+      geom_bar(stat= "identity", position = "dodge") +
+      geom_text(aes(label = round(Importance, 2)), 
+                position = position_stack(vjust = 0.5), size = 2) +
+      scale_fill_gradient(low = "red", high = "blue") +
+      guides(fill = "none") +
+      ylab(NULL) +
+      theme_light() +
+      labs(title = "2D data") +
+      theme(
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 7),
+        plot.title = element_text(color = "black", size = 7))
+  ),
+  (
+    SVMP.varImport %>% select(Importance, PCs) %>% 
+      top_n(15, Importance) %>% 
+      ggplot(aes(Importance, reorder(PCs, Importance), fill = Importance)) +
+      geom_bar(stat = "identity", position = "dodge") +
+      geom_text(aes(label = round(Importance, 2)), 
+                position = position_stack(vjust = 0.5), size = 2) +
+      scale_fill_gradient(low = "red", high = "blue") +
+      guides(fill = "none") +
+      ylab(NULL) +
+      theme_light() +
+      labs(title = "3D data") +
+      theme(
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 7),
+        plot.title = element_text(color = "black", size = 7))
+  ),
+  ncol = 2)
 ```
 
 None of the manually recorded metrics provided significant correlation with PC7 and PC4 scores. Visual evaluation indicates that PC7 is capturing flake morphology in plain view. Flakes with a triangular morphology have negative values, while more rectangular flakes tend to have 0 values. Flakes presenting shapes wider than they are long tend to have positive values. Although it is important to consider that the high variability in flake shape morphology is introducing underlying factors that affect PC7 scores.   
