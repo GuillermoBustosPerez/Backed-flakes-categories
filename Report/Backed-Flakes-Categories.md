@@ -1517,18 +1517,20 @@ The present study has compared the use of 2D and 3D geometric
 morphometrics. 2D geometric morphometrics have the advantage of being
 less time consuming, require less equipment, and being barely affected
 by camera positioning \[Cardini ([2014](#ref-cardini_missing_2014));
-macdonald_evaluating_2020\]
-
-(Cardini and Chiapelli 2020; Macdonald et al. 2020). However, previous
-works have outlined how, when working with volumetric structures, the
-use of 2D geometric morphometrics can result in a lower resolution of
-the analysis (Buser et al. 2018; Cardini 2014). As previously mentioned,
-the best model based on 2D geometric morphometrics presented lower
-performance metrics than the best model based on the 3D data. However,
-despite providing a lower resolution of analysis, 2D geometric can be
-considered a highly useful tool for lithic analysis when performing
-lithic taxonomic studies (Serwatka and Riede 2016) or comparative
-studies (Borel et al. 2017; Buchanan and Collard 2010; Costa 2010).
+macdonald_evaluating_2020\]. However, previous works have outlined how,
+when working with volumetric structures, the use of 2D geometric
+morphometrics can result in a lower resolution of the analysis ([Buser
+et al. 2018](#ref-buser_2d_2018); [Cardini
+2014](#ref-cardini_missing_2014)). As previously mentioned, the best
+model based on 2D geometric morphometrics presented lower performance
+metrics than the best model based on the 3D data. However, despite
+providing a lower resolution of analysis, 2D geometric can be considered
+a highly useful tool for lithic analysis when performing lithic
+taxonomic studies ([Serwatka and Riede 2016](#ref-serwatka_2d_2016)) or
+comparative studies
+([**costa_geometric_2010?**](#ref-costa_geometric_2010);
+[**borel_stone_2017?**](#ref-borel_stone_2017);
+[**buchanan_geometric_2010?**](#ref-buchanan_geometric_2010)).
 
 Sullivan and Rozen ([1985](#ref-sullivan_debitage_1985)) previously
 called attention to the use of technological categories of flakes. Their
@@ -1603,70 +1605,26 @@ aligned. Additionally, most of the examples presented ([Lilliane Meignen
 percussion axis. Slimak ([2003](#ref-peresani_les_2003)) also points out
 that, as a morphological feature, the flake back of core edge flakes
 with a limited back will be offset in regards the axis of percussion.
-These features of alignment between the flake back and percussion axis
-are captured by PC4, with pseudo-Levallois and core edge flakes with a
-limited back having similar negative values, indicative of an offset
-backed edge.
+TThese features of alignment between the flake back and percussion axis
+are captured by PC1 and PC3, with pseudo-Levallois and core edge flakes
+with a limited back having similar values, indicative of an offset
+backed edge and lower elongation.
 
 Slimak ([2003](#ref-peresani_les_2003)) also indicates that classic core
 edge flakes will be elongated as a result of percussion running parallel
 to the core edge. Following Slimak ([2003](#ref-peresani_les_2003)),
 core edge flakes with a limited back will have length/width ratios close
 to 1 as a result of percussion encountering ridges perpendicular to its
-direction. Although PC1 is the fourth most important variable for
-discrimination between backed products in the present study, it is
-clearly capturing the feature of elongation for the differentiation of
-classic core edge flakes. Classical core edge flakes have, on average,
-negative PC1 values, which are indicative of elongation. On the other
-hand, core edge flakes with a limited back and pseudo-Levallois points
-are characterized by, on average, positive PC1 values, which are
-indicative of their having similar values for width and length or even
-being wider than they are long.
-
-The directionality of the confusion matrixes shows that the main
-drawback reduced the identification of core edge flakes is their
-identification as core edge flakes with a limited back. Two underlying
-causes of confusion between core edge flakes and core edge flakes with a
-limited back can be considered: first, an increased deviation between
-the technological and morphological axes and, second, an increased angle
-between the platform and backed edge, which results in changing the
-morphological axis. These two factors of confusion can occur at the same
-time or individually, blurring the division between products in cases of
-similarity. This overlap is inherent in the morphological variability
-and defining features of both technological products. However, despite
-these overlapping features, a high degree of separation between both
-products is achieved by the machine learning model.
-
-The present study included all backed flakes from a series of
-experimental recurrent centripetal cores. As a result, backed artifacts
-that fall within the definition of “core edge flakes with a limited
-back” were the overwhelming majority (n = 93, 66.91%). Consequently, it
-was necessary to use up- and down-sampling techniques to obtain balanced
-datasets ([Ganganwar 2012](#ref-ganganwar_overview_2012); [Kumar and
-Sheshadri 2012](#ref-kumar_classification_2012)). The most up-sampled
-product (pseudo-Levallois) is also the one with the highest values for
-identification metrics, probably as a result of overfitting (the model
-is classifying repeated samples from the training set). Given the strict
-definition adopted to classify a backed artifact as either a core edge
-flake or a pseudo-Levallois point, their morphological variability is
-limited, and the likelihood of their overlapping is small. This is
-logical given their definitions and can be observed in the biplots of
-most important PCs for thee classification of backed products. In the
-four biplots, there is little overlapping of confidence ellipses of core
-edge flakes and pseudo-Levallois flakes. Moreover, the confidence
-ellipsis of core edge flakes with a limited back does seem to be
-intermediate between those of other two categories. Thus, although
-up-sampling imposes some limitations, it does not seem to affect the
-overall results regarding backed flake classification.
-
-Core edge flakes with a limited back were not up-sampled, thus avoiding
-the risk of overfitting their classification (having an observation on
-the training set repeated in the test set). The results show a very
-limited misidentification of core edge flakes as pseudo-Levallois points
-and their moderate confusion with core edge flakes. This indicates that
-core edge flakes with a limited back are being correctly identified
-despite the probable overfitting in the identification of core edge
-flakes and pseudo-Levallois points.
+direction. Although in the 3D data PC1 is the second most important
+variable for discrimination between backed products in the present
+study, it is clearly capturing the feature of elongation for the
+differentiation of classic core edge flakes. Classical core edge flakes
+have, on average, negative PC1 values (both on the 2D and 3D data),
+which are indicative of elongation. On the other hand, core edge flakes
+with a limited back and pseudo-Levallois points are characterized by, on
+average, positive PC1 values, which are indicative of their having
+similar values for width and length or even being wider than they are
+long.
 
 Ambiguity and overlap between some technological categories of flakes
 are common. Combining quantitative methods and techniques has showed to
@@ -1692,13 +1650,15 @@ the categories. The results indicate that, while some overlap exists
 between classical core edge flakes and core edge flakes with a limited
 back (pseudo-Levallois points are clearly differentiated), in general,
 they are easily distinguishable. Additionally, geometric morphometrics
-and machine learning also succeed in capturing the PC directly
+and machine learning also succeed in capturing the PC’s directly
 associated with morphological and technological features employed to
-define each technological category. Core edge flakes with a limited back
-are therefore clearly distinguishable from classic core edge flakes and
-that geometric morphometrics can be employed to test for the validity of
-defined technological categories, the directionality of confusions, and
-the features characterizing these categories.
+define each technological category. As expected, 3D geometric
+morphometrics better capture the features which characterize volumetric
+implements and better classify them. Core edge flakes with a limited
+back are therefore clearly distinguishable from classic core edge flakes
+and that geometric morphometrics can be employed to test for the
+validity of defined technological categories, the directionality of
+confusions, and the features characterizing these categories.
 
 ## 6. Acknowledgments
 
@@ -1855,6 +1815,16 @@ française*, *107*(3), 433–451. <https://doi.org/10.3406/bspf.2010.13944>
 
 Breiman, L. (2001). Random Forests. *Machine Learning*, *45*(1), 5–32.
 <https://doi.org/10.1023/A:1010933404324>
+
+</div>
+
+<div id="ref-buser_2d_2018" class="csl-entry">
+
+Buser, T. J., Sidlauskas, B. L., & Summers, A. P. (2018). 2D or Not 2D?
+Testing the Utility of 2D Vs. 3D Landmark Data in Geometric
+Morphometrics of the Sculpin Subfamily Oligocottinae (Pisces;
+Cottoidea). *The Anatomical Record*, *301*(5), 806–818.
+<https://doi.org/10.1002/ar.23752>
 
 </div>
 
@@ -2305,6 +2275,15 @@ Academic Press.
 Schlager, S. (2017). Morpho and Rvcg–Shape Analysis in R: R-Packages for
 geometric morphometrics, shape analysis and surface manipulations. In
 *Statistical shape and deformation analysis* (pp. 217–256). Elsevier.
+
+</div>
+
+<div id="ref-serwatka_2d_2016" class="csl-entry">
+
+Serwatka, K., & Riede, F. (2016). 2D geometric morphometric analysis
+casts doubt on the validity of large tanged points as cultural markers
+in the European Final Palaeolithic. *Journal of Archaeological Science:
+Reports*, *9*, 150–159. <https://doi.org/10.1016/j.jasrep.2016.07.018>
 
 </div>
 
