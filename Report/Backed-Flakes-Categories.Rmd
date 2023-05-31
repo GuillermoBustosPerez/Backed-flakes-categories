@@ -236,7 +236,6 @@ source("34 Loop over best model of 3D data.R")
 Results from the PCA on the 2D data show that the nine first principal components account for 95% of the variance in the dataset, with PC1 accounting for 39.33% of variance and PC9 for 0.98% of variance. For the 3D data the 22 first principal components account for 95% of variance, with PC1 accounting for 31.32% and PC22 accounting for 0.3% of variance. This represents a substantial reduction in dimensionality from the original number of variables of the 2D data (200 original variables) and the 3D data (1,524 original variables) and is lower than the sample size (139).    
 
 ```{r}
-
 load("Data/2D Data.RData")
 load("Data/3D Data.RData")
 
@@ -359,7 +358,6 @@ The following figure presents average variable importance for the three products
 
 ```{r}
 # Variable importance 
-
 SVMP.varImport$Mean.Imp <- rowMeans(SVMP.varImport[,2:4])
 
 SVMP.varImport <- SVMP.varImport %>% group_by(PCs) %>% 
@@ -498,8 +496,8 @@ The above interpretation of the PCs, biplot visualization, and descriptive stati
 For the 2D data pseudo-Levallois points are characterized by having positive values of PC1 (mean = 0.53; SD = 0.116) and PC2 (mean = 0.168; SD = 0.128). These generally positive values are indicative of the low elongation of pseudo-Levallois points. The triangular morphology characteristic of pseudo-Levallois points remains elusive for the 2D data and is only slightly captured by PC5 (mean = 0.002; SD = 0.028). Features which characterize core edge flakes are much better captured by the 2D geometric morphometrics. In the 2D data core edge flakes are characterized by having low values of PC1 (mean = -0.052; SD = 0.111) and PC2 (mean = -0.043; SD = 0.092) which are indicative of being elongated products. Core edge flakes (mean = -0.014, SD = 0.055) and pseudo-Levallois points (mean = -0.014, SD = 0.079) tend to have negative values of PC3. This indicated that, on general, neither of the two products had a distal part narrower than the proximal part.  Core edge flakes with a limited back presented slightly positive values of PC1 (mean = 0.008; SD = 0.131) and PC2 (mean = 0.011; SD = 0.111) indicating that their elongation and asymmetry falls between core edge flakes and pseudo-Levallois points. Additional to this, core edge flakes with a limited back presented slightly positive values of PC3 (mean = 0.007; SD = 0.06), indicating that it is more common for these types of products to present a narrower distal part.    
 
 ```{r}
-PC.scores.2D <- data.frame(Coord.2D$PCscores) %>% 
-  mutate(ID = rownames(Coord.2D$PCscores))
+PC.scores.2D <- data.frame(Coord.2D$PCscores)
+PC.scores.2D$ID <- rownames(PC.scores.2D)
 
 PC.scores.2D <- left_join(PC.scores.2D, Att, by = "ID")
 
@@ -574,35 +572,6 @@ Although PC3 and PC1 are considered the third and fourth most important variable
 
 PC1 mostly captures the relationships of elongation and thickness, where elongated, thin products are characterized by negative values. Core edge flakes have a tendency toward negative values (mean = -8.26; SD = 16.3), indicating that they are generally elongated products. This relatively longer elongation can be associated with core edge flakes sharing the morphological and percussion axes. Pseudo-Levallois points share the opposite tendency, having generally positive values (mean = 8.14; SD = 19.9), which are indicative of their being short non-elongated products. Core edge flakes with a limited back have a slightly positive tendency (mean = 1.26; SD = 17.5), which is indicative of their not usually being elongated products.   
 
-```{r Violin and box plots, fig.width=9, fig.height=4, eval=FALSE}
-# Get variables of interest
-PCA_Coord %>% 
-  select(PC1, PC3, PC4, PC7, ARTIFACTTYPE) %>% 
-  pivot_longer(
-    cols = c(PC1, PC3, PC4, PC7),
-    names_to = "PC",
-    values_to = "Value") %>% 
-  
-# Plot
-  ggplot(aes(ARTIFACTTYPE, Value, fill = ARTIFACTTYPE)) +
-  geom_violin(alpha = 0.4, width = 0.75) +
-  geom_boxplot(alpha = 0.75,  width = 0.25, outlier.size = 0) +
-  facet_grid(~ PC, scales = "free") +
-  geom_jitter(width = 0.15, alpha = 1, size = 0.9, shape = 23, aes(fill = ARTIFACTTYPE)) +
-  coord_flip() +
-  theme_light() +
-  scale_x_discrete(labels = c("Core Edge\nFlake",
-                              "Core edge with\nlimited back",
-                              "pseudo-Levallois\nPoint")) +
-  xlab(NULL) +
-  ylab("PC value") +
-  ggsci::scale_fill_lancet() +
-  theme(strip.text = element_text(color = "black", face = "bold", size = 8),
-        strip.background = element_rect(fill = "white", colour = "black", size = 1),
-        legend.position = "none",
-        axis.text = element_text(color = "black", size = 7),
-        axis.title = element_text(color = "black", size = 7))
-```
 
 
 ## 4. Discussion   

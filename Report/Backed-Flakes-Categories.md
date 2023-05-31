@@ -849,7 +849,6 @@ principal components in terms of classification.
 
 ``` r
 # Variable importance 
-
 SVMP.varImport$Mean.Imp <- rowMeans(SVMP.varImport[,2:4])
 
 SVMP.varImport <- SVMP.varImport %>% group_by(PCs) %>% 
@@ -1079,8 +1078,8 @@ with a limited back presented slightly positive values of PC3 (mean =
 products to present a narrower distal part.
 
 ``` r
-PC.scores.2D <- data.frame(Coord.2D$PCscores) %>% 
-  mutate(ID = rownames(Coord.2D$PCscores))
+PC.scores.2D <- data.frame(Coord.2D$PCscores)
+PC.scores.2D$ID <- rownames(PC.scores.2D)
 
 PC.scores.2D <- left_join(PC.scores.2D, Att, by = "ID")
 
@@ -1144,18 +1143,6 @@ ggpubr::ggarrange(
                           fig.lab.size = 12, fig.lab.face = "bold")
 ```
 
-    ## Too few points to calculate an ellipse
-
-    ## Warning: Removed 1 rows containing missing values (`geom_point()`).
-
-    ## Too few points to calculate an ellipse
-
-    ## Warning: Removed 1 rows containing missing values (`geom_point()`).
-
-    ## Too few points to calculate an ellipse
-
-    ## Warning: Removed 1 rows containing missing values (`geom_point()`).
-
 ![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 As mentioned above, PC4 is interpreted as capturing the relationships
@@ -1195,36 +1182,6 @@ opposite tendency, having generally positive values (mean = 8.14; SD =
 Core edge flakes with a limited back have a slightly positive tendency
 (mean = 1.26; SD = 17.5), which is indicative of their not usually being
 elongated products.
-
-``` r
-# Get variables of interest
-PCA_Coord %>% 
-  select(PC1, PC3, PC4, PC7, ARTIFACTTYPE) %>% 
-  pivot_longer(
-    cols = c(PC1, PC3, PC4, PC7),
-    names_to = "PC",
-    values_to = "Value") %>% 
-  
-# Plot
-  ggplot(aes(ARTIFACTTYPE, Value, fill = ARTIFACTTYPE)) +
-  geom_violin(alpha = 0.4, width = 0.75) +
-  geom_boxplot(alpha = 0.75,  width = 0.25, outlier.size = 0) +
-  facet_grid(~ PC, scales = "free") +
-  geom_jitter(width = 0.15, alpha = 1, size = 0.9, shape = 23, aes(fill = ARTIFACTTYPE)) +
-  coord_flip() +
-  theme_light() +
-  scale_x_discrete(labels = c("Core Edge\nFlake",
-                              "Core edge with\nlimited back",
-                              "pseudo-Levallois\nPoint")) +
-  xlab(NULL) +
-  ylab("PC value") +
-  ggsci::scale_fill_lancet() +
-  theme(strip.text = element_text(color = "black", face = "bold", size = 8),
-        strip.background = element_rect(fill = "white", colour = "black", size = 1),
-        legend.position = "none",
-        axis.text = element_text(color = "black", size = 7),
-        axis.title = element_text(color = "black", size = 7))
-```
 
 ## 4. Discussion
 

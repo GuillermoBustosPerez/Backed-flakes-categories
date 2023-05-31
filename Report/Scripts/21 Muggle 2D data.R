@@ -33,4 +33,4 @@ Coord.2D <- Morpho::procSym(Data.2D,
 
 save(Coord.2D,
      file = "Report/Data/2D data.RData")
-rm(ls= list())
+rm(list=ls())
