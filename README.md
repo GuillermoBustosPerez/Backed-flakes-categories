@@ -147,20 +147,20 @@ files:
     an .RData file containing the results of each model resampling using
     the 2D data.
     - This data is obtained sourcing the [31 Models on 2D
-      data](Report/Scripts/31%20Models%20on%202D%20data) R script.  
+      data](Report/Scripts/31%20Models%20on%202D%20data.R) R script.  
   - [3D Results Up and Down
     sampling](Report/Data/3D%20Results%20Up%20and%20Down%20sampling.RData):
     an .RData file containing the results of each model resampling using
     the 3D data.
     - This data is obtained sourcing the [32 Models on 2D
-      data](Report/Scripts/32%20Models%20on%203D%20data) R script.  
+      data](Report/Scripts/32%20Models%20on%203D%20data.R) R script.  
   - [Best model 2D varimp and
     cm](Report/Data/Best%20model%202D%20varimp%20and%20cm.RData):
     results of variable importance and predictions after 30 cycles of
     K-fold cross validation on the model that performed best on the 2D
     data.
     - This data is obtained sourcing the [33 Loop over best model of 2D
-      data](Report/Scripts/33%20Loop%20over%20best%20model%20of%202D%20data)
+      data](Report/Scripts/33%20Loop%20over%20best%20model%20of%202D%20data.R)
       R script.  
   - [Best model 3D varimp and
     cm](Report/Data/Best%20model%203D%20varimp%20and%20cm.RData):
@@ -168,7 +168,7 @@ files:
     K-fold cross validation on the model that performed best on the 3D
     data.
     - This data is obtained sourcing the [34 Loop over best model of 3D
-      data](Report/Scripts/34%20Loop%20over%20best%20model%20of%203D%20data)
+      data](Report/Scripts/34%20Loop%20over%20best%20model%20of%203D%20data.R)
       R script.
 
 - [Figures](Report/Figures) folder containing figures included in the
