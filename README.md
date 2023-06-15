@@ -114,6 +114,10 @@ The present repository has been organized following the structure of a
 research compendium. The folder [Report](Report) contains the following
 files:
 
+- The report containing the complete workflow and text is available as a
+  [Github markdown](Report/Backed-Flakes-Categories.md) or as an
+  [RMarkdown](Report/Backed-Flakes-Categories.Rmd).
+
 - [Data](Report/Data) folder containing the following files:
 
   - [Attributes data](Report/Data/Attributes%20data.csv): a .csv file
@@ -172,10 +176,9 @@ files:
       R script.
 
 - [Figures](Report/Figures) folder containing figures included in the
-  manuscript.
+  manuscript.  
 
-- The report containing the complete workflow and text is available as a
-  [Github markdown](Report/Backed-Flakes-Categories.md) or as a
-  [arkdown](Report/Backed-Flakes-Categories.Rmd).
+- [Scripts](Report/Scripts) folder containing scripts employed to muggle
+  the original data, or train the models.
 
 </div>
