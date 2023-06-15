@@ -153,17 +153,17 @@ files:
     cm](Report/Data/Best%20model%202D%20varimp%20and%20cm.RData):
     results of variable importance and predictions after 30 cycles of
     K-fold cross validation on the model that performed best on the 2D
-    data. This data is obtained sourcing the [33 Loop over best model of
-    2D
+    data.  
+    This data is obtained sourcing the [33 Loop over best model of 2D
     data](Report/Scripts/33%20Loop%20over%20best%20model%20of%202D%20data)
     R script.  
   - [Best model 3D varimp and
     cm](Report/Data/Best%20model%203D%20varimp%20and%20cm.RData):
     results of variable importance and predictions after 30 cycles of
     K-fold cross validation on the model that performed best on the 3D
-    data.  
-    This data is obtained sourcing the [34 Loop over best model of 3D
-    data](Report/Scripts/34%20Loop%20over%20best%20model%20of%203D%20data)
-    R script.
+    data.
+    - This data is obtained sourcing the [34 Loop over best model of 3D
+      data](Report/Scripts/34%20Loop%20over%20best%20model%20of%203D%20data)
+      R script.
 
 </div>
