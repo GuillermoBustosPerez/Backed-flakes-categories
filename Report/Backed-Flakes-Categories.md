@@ -1,6 +1,6 @@
 <div align="justify">
 
-# A geometric morphometric approach to testing discrete categories of backed flakes from recurrent centripetal core reduction.
+# The contribution of 2D and 3D geometric morphometrics to lithic taxonomies: testing discrete categories of backed flakes from recurrent centripetal core reduction.
 
 Guillermo Bustos-Pérez $^{(1)}$  
 Brad Gravina $^{(2, 3)}$  
@@ -485,7 +485,15 @@ predictors for training the machine learning models. The threshold of
 most of the dataset variance with a reduced number of variables. The
 identification of best PCs for classification is performed automatically
 by the machine learning models using the caret v.6.0.92 package ([M.
-Kuhn 2008](#ref-kuhn_building_2008)).
+Kuhn 2008](#ref-kuhn_building_2008)). Morpho package v.2.11 additionally
+provides visualization of shape change according to PC. A previous work
+on the same dataset ([Bustos-Pérez et al.
+2022](#ref-bustos-perez_combining_2022)) performed PCA using the package
+stats v.4.2.2 ([Venables and Ripley 2002](#ref-venables_modern_2002)).
+The present work uses the PCA integrated in the Morpho v.2.11 ([Schlager
+2017](#ref-schlager_morpho_2017)). As a result of this, variance
+captured by PC and their interpretation differs regarding previous
+analysis.
 
 ![Figure 3. Top: template/atlas for a randomly selected flake with the
 defined landmarks, curves, and surfaces. Bottom: landmark positioning
@@ -917,7 +925,10 @@ three](Figures/2D%20PC%20meaning.png)
 In the case of 3D data, PC5 (5.5% of variance) is considered the most
 important variable for discrimination, followed by PC1 (31.32% of
 variance), PC6 (5.06% of variance), PC11 (1.45% of variance) and PC3
-(8.82% of variance).  
+(8.82% of variance). PC11 presented an average importance value of
+59.68. However, the low variance captured by this PC (1.45), and visual
+evaluation of shape change, indicate that its effect is minimum and
+should be excluded from analysis.  
 PC5 is driven by the interaction of platform depth and flake thickness.
 Increasing values of PC5 result in flakes with platforms much wider than
 deep, with the width of the platform finding their continuation in one
@@ -2432,6 +2443,14 @@ et d’études Préhistoriques.
 
 Tixier, J., & Turq, A. (1999). Kombewa et alii. *Paléo*, *11*, 135–143.
 <https://doi.org/10.3406/pal.1999.1174>
+
+</div>
+
+<div id="ref-venables_modern_2002" class="csl-entry">
+
+Venables, W. N., & Ripley, B. D. (2002). *Modern applied statistics with
+S* (Fourth Edition.). New York: Springer.
+<https://www.stats.ox.ac.uk/pub/MASS4/>
 
 </div>
 
