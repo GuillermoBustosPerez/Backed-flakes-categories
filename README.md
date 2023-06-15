@@ -2,8 +2,9 @@
 
 ## **General information**
 
-**Title:** A geometric morphometric approach to testing discrete
-categories of backed flakes from recurrent centripetal core reduction.  
+**Title:** The contribution of 2D and 3D geometric morphometrics to
+lithic taxonomies: testing discrete categories of backed flakes from
+recurrent centripetal core reduction.  
 **Authors:**
 
 - Guillermo Bustos-Pérez $^{(1,2,3,7)}$  
@@ -94,11 +95,25 @@ additional cleaning, mesh sampling, surface reconstruction and
 transformation into PLY files. Finally, all files were decimated to a
 quality of 50,000.
 
-Landmarks of each artifact were placed using Viewbox Version 4.1.0.12
+3D landmarks of each artifact were placed using Viewbox Version 4.1.0.12
 (<http://www.dhal.com/viewbox.htm>). Placement of landmarks was done
 using a flake template (available at
 <https://doi.org/10.5281/zenodo.7085139>) and landmarks were relaxed to
 minimize bending energy. Resulting point coordinates were exported into
 .xlsx files.
+
+2D Geometric morphometrics was performed using screenshots of the upper
+view of each flake orientated along the technological axis and using
+free software MeshLab (<https://www.meshlab.net/>). One thin-plate
+spline (tps) was generated using tpsUtil v.1.82, and the tpsDig v.2.32
+(<https://www.sbmorphometrics.org/index.html>).
+
+## **Structure of the repository**
+
+The present repository has been organized following the structure of a
+research compendium. The folder [Report](Report) contains the following
+files:
+
+- [Data](Report/Data)
 
 </div>
