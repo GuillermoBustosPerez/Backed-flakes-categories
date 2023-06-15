@@ -145,11 +145,11 @@ files:
     sampling](Report/Data/2D%20Results%20Up%20and%20Down%20sampling.RData):
     an .RData file containing the results of each model resampling using
     the 2D data.  
-    *[3D Results Up and Down
+  - [3D Results Up and Down
     sampling](Report/Data/3D%20Results%20Up%20and%20Down%20sampling.RData):
     an .RData file containing the results of each model resampling using
     the 3D data.  
-    *[Best model 2D varimp and
+  - [Best model 2D varimp and
     cm](Report/Data/Best%20model%202D%20varimp%20and%20cm.RData):
     results of variable importance and predictions after 30 cycles of
     K-fold cross validation on the model that performed best on the 2D
@@ -157,7 +157,7 @@ files:
     2D
     data](Report/Scripts/33%20Loop%20over%20best%20model%20of%202D%20data)
     R script.  
-    \*[Best model 3D varimp and
+  - [Best model 3D varimp and
     cm](Report/Data/Best%20model%203D%20varimp%20and%20cm.RData):
     results of variable importance and predictions after 30 cycles of
     K-fold cross validation on the model that performed best on the 3D
