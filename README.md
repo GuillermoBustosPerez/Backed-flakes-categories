@@ -118,6 +118,28 @@ files:
   - [Attributes data](Report/Data/Attributes%20data.csv) a .csv file
     containing all data of atribute analysis of the sample and their
     categories.  
-  - [2D Data](Report/Data/2D%20data.RData)
+  - [2D-Upper-view](Report/Data/Attributes%20data.TPS) a TPS file
+    containing the 2D coordinates of the perimeter of the upper view of
+    each specimen. Each specimen has a landmarks per pixel, and thud
+    having different number of landmarks. To resample each specimen into
+    having the same number of landmarks, the [21 Muggle 2D
+    data](Report/Scripts/21%20Muggle%202D%20data.R) R script is
+    employed.  
+  - [GM csvs](Report/Data/GM%20csvs) folder containing all .csv’s with
+    the 3D coordinates of all specimens.  
+  - [2D Data](Report/Data/2D%20data.RData) an .RData file containing a
+    *nosymproc* object. This object is the result of performing
+    procrusties alignment to the 2D coordinates using package Morpho.
+    The *nosymproc* object contains rewritten (and original)
+    coordinates, results from PCA, and interpretation of PC. This file
+    is obtained sourcing the [21 Muggle 2D
+    data](Report/Scripts/21%20Muggle%202D%20data.R) R script.  
+  - [3D Data](Report/Data/3D%20data.RData) an .RData file containing a
+    *nosymproc* object. This object is the result of performing
+    procrusties alignment to the 3D coordinates using package Morpho.
+    The *nosymproc* object contains rewritten (and original)
+    coordinates, results from PCA, and interpretation of PC. This file
+    is obtained sourcing the [22 Muggle 3D
+    data](Report/Scripts/22%20Muggle%203D%20data.R) R script.
 
 </div>
