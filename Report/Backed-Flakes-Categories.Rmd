@@ -4,6 +4,12 @@ author: "Guillermo Bustos-Pérez"
 output: 
   md_document:
     variant: gfm
+  bookdown::html_document2: 
+    toc: true
+    toc_float: true
+    toc_depth: 4
+    fig_caption: yes
+    number_sections: FALSE 
 bibliography: References.bib
 csl: "Journal-Paleolithic-Archaeology.csl"
 link-citations: true
