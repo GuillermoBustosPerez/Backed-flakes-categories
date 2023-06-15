@@ -115,31 +115,55 @@ research compendium. The folder [Report](Report) contains the following
 files:
 
 - [Data](Report/Data) folder containing the following files:
-  - [Attributes data](Report/Data/Attributes%20data.csv) a .csv file
+  - [Attributes data](Report/Data/Attributes%20data.csv): a .csv file
     containing all data of atribute analysis of the sample and their
     categories.  
-  - [2D-Upper-view](Report/Data/Attributes%20data.TPS) a TPS file
+  - [2D-Upper-view](Report/Data/Attributes%20data.TPS:) a TPS file
     containing the 2D coordinates of the perimeter of the upper view of
     each specimen. Each specimen has a landmarks per pixel, and thud
     having different number of landmarks. To resample each specimen into
     having the same number of landmarks, the [21 Muggle 2D
-    data](Report/Scripts/21%20Muggle%202D%20data.R) R script is
+    data](Report/Scripts/21%20Muggle%202D%20data.R): R script is
     employed.  
   - [GM csvs](Report/Data/GM%20csvs) folder containing all .csv’s with
     the 3D coordinates of all specimens.  
-  - [2D Data](Report/Data/2D%20data.RData) an .RData file containing a
+  - [2D Data](Report/Data/2D%20data.RData): an .RData file containing a
     *nosymproc* object. This object is the result of performing
     procrusties alignment to the 2D coordinates using package Morpho.
     The *nosymproc* object contains rewritten (and original)
     coordinates, results from PCA, and interpretation of PC. This file
     is obtained sourcing the [21 Muggle 2D
     data](Report/Scripts/21%20Muggle%202D%20data.R) R script.  
-  - [3D Data](Report/Data/3D%20data.RData) an .RData file containing a
+  - [3D Data](Report/Data/3D%20data.RData): an .RData file containing a
     *nosymproc* object. This object is the result of performing
     procrusties alignment to the 3D coordinates using package Morpho.
     The *nosymproc* object contains rewritten (and original)
     coordinates, results from PCA, and interpretation of PC. This file
     is obtained sourcing the [22 Muggle 3D
-    data](Report/Scripts/22%20Muggle%203D%20data.R) R script.
+    data](Report/Scripts/22%20Muggle%203D%20data.R) R script.  
+  - [2D Results Up and Down
+    sampling](Report/Data/2D%20Results%20Up%20and%20Down%20sampling.RData):
+    an .RData file containing the results of each model resampling using
+    the 2D data.  
+    *[3D Results Up and Down
+    sampling](Report/Data/3D%20Results%20Up%20and%20Down%20sampling.RData):
+    an .RData file containing the results of each model resampling using
+    the 3D data.  
+    *[Best model 2D varimp and
+    cm](Report/Data/Best%20model%202D%20varimp%20and%20cm.RData):
+    results of variable importance and predictions after 30 cycles of
+    K-fold cross validation on the model that performed best on the 2D
+    data. This data is obtained sourcing the [33 Loop over best model of
+    2D
+    data](Report/Scripts/33%20Loop%20over%20best%20model%20of%202D%20data)
+    R script.  
+    \*[Best model 3D varimp and
+    cm](Report/Data/Best%20model%203D%20varimp%20and%20cm.RData):
+    results of variable importance and predictions after 30 cycles of
+    K-fold cross validation on the model that performed best on the 3D
+    data.  
+    This data is obtained sourcing the [34 Loop over best model of 3D
+    data](Report/Scripts/34%20Loop%20over%20best%20model%20of%203D%20data)
+    R script.
 
 </div>
