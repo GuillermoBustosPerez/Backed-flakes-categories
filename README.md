@@ -180,6 +180,9 @@ files:
   manuscript.  
 
 - [Scripts](Report/Scripts) folder containing scripts employed to muggle
-  the original data, or train the models.
+  the original data, or train the models.  
+
+- [References](Report/References.bib): a .bib file containing references
+  cited in the text.
 
 </div>
