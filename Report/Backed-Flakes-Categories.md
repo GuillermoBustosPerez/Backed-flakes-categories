@@ -1515,22 +1515,42 @@ the identification of core edge flakes and pseudo-Levallois points.
 
 The present study has compared the use of 2D and 3D geometric
 morphometrics. 2D geometric morphometrics have the advantage of being
-less time consuming, require less equipment, and being barely affected
-by camera positioning \[Cardini ([2014](#ref-cardini_missing_2014));
-macdonald_evaluating_2020\]. However, previous works have outlined how,
-when working with volumetric structures, the use of 2D geometric
+less time consuming, requiring less equipment, and being barely affected
+by camera positioning ([Cardini and Chiapelli
+2020](#ref-cardini_how_2020); [Macdonald et al.
+2020](#ref-macdonald_evaluating_2020)). Our research showed that the 2D
+dataset was not sufficiently useful to discriminate between the lithic
+backed categories and, therefore, not reasonably informative, at least
+for the three technological categories analyzed. Some authors considered
+2D geometric a useful tool for lithic analysis when performing lithic
+taxonomic or comparative studies. Previous studies using 2D geometric
+morphometrics were aimed at analyzing formal retouched tools (large
+tanged points; and Clovis, Folsom, and Plainview projectile points;
+Buchanan and Collard ([2010](#ref-buchanan_geometric_2010));Serwatka and
+Riede ([2016](#ref-serwatka_2d_2016))) testing the relationship between
+shape and function in informal flakes ([Borel et al.
+2017](#ref-borel_stone_2017)), and compare similarity of bone and stone
+Acheulean bifaces \[Costa ([2010](#ref-costa_geometric_2010)). The cited
+2D studies were not comparing between 2D and 3D datasets when analyzing
+the same sample, while the present study is aimed at testing
+methodological aspects to improve lithic taxonomic analysis and refine
+stone tool technological description and interpretation. Furthermore,
+the cited papers were mainly quantitatively analyzing morphological
+aspects. It seems reasonable that, when dealing with bidimensional
+surfaces, 2D geometric morphometrics should be valuable. The present
+research has addressed a volumetric problem. Thus, the better
+performance of 3D geometric morphometrics falls within what was
+expected. In the same line, previous works have outlined how, when
+working with volumetric structures, the use of 2D geometric
 morphometrics can result in a lower resolution of the analysis ([Buser
 et al. 2018](#ref-buser_2d_2018); [Cardini
-2014](#ref-cardini_missing_2014)). As previously mentioned, the best
-model based on 2D geometric morphometrics presented lower performance
-metrics than the best model based on the 3D data. However, despite
-providing a lower resolution of analysis, 2D geometric can be considered
-a highly useful tool for lithic analysis when performing lithic
-taxonomic studies ([Serwatka and Riede 2016](#ref-serwatka_2d_2016)) or
-comparative studies
-([**costa_geometric_2010?**](#ref-costa_geometric_2010);
-[**borel_stone_2017?**](#ref-borel_stone_2017);
-[**buchanan_geometric_2010?**](#ref-buchanan_geometric_2010)).
+2014](#ref-cardini_missing_2014)). The present results indicate the
+preferable application of 3D techniques for the identification of
+technological backed categories related to core reduction strategies,
+suggesting that more studies are needed to test the best approach when
+dealing with different research questions and technological categories,
+including cores, retouched tool-types, unretouched items, and shaped
+elements.
 
 Sullivan and Rozen ([1985](#ref-sullivan_debitage_1985)) previously
 called attention to the use of technological categories of flakes. Their
@@ -1578,19 +1598,20 @@ understanding of the technical choices and constraints faced by past
 groups and may allow for better understanding of the relationships
 between technology and raw material, as well as volumetric core
 management, and could contribute to improving comparisons between
-assemblages so as to avoid simple and overly generic technological
-definitions and to avoid merging what are clearly different reduction
-concepts. Such generic definitions are often used to discuss human
-behaviors and cultural traditions and even human migrations ([Blinkhorn
-et al. 2021](#ref-blinkhorn_directional_2021)), but they remain
-difficult to interpret ([Romagnoli et al.
-2022](#ref-romagnoli_neanderthal_2022)). They do not always reflect the
-diversity and specificity of the technological choices and constraints
-past human groups faced. A more in-depth analysis of variability in the
-techno-morphological characteristics of stone artifacts, in association
-with other approaches, such as refitting and taphonomic analysis, could
-also allow archaeologists to better understand the processes of
-assemblage formation.
+assemblages to avoid simple and overly generic technological definitions
+and to avoid merging what are clearly different reduction concepts. Such
+generic definitions are often used to discuss human behaviors and
+cultural traditions and even human migrations ([Blinkhorn et al.
+2021](#ref-blinkhorn_directional_2021)), but they remain difficult to
+interpret ([Romagnoli et al. 2022](#ref-romagnoli_neanderthal_2022)).
+ThThey do not always reflect the diversity and specificity of the
+technological choices and constraints past human groups faced. A more
+in-depth analysis of variability in the techno-morphological
+characteristics of stone artifacts, in association with other
+approaches, such as refitting and taphonomic analysis Romagnoli and
+Vaquero ([2019](#ref-romagnoli_challenges_2019)), could also allow
+archaeologists to better understand the processes of assemblage
+formation.
 
 Previous researchers have pointed out the morphological and
 technological differences between classic core edge flakes and core edge
@@ -1605,7 +1626,7 @@ aligned. Additionally, most of the examples presented ([Lilliane Meignen
 percussion axis. Slimak ([2003](#ref-peresani_les_2003)) also points out
 that, as a morphological feature, the flake back of core edge flakes
 with a limited back will be offset in regards the axis of percussion.
-TThese features of alignment between the flake back and percussion axis
+These features of alignment between the flake back and percussion axis
 are captured by PC1 and PC3, with pseudo-Levallois and core edge flakes
 with a limited back having similar values, indicative of an offset
 backed edge and lower elongation.
@@ -1793,6 +1814,15 @@ Bordeaux: CNRS Editions.
 
 </div>
 
+<div id="ref-borel_stone_2017" class="csl-entry">
+
+Borel, A., Cornette, R., & Baylac, M. (2017). Stone Tool Forms and
+Functions: A Morphometric Analysis of Modern Humans’ Stone Tools From
+Song Terus Cave (Java, Indonesia): Stone tool forms and functions.
+*Archaeometry*, *59*(3), 455–471. <https://doi.org/10.1111/arcm.12264>
+
+</div>
+
 <div id="ref-bourguignon_analyse_1992" class="csl-entry">
 
 Bourguignon, L. (1992). Analyse du processus opératoire des coups de
@@ -1815,6 +1845,15 @@ française*, *107*(3), 433–451. <https://doi.org/10.3406/bspf.2010.13944>
 
 Breiman, L. (2001). Random Forests. *Machine Learning*, *45*(1), 5–32.
 <https://doi.org/10.1023/A:1010933404324>
+
+</div>
+
+<div id="ref-buchanan_geometric_2010" class="csl-entry">
+
+Buchanan, B., & Collard, M. (2010). A geometric morphometrics-based
+assessment of blade shape differences among Paleoindian projectile point
+types from western North America. *Journal of Archaeological Science*,
+*37*(2), 350–359. <https://doi.org/10.1016/j.jas.2009.09.047>
 
 </div>
 
@@ -1882,6 +1921,14 @@ structures? *Hystrix, the Italian Journal of Mammalogy*, *25*(2).
 
 </div>
 
+<div id="ref-cardini_how_2020" class="csl-entry">
+
+Cardini, A., & Chiapelli, M. (2020). How flat can a horse be? Exploring
+2D approximations of 3D crania in equids. *Zoology*, *139*, 125746.
+<https://doi.org/10.1016/j.zool.2020.125746>
+
+</div>
+
 <div id="ref-cignoni_meshlab_2008" class="csl-entry">
 
 Cignoni, P., Callieri, M., Corsini, M., Dellepiane, M., Ganovelli, F., &
@@ -1894,6 +1941,16 @@ Ranzuglia, G. (2008). MeshLab: An Open-Source Mesh Processing Tool.
 
 Cortes, C., & Vapnik, V. (1995). Support-vector networks. *Machine
 learning*, *20*(3), 273–297.
+
+</div>
+
+<div id="ref-costa_geometric_2010" class="csl-entry">
+
+Costa, A. G. (2010). A geometric morphometric assessment of plan shape
+in bone and stone Acheulean bifaces from the Middle Pleistocene site of
+Castel di Guido, Latium, Italy. In S. J. Lycett & P. R. Chauhan (Eds.),
+*New Perspectives on Old Stones: Analytical Approaches to Paleolithic
+Technologies* (pp. 23–41). New York: Springer.
 
 </div>
 
@@ -2151,6 +2208,15 @@ Press.
 
 </div>
 
+<div id="ref-macdonald_evaluating_2020" class="csl-entry">
+
+Macdonald, D. A., Royal, K., & Buchanan, B. (2020). Evaluating the
+effects of parallax in archaeological geometric morphometric analyses.
+*Archaeological and Anthropological Sciences*, *12*(7), 149.
+<https://doi.org/10.1007/s12520-020-01111-4>
+
+</div>
+
 <div id="ref-mcpherron_machine_2022" class="csl-entry">
 
 McPherron, S. P., Archer, W., Otárola-Castillo, E. R., Torquato, M. G.,
@@ -2267,6 +2333,26 @@ wide-range geographical perspective of the final Middle Palaeolithic. In
 F. Romagnoli, F. Rivals, & S. Benazzi (Eds.), *Updating Neanderthals.
 Understanding Behavioral Complexity in the Late Middle Paleolithic*.
 Academic Press.
+
+</div>
+
+<div id="ref-romagnoli_time_2018" class="csl-entry">
+
+Romagnoli, F., Nishiaki, Y., Rivals, F., & Vaquero, M. (2018). Time
+uncertainty, site formation processes, and human behaviours: New
+insights on old issues in High-Resolution Archaeology. *Quaternary
+International*, *474*, 99–102.
+<https://doi.org/10.1016/j.quaint.2018.04.033>
+
+</div>
+
+<div id="ref-romagnoli_challenges_2019" class="csl-entry">
+
+Romagnoli, F., & Vaquero, M. (2019). The challenges of applying
+refitting analysis in the Palaeolithic archaeology of the twenty-first
+century: An actualised overview and future perspectives. *Archaeological
+and Anthropological Sciences*, *11*(9), 4387–4396.
+<https://doi.org/10.1007/s12520-019-00888-3>
 
 </div>
 
