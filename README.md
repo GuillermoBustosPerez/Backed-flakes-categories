@@ -71,7 +71,7 @@ Madrid.
 
 **License**  
 The following data and code is publish under a **Non Commercial 4.0
-International (CC BY-NC 4.0) licnse**. For more details, see the
+International (CC BY-NC 4.0) license**. For more details, see the
 [**License**](License.md) file.  
 ![](Report/Figures/License.png)
 
