@@ -114,6 +114,10 @@ The present repository has been organized following the structure of a
 research compendium. The folder [Report](Report) contains the following
 files:
 
-- [Data](Report/Data)
+- [Data](Report/Data) folder containing the following files:
+  - [Attributes data](Report/Data/Attributes%20data.csv) a .csv file
+    containing all data of atribute analysis of the sample and their
+    categories.  
+  - [2D Data](Report/Data/2D%20data.RData)
 
 </div>
