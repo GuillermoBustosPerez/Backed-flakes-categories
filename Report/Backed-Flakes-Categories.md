@@ -18,33 +18,42 @@ archéologiques, Domaine de Campagne, 242460 Campagne, France
 
 **Abstract**
 
-Paleolithic lithic assemblages are usually dominated by flakes, which
+Paleolithic lithic assemblages are usually dominated by flakes and
 display a high degree of morphological variability. When analyzing
 Paleolithic lithic assemblages, it is common to classify flakes into
 categories based on their morphological and technological features,
-which are linked to the position of the flake in a reduction sequence
+which are linked to the position of the flake in the reduction sequence
 and how removals are organized in a given production method. For the
 analysis of Middle Paleolithic lithic assemblages, two categories of
-flakes are commonly used: core edge flakes and pseudo-Levallois points.
-A third type, core edge flakes with a limited back, is also commonly
-found in the archaeological literature, providing an alternative
-category with a definition that does not match the two previous types
-but shares many of their morphological and technological features. The
-present study addresses whether these three flakes constitute discrete
-categories based on their morphological and technological attributes.
-Geometric morphometrics are employed on an experimental set composed of
-the three categories of flakes to quantify morphological variation.
-Machine learning models and principal components biplots are used to
-test the discreteness of the categories. The results indicate that
-geometric morphometrics succeed in capturing the morphological and
-technological features that characterize each type of product.
-Pseudo-Levallois points have the highest discreteness of the three
-technological products, and while some degree of mixture exists between
-core edge flakes and core edge flakes with a limited back, they are also
-highly distinguishable. We conclude that the three categories are
-discrete and can be employed in technological lists of products for the
-analysis of lithic assemblages and that geometric morphometrics is
-useful for testing for the validity of categories.
+flakes are commonly identified: core-edge flakes and pseudo-Levallois
+points. A third type, core-edge flakes with a limited back, is also
+commonly found in the archaeological literature, providing an
+alternative category whose definition does not match the two previous
+types but shares many of their morphological and technological features.
+The present study addresses whether these three flakes constitute
+discrete categories based on their morphological and technological
+attributes. 2D and 3D geometric morphometrics are employed on an
+experimental set composed of the three categories of flakes to quantify
+morphological variation. Machine learning models and principal
+components biplots are used to test the discreteness of the categories.
+The results indicate that geometric morphometrics succeed in capturing
+the morphological and technological features that characterize each type
+of product. Pseudo-Levallois points have the highest discreteness of the
+three technological products, and while some degree of mixture exists
+between core edge flakes and core edge flakes with a limited back, they
+are also highly distinguishable. We conclude that the three categories
+are discrete and can be employed in technological lists of products for
+the analysis of lithic assemblages and that geometric morphometrics is
+useful for testing for the validity of categories. When testing these
+technological categories, we stress the need for well-defined and shared
+lithic analytical units to correctly identify and interpret the
+technical steps and decisions made by prehistoric knappers and to
+properly compare similarities and differences between stone tool
+assemblages. These are key aspects for current research in which open
+datasets are becoming more and more common and used to build
+interpretative techno-cultural models on large geographical scales. Now
+more than ever, lithic specialists are aware of the need to overcome
+differences in taxonomies between different school traditions.
 
 **Key words**: lithic analysis; lithic technology; geometric
 morphometrics; machine learning; Middle Paleolithic; Levallois;
@@ -86,9 +95,9 @@ The Middle Paleolithic in Western Europe is characterized by the
 diversification of an increase in knapping methods, resulting in what
 are generally flake-dominated assemblages ([Delagnes and Meignen
 2006](#ref-hovers_diversity_2006); [S. L. Kuhn
-2013](#ref-kuhn_roots_2013)). For the analysis of Middle Paleolithic
-lithic assemblages, lists of technological products are common and tend
-to reflect individual knapping methods, the organization of flake
+2013](#ref-kuhn_roots_2013)).For the analysis of Middle Paleolithic
+lithic assemblages, lists of technological products are common and
+generally reflect individual knapping methods, the organization of flake
 removals, and their morphology ([Duran and Abelanet
 2004](#ref-duran_mousterien_2004); [Duran and Soler
 2006](#ref-duran_variabilite_2006); [Geneste
@@ -99,71 +108,73 @@ al. 1990](#ref-boeda_identification_1990); [Boëda
 1993](#ref-boeda_debitage_1993), [1995](#ref-dibble_levallois:_1995)),
 which constitute an important part of Middle Paleolithic lithic
 variability. Various discoidal and Levallois products have been
-identified and first appear approximately at 400,000 ka, in a vast area
-from eastern Asia to the Atlantic coast of Western Europe through
-Siberia and Central Asia, the Levant, Eastern and Central Europe (see
-bibliography in [Romagnoli et al.
-2022](#ref-romagnoli_neanderthal_2022)), and Africa ([Adler et al.
-2014](#ref-adler_early_2014); [Blinkhorn et al.
+identified and first appear approximately at 400 ka, in a vast area from
+eastern Asia to the Atlantic Coast of western Europe through Siberia and
+Central Asia, the Levant, eastern and central Europe (see bibliography
+in [Romagnoli et al. 2022](#ref-romagnoli_neanderthal_2022)), and Africa
+([Adler et al. 2014](#ref-adler_early_2014); [Blinkhorn et al.
 2021](#ref-blinkhorn_directional_2021)). The identification of discoidal
 and Levallois products therefore appears widespread in lithic analysis
-across various traditions of lithic studies and is designed to create a
-comparable dataset, explore specific technological adaptations in
-different ecological contexts, and discuss long-term techno-cultural
-traditions and technological change. One special category of such
-products are backed flakes that exhibit remnants of the core on one of
-their lateral edges. Backed flakes are usually classified into two
-technological categories: “core edge flakes” (*eclat débordant*) and
-“pseudo-Levallois points”. A third category, “core edge flakes with a
-limited back” (*éclat débordant à dos limité*), has also been defined
+across various research schools and is designed to create a comparable
+dataset, explore specific technological adaptations in different
+ecological contexts, and discuss long-term techno-cultural traditions
+and technological change. One special category of such products is
+backed flakes that exhibit remnants of the core on one of their lateral
+edges. Backed flakes are usually classified into two technological
+categories: “core-edge flakes” (*éclat débordant à dos limité*), and
+“pseudo-Levallois points”. A third category, “core-edge flakes with a
+limited back” (éclats débordants à dos limité), has also been defined
 ([Liliane Meignen 1993](#ref-meignen_les_1993); [Lilliane Meignen
 1996](#ref-meignen_persistance_1996); [Pasty et al.
 2004](#ref-pasty_etude_2004)), although its use is not widespread
 ([Duran and Abelanet 2004](#ref-duran_mousterien_2004); [Duran and Soler
 2006](#ref-duran_variabilite_2006); [Geneste
 1988](#ref-rigaud_les_1988); [Shea 2013b](#ref-shea_middle_2013)). One
-reason for this may be their overlapping features, morphology, and
-having a similar role in core reduction compared to classic core edge
+reason for this may be their overlapping features, including morphology,
+and a similar role in core reduction compared to classic core edge
 flakes. This usually results in their absorption into the group of core
 edge flakes when technological lists of products are employed.
 
-The present study seeks to evaluate whether “core edge flakes with a
-limited back” are a discrete category that can be easily separated from
-classic core edge flakes and pseudo-Levallois points based on their
-morphological features. While it may seem a pleonastic technical
-exercise, a refined lithic taxonomy allows researchers to achieve an
-improved understanding of lithic technology. The detailed lithic
-classification, far to be a redundant and self-seeking exercise, is a
-basic step to understand patterns of tool production, transport,
-maintenance, use, discard, and reuse. The importance of itemizing lithic
-technological classification lies in understanding the differences by
-which human groups in the past adapted their technical knowledge and
-skills to resource constraints, economic strategies, and social
-dynamics. Ultimately, the importance lies in enable researchers to go
-from description of lithic items to interpretation of human behaviors.
+The present study aims to evaluate whether “core-edge flakes with a
+limited back” represent a discrete technological category that can be
+easily separated from classic core-edge flakes and pseudo-Levallois
+points based on their morphological features. While this may seem a
+pleonastic technical exercise, refining stone tool taxonomy allows
+researchers to better describe lithic technology, which is the basis for
+documenting patterns of tool production, transport, maintenance, use,
+discard, and reuse. This is equally important for exploring differences
+in how past human groups adapted their technical knowledge and skills to
+resource constraints, economic strategies, and social dynamics.
 Furthermore, an improved and comprehensive use of technological types
-and sub-types within core trimming elements is mandatory to facilitate
-comparisons between archaeological assemblages and guarantee a proper
-communal understanding of past technologies. Finally, core edge flakes
-are attested during much of prehistoric era being directly related to
-centripetal and recurrent core knapping. It means that the proper
-definition and classification of types and sub-types within this
-technological category will be of use in lithic studies beyond limited
-chronological and geographical limits.
+and sub-types within core trimming elements is fundamental to generating
+reliable comparisons between archaeological assemblages. Finally,
+core-edge flakes are present in multiple Palaeolithic techno-complexes,
+particularly those based around centripetal and recurrent reduction
+strategies. As such, better classifying types and sub-types within this
+technological category will be of use in lithic studies for multiple
+periods and regions. In addition to evaluating the discreteness of this
+specific artifact type, the present study also explores a workflow for
+testing lithic categories and compares the effectiveness of using data
+derived from 2D and 3D geometric morphometrics.
 
-To test the discreteness of these categories, an experimental sample of
-backed flakes produced by discoidal and recurrent centripetal Levallois
-reduction is classified, following their technological definitions.
-Geometric morphometrics on 3D meshes are employed to quantify the
-morphological variability of the experimental assemblage. To test for
-the discreteness of these categories, machine learning algorithms are
-employed to classify the flakes according to their technological
-category. Our hypothesis is that, although some degree of overlap is
-expected due to the high degree of morphological variability among
-lithic artifacts, machine learning models should easily differentiate
-the above-mentioned categories from one another. Testing this hypothesis
-would support the use of these backed flakes categories in the
-classification of lithic assemblages.
+To test the discreteness of core-edge flakes categories, an experimental
+sample of backed flakes produced by discoidal and recurrent centripetal
+Levallois reduction is classified, following their technological
+definitions. Geometric morphometrics on 3D meshes are employed to
+quantify the morphological variability of the experimental assemblage.
+To test for the discreteness of these categories, machine learning
+algorithms are employed to classify the flakes according to their
+technological category. Our hypothesis is that, although some degree of
+overlap is expected due to the high degree of morphological variability
+among lithic artifacts, machine learning models should easily
+differentiate the above-mentioned categories. Testing this hypothesis
+would support the use of these backed flake categories in the
+classification of lithic assemblages. The creation of datasets based on
+the same analytical units and criteria will enable more accurate and
+reliable comparisons between stone tool assemblages, improving the
+definition of working hypotheses and interpretative models for
+technological, adaptive, and behavioral changes in prehistory
+([Romagnoli et al. 2022](#ref-romagnoli_neanderthal_2022)).
 
 The following code loads attribute data from the experimental assemblage
 and packages employed for the analysis.
@@ -304,7 +315,7 @@ following the previously established definitions. Due to the centripetal
 nature of the knapping methods employed to generate the experimental
 assemblage, most of the backed flakes fall within the definition of core
 edge flakes with a limited back (66.91%). Cortex distribution according
-to backed flake category shows that slightly (\~25%) or non-cortical
+to backed flake category shows that slightly (~25%) or non-cortical
 products dominate among the three categories, adding up to more than 65%
 in the three cases (90% core edge flakes, 68.82% core edge flakes with a
 limited back, and 87.5% pseudo-Levallois points).
@@ -327,9 +338,13 @@ Att %>% group_by(Strategy, ARTIFACTTYPE) %>%
     ## 5 Levallois Core edge with limited back    46   33.1 
     ## 6 Levallois pseudo-Levallois Point          4    2.88
 
-![Figure 1. Backed artifacts classification types from the experimental
-assemblage and their
-classification](Figures/Backed%20flakes%20types.png)
+<figure>
+<img src="Figures/Backed%20flakes%20types.png"
+alt="Figure 1. Backed artifacts classification types from the experimental assemblage and their classification" />
+<figcaption aria-hidden="true">Figure 1. Backed artifacts classification
+types from the experimental assemblage and their
+classification</figcaption>
+</figure>
 
 ``` r
 # Cortex per class
@@ -495,10 +510,15 @@ The present work uses the PCA integrated in the Morpho v.2.11 ([Schlager
 captured by PC and their interpretation differs regarding previous
 analysis.
 
-![Figure 3. Top: template/atlas for a randomly selected flake with the
-defined landmarks, curves, and surfaces. Bottom: landmark positioning
-after sliding to minimize bending energy on a pseudo-Levallois point.
-Fixed landmarks are indicated in red](Figures/Template%20and%20BE.png)
+<figure>
+<img src="Figures/Template%20and%20BE.png"
+alt="Figure 3. Top: template/atlas for a randomly selected flake with the defined landmarks, curves, and surfaces. Bottom: landmark positioning after sliding to minimize bending energy on a pseudo-Levallois point. Fixed landmarks are indicated in red" />
+<figcaption aria-hidden="true">Figure 3. Top: template/atlas for a
+randomly selected flake with the defined landmarks, curves, and
+surfaces. Bottom: landmark positioning after sliding to minimize bending
+energy on a pseudo-Levallois point. Fixed landmarks are indicated in
+red</figcaption>
+</figure>
 
 #### 2.2.1 Performance of procrustes, PCA and model training
 
@@ -918,9 +938,13 @@ pointed extremes resulting from concave delineations of the middle
 portion of the laterals. This might be representing the presence of
 convergent extremes at either end of the flake.
 
-![Visualization of shape change according to PC for the 2D data.
-Differences towards mean shape have been magnified by a factor of
-three](Figures/2D%20PC%20meaning.png)
+<figure>
+<img src="Figures/2D%20PC%20meaning.png"
+alt="Visualization of shape change according to PC for the 2D data. Differences towards mean shape have been magnified by a factor of three" />
+<figcaption aria-hidden="true">Visualization of shape change according
+to PC for the 2D data. Differences towards mean shape have been
+magnified by a factor of three</figcaption>
+</figure>
 
 In the case of 3D data, PC5 (5.5% of variance) is considered the most
 important variable for discrimination, followed by PC1 (31.32% of
@@ -948,9 +972,13 @@ thickness, width and asymmetry. Increasing values of PC3 result in
 thicker and narrower flakes with a marked asymmetry which results from a
 thick back located at the left lateral.
 
-![Visualization of shape change according to PC of the 3D data.
-Differences towards mean shape have been magnified by a factor of
-three.](Figures/PC%20contribution%20to%20shape%20change.png)
+<figure>
+<img src="Figures/PC%20contribution%20to%20shape%20change.png"
+alt="Visualization of shape change according to PC of the 3D data. Differences towards mean shape have been magnified by a factor of three." />
+<figcaption aria-hidden="true">Visualization of shape change according
+to PC of the 3D data. Differences towards mean shape have been magnified
+by a factor of three.</figcaption>
+</figure>
 
 ### 3.3 Group discreteness through confusion matrix and PCA biplots
 
@@ -2464,9 +2492,9 @@ an Event as a Function of Several Independent Variables. *Biometrika*,
 
 <div id="ref-weihs_klar_2005" class="csl-entry">
 
-Weihs, C., Ligges, U., Luebke, K., & Raabe, N. (2005). <span
-class="nocase">klaR</span> analyzing German business cycles. In *Data
-analysis and decision support* (pp. 335–343). Springer.
+Weihs, C., Ligges, U., Luebke, K., & Raabe, N. (2005).
+<span class="nocase">klaR</span> analyzing German business cycles. In
+*Data analysis and decision support* (pp. 335–343). Springer.
 
 </div>
 
