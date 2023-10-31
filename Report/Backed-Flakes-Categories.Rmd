@@ -196,22 +196,22 @@ source("Scripts/22 Muggle 3D data.R")
 
 ### 2.3	Machine learning and resampling techniques    
 
-Different machine learning models treat the provided data differently. As a result, different models have different strengths and weaknesses. No universal model exists for all problems. Thus, testing several models is an important step in machine learning. It allows to compare the performance of different models, identify the best model for the given task, it provides a general overview of the difficulty or ease of the problem, and it can serve as indication of possible underlying problems with the data (such as overfitting, or unbalanced datasets). Machine learning is a quickly developing field were a high number of models exists. The present work tests ten machine learning models for the classification of flake categories. These models cover some of the most commonly employed algorithms [@jamal_machine_2018] and provide an extensive analysis for the classification of backed flake categories.    
+Different machine learning models treat the provided data differently. As a result, different models have different strengths and weaknesses. No universal model exists for all problems. Thus, testing several models is an important step in machine learning. It allows the performance of different models to be compared, the best model to be identified for a given task, and provides a general overview of the difficulty or ease of the problem. It can also serve as indication of possible underlying problems with the data (e.g. overfitting or unbalanced datasets). Machine learning is a quickly developing field where a high number of available models exist. The present work tests ten machine learning models for the classification of flake categories. These models cover some of the most commonly employed algorithms [@jamal_machine_2018] and provide an extensive analysis for the classification of backed flake categories.    
 
   * **Linear discriminant analysis (LDA):** reduces dimensionality in an attempt to maximize the separation between classes, while decision boundaries divide the predictor range into regions [@fisher_use_1936; @james_introduction_2013].   
-  * **K-nearest neighbor (KNN):** classifies cases by assigning the class of similar known cases. The “k” in KNN references the number of cases (neighbors) to consider when assigning a class, and it must be found by testing different values. Given that KNN uses distance metrics to compute nearest neighbors and that each variable is in different scales, it is necessary to scale and center the data prior to fitting the model [@cover_nearest_1967; @lantz_machine_2019].    
+  * **K-nearest neighbor (KNN):** classifies cases by assigning the class of similar known cases. The “k” in KNN references the number of cases (neighbors) to consider when assigning a class, and it must be found by testing different values. Given that KNN uses distance metrics to compute nearest neighbors and that each variable is in different scales, it is necessary to scale and center the data prior to fitting the model  [@cover_nearest_1967; @lantz_machine_2019].    
   * **Logistic regression:** essentially adapts the multiple linear regression by raising Euler’s constant to its output in the numerator (plus one in the case of the denominator). This results in probability values ranging from 0 to 1which allows obtaining predictions for categorical outcomes [@cramer_early_2004; @walker_estimation_1967].    
   * **Decision tree with C5.0 algorithm:** uses recursive partitioning to divide a dataset into homogeneous groups. The C5.0 algorithm uses entropy (measure of degree of mixture between classes) to determine feature values on which to perform the partitioning. The C5.0 algorithm is an improvement on decision trees for classification [@quinlan_improved_1996; @quinlan_c4_2014].    
   * **Random forest:** uses an ensemble of decision trees. Each tree is grown from a random sample of the variables, allowing for each tree to grow differently and better reflect the complexity of the data and provide additional diversity. Finally, the ensemble of trees casts a vote to generate predictions [@breiman_random_2001].  
-  * **•	Gradient Boosting Machine (GBM):** uses a sequential ensemble of decision trees. After training an initial decision tree, GBM trains subsequent trees on a resampled dataset were the weight of observations difficult to classify is increased based in a gradient [@greenwell_package_2019; @ridgeway_generalized_2007] The subsequent trained trees complement decisions and allow for the detection of learning deficiencies and increase model accuracy [@friedman_greedy_2001; @friedman_stochastic_2002].        
-  * **Supported vector machines (SVM):** fits hyperplanes into a multidimensional space with the objective of creating homogeneous partitions. The fitting of the hyperplanes is done in order to obtain the maximum margin of separation between classes. The maximum margin of separation is reached by minimizing the cost (value applied for each incorrect classification). SVM’s can use different kernels in order to transform data into linearly separable cases. The kernel selected for the transformations needs to be specified  and plays a key role in the training of a SVM model [@cortes_support-vector_1995; @frey_letter_1991]. The present study tests SVM's with linear, radial, and polynomial kernels. 
+  * **•	Gradient Boosting Machine (GBM):** uses a sequential ensemble of decision trees. After training an initial decision tree, GBM trains subsequent trees on a resampled dataset were the weight of observations difficult to classify is increased based in a gradient [@greenwell_package_2019; @ridgeway_generalized_2007]. The subsequent trained trees complement decisions and allow for the detection of learning deficiencies and increase model accuracy [@friedman_greedy_2001; @friedman_stochastic_2002].        
+  * **Supported vector machines (SVM):** fits hyperplanes into a multidimensional space with the objective of creating homogeneous partitions. The fitting of the hyperplanes is done in order to obtain the maximum margin of separation between classes. The maximum margin of separation is reached by minimizing the cost (value applied for each incorrect classification). SVM’s can use different kernels to transform data into linearly separable cases. The kernel selected for the transformations needs to be specified and plays a key role in the training of a SVM model [@cortes_support-vector_1995; @frey_letter_1991]. The present study tests SVM’s with linear, radial, and polynomial kernels.    
   * **Naïve Bayes:** computes class probabilities using Bayes’s rule [@weihs_klar_2005].   
 
-As mentioned above, 66.91% of flakes fall into the definition of core edge flakes with a limited back, resulting in an unbalanced dataset. To counter the unbalanced nature of the experimental dataset, up-sampling was undertaken for the two minority classes, and down-sampling was undertaken for the majority class. Up-sampling categories in a dataset can be considered inappropriate for training machine learning models because it increases the overfit (samples used in the test set to evaluate the model are likely to have already been used in the training set). However, here, the up-sampling of the two minority groups increases the discreteness of these groups but does not affect the potential overlap with the majority class (core edge flakes with limited backs). On the other hand, down-sampling results in missing information because some of the data are removed.    
+As mentioned above, 66.91% of flakes fall into the definition of core-edge flakes with a limited back, resulting in an unbalanced dataset. To counter the unbalanced nature of the experimental dataset, up-sampling was undertaken for the two minority classes, and down-sampling was undertaken for the majority class. Up-sampling categories in a dataset can be considered inappropriate for training machine learning models [@mcpherron_machine_2022; @calder_use_2022] because it increases the overfit (samples used in the test set to evaluate the model are likely to have already been used in the training set). However, here, the up-sampling of the two minority groups increases the discreteness of these groups but does not affect the potential overlap with the majority class (core-edge flakes with limited backs). On the other hand, down-sampling results in missing information because some of the data are removed.  
 
-Random up- and down-sampling is conducted to obtain a balanced dataset and train the models. Because model performance metrics depend on random up- and down-sampling, this process is repeated 30 times, extracting model performance metrics each time and averaging the values. The model with the best performance metrics is then trained again with thirty cycles of up- and down-sampling. The reported variable importance and confusion matrix from which model metric performance are extracted are obtained from these additional cycles of down- and up-sampling.    
+Random up- and down-sampling is conducted to obtain a balanced dataset and train the models. After each random sampling, each model is evaluated using a k-fold cross validation using 10 folds and 50 cycles. Each fold consisted of 7 flakes, with the exception of the last fold, which had 6 flakes. Because model performance metrics depend on random up- and down-sampling, this process is repeated 30 times, extracting model performance metrics each time, and averaging the values. The model with the best performance metrics is then trained again with thirty cycles of up- and down-sampling. The reported variable importance and confusion matrix from which model metric performance are extracted are obtained from these additional cycles of down- and up-sampling.    
 
-3D meshes and data from landmark positioning and Procrustes alignment are already publicly available through the repository of a previous publication using the same experimental collection [@bustos-perez_research_2022; @bustos-perez_combining_2022]. 
+3D meshes and data from landmark positioning and procrustes alignment are already publicly available through the repository of a previous publication using the same experimental collection [@bustos-perez_research_2022; @bustos-perez_combining_2022]. 
 
 #### 2.3.1 Trainign of Machine Learning models       
 
@@ -291,8 +291,105 @@ ggpubr::ggarrange(
   ncol = 2)
 ```
 
+presents the accuracy values for each model after their respective 30 cycles of random up- and down-sampling. These results are sorted according to the use of all variables up to 95% of variance, or only variables capturing more than 3% of variance.  
 
-The following figure presents the accuracy values for each model after their respective 30 cycles of random up- and down-sampling. On general, models trained on 3D data presented higher overall precision metrics.     
+```{r}
+All_Results.2D <- All_Results.2D %>% mutate(
+  Variables = factor(Variables,
+                     levels = c("95% PCs", "> 3% PCs")))
+
+#### Load and muggle 3D data #### 
+load("Data/Results Up and Down sampling 3D data.RData")
+All_Results.3D <- All_Results
+
+load("Data/Results 3D Data Limited variables.RData")
+All_Results3D.LV <- All_Results
+All_Results.3D <- rbind(All_Results.3D, All_Results3D.LV)
+rm(All_Results, All_Results3D.LV)
+
+All_Results.3D$Variables <- "95% PCs"
+All_Results.3D$Variables[301:600] <- "> 3% PCs"
+
+All_Results.3D$Model <- factor(All_Results.3D$Model,
+                               levels = c(
+                                 "LDA", "KNN", "Log. Reg.",
+                                 "C5.0 Tree", "Random Forest", "GBM",
+                                 "SVM Linear", "SVM Radial",
+                                 "SVM Poly",
+                                 "Naïve Bayes"
+                               ))
+
+All_Results.3D <- All_Results.3D %>% mutate(
+  Variables = factor(Variables,
+                     levels = c("95% PCs", "> 3% PCs")))
+
+#### Plot the graphs ####
+ggpubr::ggarrange(
+  (
+    All_Results.2D %>% 
+      ggplot(aes(Model, Accuracy, fill = Variables)) +
+      geom_violin(width = 0.4, alpha = 0.5) +
+      geom_boxplot(width = 0.4,
+                   outlier.shape = NA, alpha = 0.5) +
+      
+      theme_light() +
+      ylab("Accuracy after each cycle of up and down sampling") +
+      ggsci::scale_fill_aaas() +
+      ggtitle(label = "2D data") +
+      scale_x_discrete(labels = c(
+        "LDA", "KNN", "Log. Reg.",
+        "C5.0\nTree", "Random\nForest", "GBM",
+        "SVM\nLinear", "SVM\nRadial",
+        "SVM\nPoly",
+        "Naïve\nBayes")) +
+      scale_y_continuous(breaks = seq(0.4, 1, 0.1), limits = c(0.3, 1)) +
+      xlab(NULL) +
+      theme(
+        legend.position = "bottom",
+        axis.text = element_text(color = "black", size = 8),
+        axis.title = element_text(color = "black", size = 8.5),
+        plot.title = element_text(hjust = 0, vjust = 1, size = 9))
+          ),
+  
+  (
+    All_Results.3D %>% 
+      ggplot(aes(Model, Accuracy, fill = Variables)) +
+      geom_violin(width = 0.4, alpha = 0.5) +
+      geom_boxplot(width = 0.4,
+                   outlier.shape = NA, alpha = 0.5) +
+      ggtitle(label = "3D data") +
+      theme_light() +
+      ylab("Accuracy after each cycle of up and down sampling") +
+      ggsci::scale_fill_aaas() +
+      scale_x_discrete(labels = c(
+        "LDA", "KNN", "Log. Reg.",
+        "C5.0\nTree", "Random\nForest", "GBM",
+        "SVM\nLinear", "SVM\nRadial",
+        "SVM\nPoly",
+        "Naïve\nBayes")) +
+      scale_y_continuous(breaks = seq(0.4, 1, 0.1), limits = c(0.3, 1)) +
+      xlab(NULL) +
+      theme(
+        legend.position = "bottom",
+        axis.text = element_text(color = "black", size = 8),
+        axis.title = element_text(color = "black", size = 8.5),
+        plot.title = element_text(hjust = 0, vjust = 1, size = 9))
+    ),
+  nrow = 2,
+  common.legend = TRUE,
+  legend = "bottom")
+
+```
+
+
+
+
+
+
+
+
+
+
 In the case of the 2D data, the random forest model had the highest average value for general accuracy (0.779), closely followed by the decision tree (0.767) and the GBM (0.765). The LDA had the lowest average value for accuracy (0.511), followed by the logistic regression (0.522).    
 
 
