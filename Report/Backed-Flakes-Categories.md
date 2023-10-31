@@ -268,7 +268,11 @@ perpendicular to the predetermined products; (5) the fracture planes of
 the products are secant; (6) the technique employed is direct
 hard-hammer percussion.
 
-    A total of 139 unretouched backed flakes (independent of the type of termination) were obtained from the different experimental reduction sequences, 70 from discoidal reduction sequences and 69 from Levallois recurrent centripetal reduction sequences. The following criteria were monitored for the classification of backed flakes:    
+A total of 139 unretouched backed flakes (independent of the type of
+termination) were obtained from the different experimental reduction
+sequences, 70 from discoidal reduction sequences and 69 from Levallois
+recurrent centripetal reduction sequences. The following criteria were
+monitored for the classification of backed flakes:
 
 Core edge flakes / *eclat débordant* ([Beyries and Boëda
 1983](#ref-beyries_etude_1983); [Boëda et al.
@@ -427,6 +431,8 @@ ggpubr::ggarrange(
 ```
 
 ![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+ 
+
 2D geometric morphometrics were done using screenshots ([Cignoni et al.
 2008](#ref-cignoni_meshlab_2008)) of the upper view of each flake
 orientated along the technological axis. One thin-plate spline (tps) was
@@ -446,7 +452,7 @@ A *nosymproc* ([Schlager 2017](#ref-schlager_morpho_2017)) object called
 **Coord.2D** is created, which contains the orientated coordinates, mean
 shape and results from PC analysis.
 
-The protocol for the digitalizing 3D landmarks on flakes is based on
+The protocol for digitalizing 3D landmarks on flakes is based on
 previous studies ([Archer et al. 2018](#ref-archer_geometric_2018),
 [2021](#ref-archer_quantifying_2021)). This included the positioning of
 a total of three fixed landmarks, 85 curve semi-landmarks, and 420
@@ -463,24 +469,28 @@ semi-landmarks). Sixty surface semi-landmarks correspond to the platform
 surface. The dorsal and ventral surfaces of the flakes are defined by
 180 semi-landmarks each. The workflow for digitalizing landmarks and
 semi-landmarks included the creation of a template/atlas on an arbitrary
-selected flake. After this, landmarks and semi-landmarks were positioned
-in each specimen and relaxed to minimize bending energy ([Bookstein
-1997a](#ref-bookstein_landmark_1997),
+selected flake (Figure 4: top). After this, landmarks and semi-landmarks
+were positioned in each specimen and relaxed to minimize bending energy
+([Bookstein 1997a](#ref-bookstein_landmark_1997),
 [1997b](#ref-bookstein_morphometric_1997)). A complete workflow of
 landmark and semi-landmark digitalization and relaxation to minimize
 bending energy was created in Viewbox Version 4.1.0.12
 (<http://www.dhal.com/viewbox.htm>), and the resulting point coordinates
-were exported into .xlsx files.
+were exported into .xlsx files.   ![Figure 3. Top: template/atlas for a
+randomly selected flake with the defined landmarks, curves, and
+surfaces. Bottom: landmark positioning after sliding to minimize bending
+energy on a pseudo-Levallois point. Fixed landmarks are indicated in
+red](Figures/Template%20and%20BE.png)  
 
 Procrustes superimposition ([Kendall 1984](#ref-kendall_shape_1984);
 [Mitteroecker and Gunz 2009](#ref-mitteroecker_advances_2009);
 [O’Higgins 2000](#ref-ohiggins_study_2000)) was performed using the
-Morpho v.2.9 package ([Schlager 2017](#ref-schlager_morpho_2017)) on
+Morpho v.2.11 package ([Schlager 2017](#ref-schlager_morpho_2017)) on
 RStudio IDE ([R. C. Team 2019](#ref-r_core_team_r_2019); [Rs. Team
-2019](#ref-rstudio_team_rstudio_2019)). After performing Procrustes
-superimposition and obtaining a new set of coordinates, principal
-component analysis (PCA) was performed to reduce the dimensionality of
-the data ([James et al. 2013](#ref-james_introduction_2013); [Pearson
+2019](#ref-rstudio_team_rstudio_2019)). Morpho package v.2.11 provides
+results from principal component analysis (PCA) allowing to reduce the
+dimensionality of the data ([James et al.
+2013](#ref-james_introduction_2013); [Pearson
 1901](#ref-pearson_lines_1901)). There are multiple reasons to use
 dimensionality reduction when dealing with high-dimension data on
 classification: to avoid having more predictors than observations (p \>
@@ -493,31 +503,44 @@ on an unsupervised manner. The principal components (PCs) of a PCA aim
 to capture as high a variance as possible for the complete data ([James
 et al. 2013](#ref-james_introduction_2013)), and PCs that capture the
 highest variance need not necessarily be the best for classification.
-For the present work, PCs that represent 95% of variance are selected as
-predictors for training the machine learning models. The threshold of
-95% of variance is arbitrarily selected because it balances retaining
-most of the dataset variance with a reduced number of variables. The
-identification of best PCs for classification is performed automatically
-by the machine learning models using the caret v.6.0.92 package ([M.
-Kuhn 2008](#ref-kuhn_building_2008)). Morpho package v.2.11 additionally
-provides visualization of shape change according to PC. A previous work
-on the same dataset ([Bustos-Pérez et al.
+
+Debate exists on how many PCs from geometric morphometrics should be
+selected for classificatory analysis ([Schlager
+2017](#ref-schlager_morpho_2017)). Including all PCs up to an arbitrary
+percentage of variance can result in non-meaningful (noise) PCs pulling
+the classificatory analysis. This can be considered as a type of
+overfitting since the classification is not being driven by meaningful
+morphological trends. An alternative is to select PCs capturing a
+minimum percentage of variance. However, stone tools are notorious for
+their wide morphological variability, and increasing sample size results
+in diminishing variance captured by each PC. Usually the first two to
+three PCs will reflect ratios of elongation and width to thickness,
+while other meaningful PCs for classification (such as the angle between
+the internal or external surface of a flake) might be concealed in lower
+ranking PCs.
+
+The problem of selecting a minimum variance is approached in two steps.
+A first round of models is trained using all PCs that represent up to
+95% of variance. The threshold of 95% of variance is arbitrarily
+selected because it balances retaining most of the dataset variance with
+a reduced number of variables. This provides the most meaningful PCs for
+classification according to the best model. The effect on morphology of
+these meaningful PC was visually evaluated. PCs explaining little
+variance and with little effect on shape change are excluded. Based on
+this evaluation, the second and final round of models were trained using
+PCs which captured more than 3% of variance.
+
+The identification of best PCs for classification is performed
+automatically by the machine learning models using the caret v.6.0.92
+package ([M. Kuhn 2008](#ref-kuhn_building_2008)). Morpho package v.2.11
+additionally provides visualization of shape change according to PC. A
+previous work on the same dataset ([Bustos-Pérez et al.
 2022](#ref-bustos-perez_combining_2022)) performed PCA using the package
 stats v.4.2.2 ([Venables and Ripley 2002](#ref-venables_modern_2002)).
 The present work uses the PCA integrated in the Morpho v.2.11 ([Schlager
 2017](#ref-schlager_morpho_2017)). As a result of this, variance
-captured by PC and their interpretation differs regarding previous
+captured by PCs and their interpretation differs regarding previous
 analysis.
-
-<figure>
-<img src="Figures/Template%20and%20BE.png"
-alt="Figure 3. Top: template/atlas for a randomly selected flake with the defined landmarks, curves, and surfaces. Bottom: landmark positioning after sliding to minimize bending energy on a pseudo-Levallois point. Fixed landmarks are indicated in red" />
-<figcaption aria-hidden="true">Figure 3. Top: template/atlas for a
-randomly selected flake with the defined landmarks, curves, and
-surfaces. Bottom: landmark positioning after sliding to minimize bending
-energy on a pseudo-Levallois point. Fixed landmarks are indicated in
-red</figcaption>
-</figure>
 
 #### 2.2.1 Performance of procrustes, PCA and model training
 
