@@ -213,20 +213,22 @@ Att <- read.csv("Data/Attributes data.csv")
 
 ### 2.1 Experimental assemblage
 
-The present study uses an experimental assemblage that was the result of
-nine knapping sequences. Seven cores were knapped on Bergerac flint
-([Fernandes et al. 2012](#ref-fernandes_silex_2012)) and two cores were
-knapped on Miocene flint from South of Madrid ([M. Á. Bustillo et al.
-2012](#ref-bustillo_caracterizacion_2012); [M. A. Bustillo and
-Pérez-Jiménez 2005](#ref-bustillo_caracteristicas_2005)). Five cores
-were knapped following the Discoid “sensu stricto” concept, which
-strongly corresponds to Boëda’s original technological definition of the
-knapping system ([Boëda 1993](#ref-boeda_debitage_1993),
-[1994](#ref-boeda_concept_1994), [1995](#ref-dibble_levallois:_1995)),
-and five experimental cores were knapped following the Levallois
-recurrent centripetal system ([Boëda 1993](#ref-boeda_debitage_1993),
-[1994](#ref-boeda_concept_1994), [1995](#ref-dibble_levallois:_1995);
-[Lenoir and Turq 1995](#ref-dibble_recurrent_1995)).
+The present study uses an experimental assemblage comprising eight
+knapping sequences. Seven cores were knapped on Bergerac flint
+([Fernandes et al. 2012](#ref-fernandes_silex_2012)) , and two cores
+were knapped on Miocene chert from south of Madrid ([M. Á. Bustillo et
+al. 2012](#ref-bustillo_caracterizacion_2012); [M. A. Bustillo and
+Pérez-Jiménez 2005](#ref-bustillo_caracteristicas_2005)).
+
+Three cores were knapped following the discoid *“sensu stricto”*
+concept, which strongly corresponds to Boëda’s original technological
+definition of the knapping system ([Boëda
+1993](#ref-boeda_debitage_1993), [1994](#ref-boeda_concept_1994),
+[1995](#ref-dibble_levallois:_1995)), and five experimental cores were
+knapped following the Levallois recurrent centripetal system ([Boëda
+1993](#ref-boeda_debitage_1993), [1994](#ref-boeda_concept_1994),
+[1995](#ref-dibble_levallois:_1995); [Lenoir and Turq
+1995](#ref-dibble_recurrent_1995)).
 
 Six technological characteristics define the Levallois concept ([Boëda
 1993](#ref-boeda_debitage_1993), [1994](#ref-boeda_concept_1994)): (1)
@@ -252,34 +254,31 @@ either unidirectional, bidirectional, or centripetal ([Boëda et al.
 2006](#ref-hovers_diversity_2006)).
 
 According to Boëda ([1993](#ref-boeda_debitage_1993),
-[1994](#ref-boeda_concept_1994), [1995](#ref-dibble_levallois:_1995)),
-there are six technological criteria that define the Discoid “sensu
-stricto” method: (1) the volume of the core is conceived as two oblique
-asymmetric convex surfaces delimited by an intersecting plane; (2) these
-two surfaces are not hierarchical, with it being possible to alternate
-between the roles of striking platforms and exploitation surfaces; (3)
-the peripheral convexity of the debitage surface is managed to control
-lateral and distal extractions, thus allowing for a degree of
-predetermination; (4) the surfaces of the striking platforms are
-oriented in such a way that the core edge is perpendicular to the
-predetermined products; (5) the fracture planes of the products are
-secant; (6) the technique employed is direct hard-hammer percussion.
+[1994](#ref-boeda_concept_1994),
+[1995](#ref-dibble_levallois:_1995)),there are six technological
+criteria that define the discoid “sensu stricto” method: (1) the volume
+of the core is conceived as two oblique asymmetric convex surfaces
+delimited by an intersecting plane; (2) these two surfaces are not
+hierarchical, being possible to alternate between the roles of striking
+platforms and exploitation surfaces; (3) the peripheral convexity of the
+debitage surface is managed to control lateral and distal extractions,
+thus allowing for a degree of predetermination; (4) the surfaces of the
+striking platforms are oriented in such a way that the core edge is
+perpendicular to the predetermined products; (5) the fracture planes of
+the products are secant; (6) the technique employed is direct
+hard-hammer percussion.
 
-A total of 139 unretouched backed flakes (independent of the type of
-termination) were obtained from the different experimental reduction
-sequences, 70 from discoidal reduction sequences and 69 from Levallois
-recurrent centripetal reduction sequences. The following criteria were
-followed for the classification of backed flakes:
+    A total of 139 unretouched backed flakes (independent of the type of termination) were obtained from the different experimental reduction sequences, 70 from discoidal reduction sequences and 69 from Levallois recurrent centripetal reduction sequences. The following criteria were monitored for the classification of backed flakes:    
 
 Core edge flakes / *eclat débordant* ([Beyries and Boëda
 1983](#ref-beyries_etude_1983); [Boëda et al.
 1990](#ref-boeda_identification_1990); [Boëda
 1993](#ref-boeda_debitage_1993)) have a cutting edge opposite and
 usually (although not always) parallel to an abrupt margin. This abrupt
-margin, or backed edge (dos), commonly results from the removal of a
+margin, or backed edge (*dos*), commonly results from the removal of a
 portion of the periphery of the core and can be plain, bear the scars
 from previous removals, be cortical, or present a mix of the three.
-Classic “core edge flakes” ([Boëda et al.
+Classic “core-edge flakes” ([Boëda et al.
 1990](#ref-boeda_identification_1990); [Boëda
 1993](#ref-boeda_debitage_1993)), which are sometimes referred as “core
 edge flakes with non-limited back” / *“éclat débordant à dos non
@@ -288,37 +287,38 @@ limité”* ([Duran 2005](#ref-duran_lindustrie_2005); [Duran and Soler
 follows the axis of percussion, although it may deviate slightly
 ([Beyries and Boëda 1983](#ref-beyries_etude_1983)).  
 “Core edge flakes with a limited back” / *“éclat débordant à dos
-limité”* share with core edge flakes the morphological feature of having
+limité”* share with core-edge flakes the morphological feature of having
 a cutting edge opposite a back. However, the main difference resides in
-their having a morphological axis clearly offset in respect to the axis
-of percussion ([Liliane Meignen 1993](#ref-meignen_les_1993); [Lilliane
-Meignen 1996](#ref-meignen_persistance_1996); [Pasty et al.
+a morphological axis clearly offset in respect to the axis of percussion
+([Liliane Meignen 1993](#ref-meignen_les_1993); [Lilliane Meignen
+1996](#ref-meignen_persistance_1996); [Pasty et al.
 2004](#ref-pasty_etude_2004)). Because of this deviation from the axis
-of percussion, the backed edge is usually not completely parallel and
-does not span the entire length of the sharp edge.  
+of percussion, the backed edge is usually not completely parallel, nor
+does it span the entire length of the sharp edge.  
 Pseudo-Levallois points ([Boëda et al.
 1990](#ref-boeda_identification_1990); [Boëda
 1993](#ref-boeda_debitage_1993); [Bordes
 1953](#ref-bordes_notules_1953), [1961](#ref-bordes_typologie_1961);
 [Slimak 2003](#ref-peresani_les_2003)) are backed products in which the
-edge opposite the back has a triangular morphology. This triangular
-morphology is usually the result of the convergence of two or more
-removals. As with core edge flakes, the back usually results from the
+edge opposite to the back has a convergent morphology. This morphology
+is usually the result of the convergence of two or more previous
+removals. As with core-edge flakes, the back usually results from the
 removal of one of the lateral edges of the core and can be plain, retain
 the scars from previous removals, or more rarely be cortical.
 Pseudo-Levallois points share with core edge flakes with a limited back
 the deviation of symmetry from the axis of percussion, but they are
 clearly differentiable due to their triangular off-axis morphology.
 
-The following table presents the distribution of backed flakes types,
+The following table presents the distribution of backed flake types,
 following the previously established definitions. Due to the centripetal
-nature of the knapping methods employed to generate the experimental
-assemblage, most of the backed flakes fall within the definition of core
-edge flakes with a limited back (66.91%). Cortex distribution according
-to backed flake category shows that slightly (~25%) or non-cortical
-products dominate among the three categories, adding up to more than 65%
-in the three cases (90% core edge flakes, 68.82% core edge flakes with a
-limited back, and 87.5% pseudo-Levallois points).
+character of the knapping methods employed to generate the experimental
+assemblage, most of the backed flakes fall within the definition of
+core-edge flakes with a limited back (66.91%). Cortex distribution
+according to backed flake category shows that slightly (~25%) or
+non-cortical products dominate among the three categories, adding up to
+more than 65% in the three groups (90% core-edge flakes, 68.82%
+core-edge flakes with a limited back, and 87.5% pseudo-Levallois
+points).
 
 ``` r
 Att %>% group_by(Strategy, ARTIFACTTYPE) %>% 
@@ -383,27 +383,8 @@ additional cleaning, mesh sampling, surface reconstruction and
 transformation into PLY files. Finally, all files were decimated to a
 quality of 50,000 faces using the Rvcg R package ([Schlager
 2017](#ref-schlager_morpho_2017)). The present work compares the use of
-2D and 3D geometric morphometrics.
-
-Performance of 2D geometric morphometrics was done using screenshots of
-the upper view of each flake orientated along the technological axis and
-using free software MeshLab ([Cignoni et al.
-2008](#ref-cignoni_meshlab_2008)). One thin-plate spline (tps) was
-generated using tpsUtil v.1.82, and the tpsDig v.2.32 ([Rohlf
-2015](#ref-rohlf_tps_2015)) outline tool was employed to automatically
-trace the perimeter of each flake. Each outline was resampled to 100
-equidistant landmarks (Figure 3) using Morpho v.2.11 ([Schlager
-2017](#ref-schlager_morpho_2017)).
-
-The following code sources the [21 Muggle 2D
-data](Scripts/21%20Muggle%202D%20data.R) code. This code has been
-written to import the [2D-Upper-view.tps](Data/2D-Upper-view.tps) file.
-The file contains a landmark per pixel that defines the perimeter of the
-flake. After reading the file, the perimeter of each specimen is
-resampled to have 100 landmarks, and procrustes alignment is performed.
-A *nosymproc* ([Schlager 2017](#ref-schlager_morpho_2017)) object called
-**Coord.2D** is created, which contains the orientated coordinates, mean
-shape and results from PC analysis.
+2D and 3D geometric morphometrics to test the limits of their
+application.
 
 ``` r
 source("Scripts/21 Muggle 2D data.R")
@@ -446,6 +427,24 @@ ggpubr::ggarrange(
 ```
 
 ![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+2D geometric morphometrics were done using screenshots ([Cignoni et al.
+2008](#ref-cignoni_meshlab_2008)) of the upper view of each flake
+orientated along the technological axis. One thin-plate spline (tps) was
+generated using tpsUtil v.1.82, and the tpsDig v.2.32 ([Rohlf
+2015](#ref-rohlf_tps_2015)) outline tool was employed to automatically
+trace the perimeter of each flake. Each outline was resampled to 100
+equidistant landmarks (Figure 3) using Morpho v.2.11 ([Schlager
+2017](#ref-schlager_morpho_2017)).
+
+The following code sources the [21 Muggle 2D
+data](Scripts/21%20Muggle%202D%20data.R) code. This code has been
+written to import the [2D-Upper-view.tps](Data/2D-Upper-view.tps) file.
+The file contains a landmark per pixel that defines the perimeter of the
+flake. After reading the file, the perimeter of each specimen is
+resampled to have 100 landmarks, and procrustes alignment is performed.
+A *nosymproc* ([Schlager 2017](#ref-schlager_morpho_2017)) object called
+**Coord.2D** is created, which contains the orientated coordinates, mean
+shape and results from PC analysis.
 
 The protocol for the digitalizing 3D landmarks on flakes is based on
 previous studies ([Archer et al. 2018](#ref-archer_geometric_2018),
