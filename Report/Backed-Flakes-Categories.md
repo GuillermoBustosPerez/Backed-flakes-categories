@@ -782,6 +782,33 @@ their respective 30 cycles of random up- and down-sampling. These
 results are sorted according to the use of all variables up to 95% of
 variance, or only variables capturing more than 3% of variance.
 
+Regarding the number of variables employed, important differences can be
+observed. Models trained on 3D data presented a more general decrease on
+accuracy than models trained on 2D data. For both types of data (2D and
+3D), tree-based machine learning models (C5.0 Tree, random forest and
+GBM) were the least affected when a limited number of variables was
+used. Contrary to this, the precision of the SVM models is strongly
+affected when a reduced number of variables is employed. SVM’s using
+linear and polynomial kernels presented lower accuracy values when the
+number of variables is reduced. This is especially noteworthy in the
+case of the 3D data, since when variables summing 95% of variance are
+employed the SVM with polynomial kernel presents the highest accuracy
+values. However, when the number of variables is limited, the random
+forest presents the highest precision values. In general, models trained
+on 3D data presented higher overall precision metrics (independently of
+the number of variables employed for training the machine learning
+models).
+
+In the case of the 2D data with a limited number of variables, the
+random forest model had the highest average value for general accuracy
+(0.785), closely followed by the decision tree (0.771) and the GBM
+(0.771). The LDA had the lowest average value for accuracy (0.496),
+followed by the SVM with linear kernel (0.497). For the 3D data with
+limited number of variables, again the random forest presented the
+highest average value for general accuracy (0.828), followed by the GBM
+model (0.783). The LDA model had the lowest average value for accuracy
+(0.658), followed by logistic regression model (0.681).
+
 ``` r
 #### Load and muggle 2d data ####
 load("Data/2D Results Up and Down sampling.RData")
@@ -905,66 +932,6 @@ lowest average value for accuracy (0.676), followed by LDA model
 0.807, indicating a high accuracy, even when up- and down-sampling
 result in different objects.
 
-``` r
-load("Data/2D Results Up and Down sampling.RData")
-load("Data/3D Results Up and Down sampling.RData")
-
-ggpubr::ggarrange(
-  (
-    Models.2D %>% 
-      ggplot(aes(Model, Accuracy, fill = Model)) +
-      geom_violin(position = position_dodge(1), width = 0.4, alpha = 0.5) +
-      geom_boxplot(width = 0.4,
-                   outlier.shape = NA, alpha = 0.5) +
-      geom_jitter(width = 0.15, alpha = 0.9, size = 0.9, shape = 23, aes(fill = Model)) +
-      scale_y_continuous(breaks = seq(0.4, 1, 0.2), lim = c(0.4, 1)) +
-      theme_light() +
-      ylab("Accuracy after each cycle of up and down sampling") +
-      ggsci::scale_fill_aaas() +
-      ggtitle(label = "2D data") +
-      scale_x_discrete(labels = c(
-        "LDA", "KNN", "Log. Reg.",
-        "C5.0\nTree", "Random\nForest", "GBM",
-        "SVM\nLinear", "SVM\nRadial",
-        "SVM\nPoly",
-        "Naïve\nBayes")) +
-      xlab(NULL) +
-      theme(
-        legend.position = "none",
-        axis.text = element_text(color = "black", size = 8),
-        axis.title = element_text(color = "black", size = 8.5),
-        plot.title = element_text(hjust = 0, vjust = 1, size = 9))
-  ),
-  (
-    Models.3D %>% 
-      ggplot(aes(Model, Accuracy, fill = Model)) +
-      geom_violin(position = position_dodge(1), width = 0.4, alpha = 0.5) +
-      geom_boxplot(width = 0.4,
-                   outlier.shape = NA, alpha = 0.5) +
-      geom_jitter(width = 0.15, alpha = 0.9, size = 0.9, shape = 23, aes(fill = Model)) +
-      scale_y_continuous(breaks = seq(0.4, 1, 0.2), lim = c(0.4, 1)) +
-      theme_light() +
-      ylab("Accuracy after each cycle of up and down sampling") +
-      ggtitle(label = "3D data") +
-      ggsci::scale_fill_aaas() +
-      scale_x_discrete(labels = c(
-        "LDA", "KNN", "Log. Reg.",
-        "C5.0\nTree", "Random\nForest", "GBM",
-        "SVM\nLinear", "SVM\nRadial",
-        "SVM\nPoly",
-        "Naïve\nBayes")) +
-      xlab(NULL) +
-      theme(
-        legend.position = "none",
-        axis.text = element_text(color = "black", size = 8),
-        axis.title = element_text(color = "black", size = 8.5),
-        plot.title = element_text(hjust = 0, vjust = 1, size = 9))
-        ),
-  nrow = 2)
-```
-
-![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
-
 The following tables present performance metrics of the random forest
 model (on 2D data) and SVM with a polynomial kernel (on 3D data) for the
 classification of the three products. The prevalence/no information
@@ -1073,7 +1040,7 @@ ggpubr::ggarrange(
   ncol = 2)
 ```
 
-![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 PC2 (29.38% of variance) is considered the most important variable for
 discrimination when using the 2D data, followed by PC1 (39.33% of
@@ -1227,7 +1194,7 @@ ggpubr::ggarrange(
   ncol = 2)
 ```
 
-![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
 The above interpretation of the PCs, biplot visualization, and
 descriptive statistics of PC values allow us to evaluate the
@@ -1331,7 +1298,7 @@ ggpubr::ggarrange(
                           fig.lab.size = 12, fig.lab.face = "bold")
 ```
 
-![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 For the 3D data pseudo-Levallois points were characterized by having
 high values of PC1 (mean = 0.031; SD = 0.055), low values of PC3 (mean =
@@ -1422,7 +1389,7 @@ ggpubr::ggarrange(
                           fig.lab.size = 12, fig.lab.face = "bold")
 ```
 
-![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 ``` r
 ### Group PCA ####
@@ -1511,7 +1478,7 @@ ggpubr::ggarrange(
 )
 ```
 
-![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 ``` r
 #### Violin and boxplots of PC values ####
@@ -1587,7 +1554,7 @@ ggpubr::ggarrange(
     ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
     ## generated.
 
-![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 ## 4. Discussion
 
