@@ -566,15 +566,15 @@ source("Scripts/22 Muggle 3D data.R")
 Different machine learning models treat the provided data differently.
 As a result, different models have different strengths and weaknesses.
 No universal model exists for all problems. Thus, testing several models
-is an important step in machine learning. It allows to compare the
-performance of different models, identify the best model for the given
-task, it provides a general overview of the difficulty or ease of the
-problem, and it can serve as indication of possible underlying problems
-with the data (such as overfitting, or unbalanced datasets). Machine
-learning is a quickly developing field were a high number of models
-exists. The present work tests ten machine learning models for the
-classification of flake categories. These models cover some of the most
-commonly employed algorithms ([Jamal et al.
+is an important step in machine learning. It allows the performance of
+different models to be compared, the best model to be identified for a
+given task, and provides a general overview of the difficulty or ease of
+the problem. It can also serve as indication of possible underlying
+problems with the data (e.g. overfitting or unbalanced datasets).
+Machine learning is a quickly developing field where a high number of
+available models exist. The present work tests ten machine learning
+models for the classification of flake categories. These models cover
+some of the most commonly employed algorithms ([Jamal et al.
 2018](#ref-jamal_machine_2018)) and provide an extensive analysis for
 the classification of backed flake categories.
 
@@ -615,7 +615,7 @@ the classification of backed flake categories.
   subsequent trees on a resampled dataset were the weight of
   observations difficult to classify is increased based in a gradient
   ([Greenwell et al. 2019](#ref-greenwell_package_2019); [Ridgeway
-  2007](#ref-ridgeway_generalized_2007)) The subsequent trained trees
+  2007](#ref-ridgeway_generalized_2007)). The subsequent trained trees
   complement decisions and allow for the detection of learning
   deficiencies and increase model accuracy ([Friedman
   2001](#ref-friedman_greedy_2001),
@@ -625,40 +625,45 @@ the classification of backed flake categories.
   partitions. The fitting of the hyperplanes is done in order to obtain
   the maximum margin of separation between classes. The maximum margin
   of separation is reached by minimizing the cost (value applied for
-  each incorrect classification). SVM’s can use different kernels in
-  order to transform data into linearly separable cases. The kernel
-  selected for the transformations needs to be specified and plays a key
-  role in the training of a SVM model ([Cortes and Vapnik
+  each incorrect classification). SVM’s can use different kernels to
+  transform data into linearly separable cases. The kernel selected for
+  the transformations needs to be specified and plays a key role in the
+  training of a SVM model ([Cortes and Vapnik
   1995](#ref-cortes_support-vector_1995); [Frey and Slate
   1991](#ref-frey_letter_1991)). The present study tests SVM’s with
-  linear, radial, and polynomial kernels.
+  linear, radial, and polynomial kernels.  
 - **Naïve Bayes:** computes class probabilities using Bayes’s rule
   ([Weihs et al. 2005](#ref-weihs_klar_2005)).
 
-As mentioned above, 66.91% of flakes fall into the definition of core
-edge flakes with a limited back, resulting in an unbalanced dataset. To
-counter the unbalanced nature of the experimental dataset, up-sampling
-was undertaken for the two minority classes, and down-sampling was
-undertaken for the majority class. Up-sampling categories in a dataset
-can be considered inappropriate for training machine learning models
-because it increases the overfit (samples used in the test set to
-evaluate the model are likely to have already been used in the training
-set). However, here, the up-sampling of the two minority groups
-increases the discreteness of these groups but does not affect the
-potential overlap with the majority class (core edge flakes with limited
-backs). On the other hand, down-sampling results in missing information
-because some of the data are removed.
+As mentioned above, 66.91% of flakes fall into the definition of
+core-edge flakes with a limited back, resulting in an unbalanced
+dataset. To counter the unbalanced nature of the experimental dataset,
+up-sampling was undertaken for the two minority classes, and
+down-sampling was undertaken for the majority class. Up-sampling
+categories in a dataset can be considered inappropriate for training
+machine learning models ([Calder et al. 2022](#ref-calder_use_2022);
+[McPherron et al. 2022](#ref-mcpherron_machine_2022)) because it
+increases the overfit (samples used in the test set to evaluate the
+model are likely to have already been used in the training set).
+However, here, the up-sampling of the two minority groups increases the
+discreteness of these groups but does not affect the potential overlap
+with the majority class (core-edge flakes with limited backs). On the
+other hand, down-sampling results in missing information because some of
+the data are removed.
 
 Random up- and down-sampling is conducted to obtain a balanced dataset
-and train the models. Because model performance metrics depend on random
+and train the models. After each random sampling, each model is
+evaluated using a k-fold cross validation using 10 folds and 50 cycles.
+Each fold consisted of 7 flakes, with the exception of the last fold,
+which had 6 flakes. Because model performance metrics depend on random
 up- and down-sampling, this process is repeated 30 times, extracting
-model performance metrics each time and averaging the values. The model
+model performance metrics each time, and averaging the values. The model
 with the best performance metrics is then trained again with thirty
 cycles of up- and down-sampling. The reported variable importance and
 confusion matrix from which model metric performance are extracted are
 obtained from these additional cycles of down- and up-sampling.
 
-3D meshes and data from landmark positioning and Procrustes alignment
+3D meshes and data from landmark positioning and procrustes alignment
 are already publicly available through the repository of a previous
 publication using the same experimental collection ([Bustos-Pérez et al.
 2022](#ref-bustos-perez_combining_2022);
@@ -685,9 +690,20 @@ Each loop works in the following steps:
     `All_Results` tibble.  
 4.  Steps 1 to 3 are repeated 30 times per model.
 
+An objective of the present research is to compare the effects on
+machine learning models of using all PCs up to 95% of variance or only
+PCs with a variance above 3%. The following lines of code source the R
+files which train the machine learning models using either all PCs up to
+95% of variance or only PCs capturing 3% or more of the variance.
+
 ``` r
-source("Report/Scripts/31 Models on 2D data.R")
-source("Report/Scripts/31 Models on 3D data.R")
+# Models with Pcs up to 95% of variance
+source("Report/Scripts/31 Models on 2D data 95 varaince.R")
+source("Report/Scripts/32 Models on 3D data 95 varaince.R")
+
+# Models on PCs capturing only more than 3% of variance
+source("Report/Scripts/33 Models 2D data limited variables.R")
+source("Report/Scripts/34 Models 3D data limited variance.R")
 ```
 
 Models trained are exported to their respective [2D Results Up and Down
@@ -761,9 +777,11 @@ ggpubr::ggarrange(
 
 ![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
-The following figure presents the accuracy values for each model after
-their respective 30 cycles of random up- and down-sampling. On general,
-models trained on 3D data presented higher overall precision metrics.  
+presents the accuracy values for each model after their respective 30
+cycles of random up- and down-sampling. These results are sorted
+according to the use of all variables up to 95% of variance, or only
+variables capturing more than 3% of variance.
+
 In the case of the 2D data, the random forest model had the highest
 average value for general accuracy (0.779), closely followed by the
 decision tree (0.767) and the GBM (0.765). The LDA had the lowest
@@ -1962,6 +1980,15 @@ Combining quantitative approaches to differentiate between backed
 products from discoidal and Levallois reduction sequences. *Journal of
 Archaeological Science: Reports*, *46*, 103723.
 <https://doi.org/10.1016/j.jasrep.2022.103723>
+
+</div>
+
+<div id="ref-calder_use_2022" class="csl-entry">
+
+Calder, J., Coil, R., Melton, J. A., Olver, P. J., Tostevin, G., &
+Yezzi-Woodley, K. (2022). Use and misuse of machine learning in
+anthropology. *IEEE BITS the Information Theory Magazine*, *2*(1),
+102–115.
 
 </div>
 

@@ -226,9 +226,16 @@ Each loop works in the following steps:
   3. Results from the trained model are extracted and binned to the `All_Results` tibble.       
   4. Steps 1 to 3 are repeated 30 times per model.   
 
+An objective of the present research is to compare the effects on machine learning models of using all PCs up to 95% of variance or only PCs with a variance above 3%. The following lines of code source the R files which train the machine learning models using either all PCs up to 95% of variance or only PCs capturing 3% or more of the variance.   
+
 ```{r eval=FALSE}
-source("Report/Scripts/31 Models on 2D data.R")
-source("Report/Scripts/31 Models on 3D data.R")
+# Models with Pcs up to 95% of variance
+source("Report/Scripts/31 Models on 2D data 95 varaince.R")
+source("Report/Scripts/32 Models on 3D data 95 varaince.R")
+
+# Models on PCs capturing only more than 3% of variance
+source("Report/Scripts/33 Models 2D data limited variables.R")
+source("Report/Scripts/34 Models 3D data limited variance.R")
 ```
 
 Models trained are exported to their respective [2D Results Up and Down sampling](Report/Data/2D Results Up and Down sampling.RData) and [3D Results Up and Down sampling](Report/Data/3D Results Up and Down sampling.RData) files.   
@@ -291,97 +298,10 @@ ggpubr::ggarrange(
   ncol = 2)
 ```
 
+
+
+
 presents the accuracy values for each model after their respective 30 cycles of random up- and down-sampling. These results are sorted according to the use of all variables up to 95% of variance, or only variables capturing more than 3% of variance.  
-
-```{r}
-All_Results.2D <- All_Results.2D %>% mutate(
-  Variables = factor(Variables,
-                     levels = c("95% PCs", "> 3% PCs")))
-
-#### Load and muggle 3D data #### 
-load("Data/Results Up and Down sampling 3D data.RData")
-All_Results.3D <- All_Results
-
-load("Data/Results 3D Data Limited variables.RData")
-All_Results3D.LV <- All_Results
-All_Results.3D <- rbind(All_Results.3D, All_Results3D.LV)
-rm(All_Results, All_Results3D.LV)
-
-All_Results.3D$Variables <- "95% PCs"
-All_Results.3D$Variables[301:600] <- "> 3% PCs"
-
-All_Results.3D$Model <- factor(All_Results.3D$Model,
-                               levels = c(
-                                 "LDA", "KNN", "Log. Reg.",
-                                 "C5.0 Tree", "Random Forest", "GBM",
-                                 "SVM Linear", "SVM Radial",
-                                 "SVM Poly",
-                                 "Naïve Bayes"
-                               ))
-
-All_Results.3D <- All_Results.3D %>% mutate(
-  Variables = factor(Variables,
-                     levels = c("95% PCs", "> 3% PCs")))
-
-#### Plot the graphs ####
-ggpubr::ggarrange(
-  (
-    All_Results.2D %>% 
-      ggplot(aes(Model, Accuracy, fill = Variables)) +
-      geom_violin(width = 0.4, alpha = 0.5) +
-      geom_boxplot(width = 0.4,
-                   outlier.shape = NA, alpha = 0.5) +
-      
-      theme_light() +
-      ylab("Accuracy after each cycle of up and down sampling") +
-      ggsci::scale_fill_aaas() +
-      ggtitle(label = "2D data") +
-      scale_x_discrete(labels = c(
-        "LDA", "KNN", "Log. Reg.",
-        "C5.0\nTree", "Random\nForest", "GBM",
-        "SVM\nLinear", "SVM\nRadial",
-        "SVM\nPoly",
-        "Naïve\nBayes")) +
-      scale_y_continuous(breaks = seq(0.4, 1, 0.1), limits = c(0.3, 1)) +
-      xlab(NULL) +
-      theme(
-        legend.position = "bottom",
-        axis.text = element_text(color = "black", size = 8),
-        axis.title = element_text(color = "black", size = 8.5),
-        plot.title = element_text(hjust = 0, vjust = 1, size = 9))
-          ),
-  
-  (
-    All_Results.3D %>% 
-      ggplot(aes(Model, Accuracy, fill = Variables)) +
-      geom_violin(width = 0.4, alpha = 0.5) +
-      geom_boxplot(width = 0.4,
-                   outlier.shape = NA, alpha = 0.5) +
-      ggtitle(label = "3D data") +
-      theme_light() +
-      ylab("Accuracy after each cycle of up and down sampling") +
-      ggsci::scale_fill_aaas() +
-      scale_x_discrete(labels = c(
-        "LDA", "KNN", "Log. Reg.",
-        "C5.0\nTree", "Random\nForest", "GBM",
-        "SVM\nLinear", "SVM\nRadial",
-        "SVM\nPoly",
-        "Naïve\nBayes")) +
-      scale_y_continuous(breaks = seq(0.4, 1, 0.1), limits = c(0.3, 1)) +
-      xlab(NULL) +
-      theme(
-        legend.position = "bottom",
-        axis.text = element_text(color = "black", size = 8),
-        axis.title = element_text(color = "black", size = 8.5),
-        plot.title = element_text(hjust = 0, vjust = 1, size = 9))
-    ),
-  nrow = 2,
-  common.legend = TRUE,
-  legend = "bottom")
-
-```
-
-
 
 
 
