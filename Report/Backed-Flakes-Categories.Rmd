@@ -298,11 +298,11 @@ ggpubr::ggarrange(
   ncol = 2)
 ```
    
-The following figure presents the accuracy values for each model after their respective 30 cycles of random up- and down-sampling. These results are sorted according to the use of all variables up to 95% of variance, or only variables capturing more than 3% of variance.  
+The following figure presents the accuracy values for each model after their respective 30 cycles of random up- and down-sampling. These results are sorted according to the use of all variables up to 95% of variance, or only variables capturing more than 3% of variance.   
 
 Regarding the number of variables employed, important differences can be observed. Models trained on 3D data presented a more general decrease on accuracy than models trained on 2D data. For both types of data (2D and 3D), tree-based machine learning models (C5.0 Tree, random forest and GBM) were the least affected when a limited number of variables was used. Contrary to this, the precision of the SVM models is strongly affected when a reduced number of variables is employed. SVM’s using linear and polynomial kernels presented lower accuracy values when the number of variables is reduced. This is especially noteworthy in the case of the 3D data, since when variables summing 95% of variance are employed the SVM with polynomial kernel presents the highest accuracy values. However, when the number of variables is limited, the random forest presents the highest precision values. In general, models trained on 3D data presented higher overall precision metrics (independently of the number of variables employed for training the machine learning models).    
 
-In the case of the 2D data with a limited number of variables, the random forest model had the highest average value for general accuracy (0.785), closely followed by the decision tree (0.771) and the GBM (0.771). The LDA had the lowest average value for accuracy (0.496), followed by the SVM with linear kernel (0.497). 
+In the case of the 2D data with a limited number of variables, the random forest model had the highest average value for general accuracy (0.785), closely followed by the decision tree (0.771) and the GBM (0.771). The LDA had the lowest average value for accuracy (0.496), followed by the SVM with linear kernel (0.497).   
 For the 3D data with limited number of variables, again the random forest presented the highest average value for general accuracy (0.828), followed by the GBM model (0.783). The LDA model had the lowest average value for accuracy (0.658), followed by logistic regression model (0.681).   
 
 ```{r ML-Precision-nPCs}
@@ -413,37 +413,17 @@ ggpubr::ggarrange(
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-In the case of the 2D data, the random forest model had the highest average value for general accuracy (0.779), closely followed by the decision tree (0.767) and the GBM (0.765). The LDA had the lowest average value for accuracy (0.511), followed by the logistic regression (0.522).    
-
-
-For the 3D data, supported vector machines with a polynomial kernel had the highest average value for general accuracy (0.844), closely followed by the random forest model (0.840). The K-nearest neighbor model had the lowest average value for accuracy (0.676), followed by LDA model (0.694). The minimum accuracy value of SVM with a polynomial kernel is 0.807, indicating a high accuracy, even when up- and down-sampling result in different objects.   
-
-The following tables present performance metrics of the random forest model (on 2D data) and SVM with a polynomial kernel (on 3D data) for the classification of the three products. The prevalence/no information ratio was kept constant at 0.33 for all three categories as a result of random up- and down-sampling to obtain balanced datasets. General performance metrics values (F1 and balance accuracy) of pseudo-Levallois points and core edge flakes were similar for models trained on the 2D and 3D data. General performance metrics for the identification of core edge flakes with a limited back did increase when 3D data was employed instead of 2D data. 
+The following tables present performance metrics of the random forest model on 2D data and on 3D data for the classification of the three products. The prevalence/no information ratio was kept constant at 0.33 for all three categories as a result of random up- and down-sampling to obtain balanced datasets. General performance metrics values (F1 and balance accuracy) of pseudo-Levallois points were similar for models trained on the 2D and 3D data. General performance metrics for the identification of core edge flakes and core edge flakes with a limited back did increase when 3D data was employed instead of 2D data.   
 
 ```{r}
-load("Data/Best model 2D varimp and cm.RData")
-load("Data/Best model 3D varimp and cm.RData")
+load("Data/Results 2D Data Limited variables Best Model.RData")
+load("Data/Results 3D Data Limited variables Best Model.RData")
 
 # Performance metrics of RF on 2D data
-confusionMatrix(RF.Predictions$pred, RF.Predictions$obs)[[4]]
+confusionMatrix(RF.Predictions.LM$pred, RF.Predictions.LM$obs)[[4]]
 
 # Performance metrics of SVMP on 3D data
-confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)[[4]]
+confusionMatrix(RF.Predictions.LP$pred, RF.Predictions.LP$obs)[[4]]
 ```
 
 ### 3.2 Feature importance    
@@ -451,6 +431,8 @@ confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)[[4]]
 The following figure presents average variable importance for the three products after 30 cycles of up- and down-sampling and k-fold cross-validation. The random forest trained on 2D data consider four sets of principal components important in terms of classification. The SVM with polynomial kernel trained on 3D data considers five sets of principal components in terms of classification.       
 
 ```{r}
+load("Data/Best model 2D varimp and cm.RData")
+load("Data/Best model 3D varimp and cm.RData")
 # Variable importance 
 SVMP.varImport$Mean.Imp <- rowMeans(SVMP.varImport[,2:4])
 

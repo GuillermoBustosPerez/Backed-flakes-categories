@@ -803,11 +803,12 @@ In the case of the 2D data with a limited number of variables, the
 random forest model had the highest average value for general accuracy
 (0.785), closely followed by the decision tree (0.771) and the GBM
 (0.771). The LDA had the lowest average value for accuracy (0.496),
-followed by the SVM with linear kernel (0.497). For the 3D data with
-limited number of variables, again the random forest presented the
-highest average value for general accuracy (0.828), followed by the GBM
-model (0.783). The LDA model had the lowest average value for accuracy
-(0.658), followed by logistic regression model (0.681).
+followed by the SVM with linear kernel (0.497).  
+For the 3D data with limited number of variables, again the random
+forest presented the highest average value for general accuracy (0.828),
+followed by the GBM model (0.783). The LDA model had the lowest average
+value for accuracy (0.658), followed by logistic regression model
+(0.681).
 
 ``` r
 #### Load and muggle 2d data ####
@@ -918,69 +919,54 @@ ggpubr::ggarrange(
 
 ![](Backed-Flakes-Categories_files/figure-gfm/ML-Precision-nPCs-1.png)<!-- -->
 
-In the case of the 2D data, the random forest model had the highest
-average value for general accuracy (0.779), closely followed by the
-decision tree (0.767) and the GBM (0.765). The LDA had the lowest
-average value for accuracy (0.511), followed by the logistic regression
-(0.522).
-
-For the 3D data, supported vector machines with a polynomial kernel had
-the highest average value for general accuracy (0.844), closely followed
-by the random forest model (0.840). The K-nearest neighbor model had the
-lowest average value for accuracy (0.676), followed by LDA model
-(0.694). The minimum accuracy value of SVM with a polynomial kernel is
-0.807, indicating a high accuracy, even when up- and down-sampling
-result in different objects.
-
 The following tables present performance metrics of the random forest
-model (on 2D data) and SVM with a polynomial kernel (on 3D data) for the
-classification of the three products. The prevalence/no information
-ratio was kept constant at 0.33 for all three categories as a result of
-random up- and down-sampling to obtain balanced datasets. General
-performance metrics values (F1 and balance accuracy) of pseudo-Levallois
-points and core edge flakes were similar for models trained on the 2D
-and 3D data. General performance metrics for the identification of core
-edge flakes with a limited back did increase when 3D data was employed
-instead of 2D data.
+model on 2D data and on 3D data for the classification of the three
+products. The prevalence/no information ratio was kept constant at 0.33
+for all three categories as a result of random up- and down-sampling to
+obtain balanced datasets. General performance metrics values (F1 and
+balance accuracy) of pseudo-Levallois points were similar for models
+trained on the 2D and 3D data. General performance metrics for the
+identification of core edge flakes and core edge flakes with a limited
+back did increase when 3D data was employed instead of 2D data.
 
 ``` r
-load("Data/Best model 2D varimp and cm.RData")
-load("Data/Best model 3D varimp and cm.RData")
+load("Data/Results 2D Data Limited variables Best Model.RData")
+load("Data/Results 3D Data Limited variables Best Model.RData")
 
 # Performance metrics of RF on 2D data
-confusionMatrix(RF.Predictions$pred, RF.Predictions$obs)[[4]]
+confusionMatrix(RF.Predictions.LM$pred, RF.Predictions.LM$obs)[[4]]
 ```
 
     ##             Sensitivity Specificity Pos Pred Value Neg Pred Value Precision
-    ## Class: ED     0.7615797   0.8604710      0.7318395      0.8783174 0.7318395
-    ## Class: EDlb   0.6516957   0.8872101      0.7428633      0.8359164 0.7428633
-    ## Class: p_Lp   0.9388986   0.9284058      0.8676738      0.9681417 0.8676738
+    ## Class: ED     0.7599130   0.8470942      0.7130482      0.8758776 0.7130482
+    ## Class: EDlb   0.6071739   0.8978116      0.7481651      0.8205003 0.7481651
+    ## Class: p_Lp   0.9497826   0.9135290      0.8459622      0.9732499 0.8459622
     ##                Recall        F1 Prevalence Detection Rate Detection Prevalence
-    ## Class: ED   0.7615797 0.7464135  0.3333333      0.2538599            0.3468792
-    ## Class: EDlb 0.6516957 0.6942995  0.3333333      0.2172319            0.2924251
-    ## Class: p_Lp 0.9388986 0.9018822  0.3333333      0.3129662            0.3606957
+    ## Class: ED   0.7599130 0.7357351  0.3333333      0.2533043            0.3552415
+    ## Class: EDlb 0.6071739 0.6703361  0.3333333      0.2023913            0.2705169
+    ## Class: p_Lp 0.9497826 0.8948712  0.3333333      0.3165942            0.3742415
     ##             Balanced Accuracy
-    ## Class: ED           0.8110254
-    ## Class: EDlb         0.7694529
-    ## Class: p_Lp         0.9336522
+    ## Class: ED           0.8035036
+    ## Class: EDlb         0.7524928
+    ## Class: p_Lp         0.9316558
 
 ``` r
 # Performance metrics of SVMP on 3D data
-confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)[[4]]
+confusionMatrix(RF.Predictions.LP$pred, RF.Predictions.LP$obs)[[4]]
 ```
 
     ##             Sensitivity Specificity Pos Pred Value Neg Pred Value Precision
-    ## Class: ED     0.8185797   0.9178478      0.8328345      0.9100596 0.8328345
-    ## Class: EDlb   0.7710580   0.8844130      0.7693409      0.8854011 0.7693409
-    ## Class: p_Lp   0.9433188   0.9642174      0.9294843      0.9714469 0.9294843
+    ## Class: ED     0.8492754   0.8881739      0.7915496      0.9217857 0.7915496
+    ## Class: EDlb   0.6623333   0.9093551      0.7851057      0.8434102 0.7851057
+    ## Class: p_Lp   0.9358986   0.9262246      0.8638139      0.9665537 0.8638139
     ##                Recall        F1 Prevalence Detection Rate Detection Prevalence
-    ## Class: ED   0.8185797 0.8256456  0.3333333      0.2728599            0.3276280
-    ## Class: EDlb 0.7710580 0.7701985  0.3333333      0.2570193            0.3340773
-    ## Class: p_Lp 0.9433188 0.9363505  0.3333333      0.3144396            0.3382947
+    ## Class: ED   0.8492754 0.8193971  0.3333333      0.2830918            0.3576425
+    ## Class: EDlb 0.6623333 0.7185127  0.3333333      0.2207778            0.2812077
+    ## Class: p_Lp 0.9358986 0.8984126  0.3333333      0.3119662            0.3611498
     ##             Balanced Accuracy
-    ## Class: ED           0.8682138
-    ## Class: EDlb         0.8277355
-    ## Class: p_Lp         0.9537681
+    ## Class: ED           0.8687246
+    ## Class: EDlb         0.7858442
+    ## Class: p_Lp         0.9310616
 
 ### 3.2 Feature importance
 
@@ -992,6 +978,8 @@ SVM with polynomial kernel trained on 3D data considers five sets of
 principal components in terms of classification.
 
 ``` r
+load("Data/Best model 2D varimp and cm.RData")
+load("Data/Best model 3D varimp and cm.RData")
 # Variable importance 
 SVMP.varImport$Mean.Imp <- rowMeans(SVMP.varImport[,2:4])
 
