@@ -784,12 +784,11 @@ variance, or only variables capturing more than 3% of variance.
 
 ``` r
 #### Load and muggle 2d data ####
-load("Data/Results 2D Data Limited variables.RData")
-All_Results2D.LV <- All_Results
 load("Data/2D Results Up and Down sampling.RData")
+load("Data/Results 2D Data Limited variables.RData")
 
-All_Results.2D <- rbind(All_Results, All_Results2D.LV)
-rm(All_Results2D.LV, All_Results)
+All_Results.2D <- rbind( Models.2D, All_Results)
+rm(All_Results, Models.2D)
 
 All_Results.2D$Variables <- "95% PCs"
 All_Results.2D$Variables[301:600] <- "> 3% PCs"
@@ -892,49 +891,6 @@ ggpubr::ggarrange(
 
 ![](Backed-Flakes-Categories_files/figure-gfm/ML-Precision-nPCs-1.png)<!-- -->
 
-``` r
-# Tables comparing results from models and variables
-All_Results.2D %>% group_by(Model) %>% 
-  summarise(
-    Mean.Acc = mean(Accuracy)
-  )
-```
-
-    ## # A tibble: 10 × 2
-    ##    Model         Mean.Acc
-    ##    <fct>            <dbl>
-    ##  1 LDA              0.480
-    ##  2 KNN              0.667
-    ##  3 Log. Reg.        0.490
-    ##  4 C5.0 Tree        0.775
-    ##  5 Random Forest    0.792
-    ##  6 GBM              0.777
-    ##  7 SVM Linear       0.474
-    ##  8 SVM Radial       0.651
-    ##  9 SVM Poly         0.642
-    ## 10 Naïve Bayes      0.595
-
-``` r
-All_Results.3D %>% group_by(Model) %>% 
-  summarise(
-    Mean.Acc = mean(Accuracy)
-  )
-```
-
-    ## # A tibble: 10 × 2
-    ##    Model         Mean.Acc
-    ##    <fct>            <dbl>
-    ##  1 LDA              0.658
-    ##  2 KNN              0.683
-    ##  3 Log. Reg.        0.681
-    ##  4 C5.0 Tree        0.781
-    ##  5 Random Forest    0.828
-    ##  6 GBM              0.783
-    ##  7 SVM Linear       0.685
-    ##  8 SVM Radial       0.736
-    ##  9 SVM Poly         0.780
-    ## 10 Naïve Bayes      0.688
-
 In the case of the 2D data, the random forest model had the highest
 average value for general accuracy (0.779), closely followed by the
 decision tree (0.767) and the GBM (0.765). The LDA had the lowest
@@ -1007,7 +963,7 @@ ggpubr::ggarrange(
   nrow = 2)
 ```
 
-![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 The following tables present performance metrics of the random forest
 model (on 2D data) and SVM with a polynomial kernel (on 3D data) for the
@@ -1117,7 +1073,7 @@ ggpubr::ggarrange(
   ncol = 2)
 ```
 
-![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
 PC2 (29.38% of variance) is considered the most important variable for
 discrimination when using the 2D data, followed by PC1 (39.33% of
@@ -1271,7 +1227,7 @@ ggpubr::ggarrange(
   ncol = 2)
 ```
 
-![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 The above interpretation of the PCs, biplot visualization, and
 descriptive statistics of PC values allow us to evaluate the
@@ -1375,7 +1331,7 @@ ggpubr::ggarrange(
                           fig.lab.size = 12, fig.lab.face = "bold")
 ```
 
-![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 For the 3D data pseudo-Levallois points were characterized by having
 high values of PC1 (mean = 0.031; SD = 0.055), low values of PC3 (mean =
@@ -1466,7 +1422,7 @@ ggpubr::ggarrange(
                           fig.lab.size = 12, fig.lab.face = "bold")
 ```
 
-![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 ``` r
 ### Group PCA ####
@@ -1555,7 +1511,7 @@ ggpubr::ggarrange(
 )
 ```
 
-![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 ``` r
 #### Violin and boxplots of PC values ####
@@ -1631,7 +1587,7 @@ ggpubr::ggarrange(
     ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
     ## generated.
 
-![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
 ## 4. Discussion
 

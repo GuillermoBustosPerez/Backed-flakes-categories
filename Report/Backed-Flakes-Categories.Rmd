@@ -305,12 +305,11 @@ The following figure presents the accuracy values for each model after their res
 
 ```{r ML-Precision-nPCs}
 #### Load and muggle 2d data ####
-load("Data/Results 2D Data Limited variables.RData")
-All_Results2D.LV <- All_Results
 load("Data/2D Results Up and Down sampling.RData")
+load("Data/Results 2D Data Limited variables.RData")
 
-All_Results.2D <- rbind(All_Results, All_Results2D.LV)
-rm(All_Results2D.LV, All_Results)
+All_Results.2D <- rbind( Models.2D, All_Results)
+rm(All_Results, Models.2D)
 
 All_Results.2D$Variables <- "95% PCs"
 All_Results.2D$Variables[301:600] <- "> 3% PCs"
@@ -410,24 +409,6 @@ ggpubr::ggarrange(
   common.legend = TRUE,
   legend = "bottom")
 ```
-```{r}
-# Tables comparing results from models and variables
-All_Results.2D %>% group_by(Model) %>% 
-  summarise(
-    Mean.Acc = mean(Accuracy)
-  )
-
-All_Results.3D %>% group_by(Model) %>% 
-  summarise(
-    Mean.Acc = mean(Accuracy)
-  )
-
-```
-
-
-
-
-
 
 
 In the case of the 2D data, the random forest model had the highest average value for general accuracy (0.779), closely followed by the decision tree (0.767) and the GBM (0.765). The LDA had the lowest average value for accuracy (0.511), followed by the logistic regression (0.522).    
