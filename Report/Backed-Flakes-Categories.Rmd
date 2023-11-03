@@ -301,8 +301,128 @@ ggpubr::ggarrange(
 
 
 
-presents the accuracy values for each model after their respective 30 cycles of random up- and down-sampling. These results are sorted according to the use of all variables up to 95% of variance, or only variables capturing more than 3% of variance.  
+The following figure presents the accuracy values for each model after their respective 30 cycles of random up- and down-sampling. These results are sorted according to the use of all variables up to 95% of variance, or only variables capturing more than 3% of variance.  
 
+```{r ML-Precision-nPCs}
+#### Load and muggle 2d data ####
+load("Data/Results 2D Data Limited variables.RData")
+All_Results2D.LV <- All_Results
+load("Data/2D Results Up and Down sampling.RData")
+
+All_Results.2D <- rbind(All_Results, All_Results2D.LV)
+rm(All_Results2D.LV, All_Results)
+
+All_Results.2D$Variables <- "95% PCs"
+All_Results.2D$Variables[301:600] <- "> 3% PCs"
+All_Results.2D$Model[All_Results.2D$Model == "Boosted Tree"] <- "GBM"
+
+All_Results.2D$Model <- factor(All_Results.2D$Model,
+                            levels = c(
+                              "LDA", "KNN", "Log. Reg.",
+                              "C5.0 Tree", "Random Forest", "GBM",
+                              "SVM Linear", "SVM Radial",
+                              "SVM Poly",
+                              "Naïve Bayes"
+                            ))
+
+All_Results.2D <- All_Results.2D %>% mutate(
+  Variables = factor(Variables,
+                     levels = c("95% PCs", "> 3% PCs")))
+
+#### Load and muggle 3D data #### 
+load("Data/3D Results Up and Down sampling.RData")
+All_Results.3D <- Models.3D
+
+load("Data/Results 3D Data Limited variables.RData")
+All_Results3D.LV <- All_Results
+All_Results.3D <- rbind(All_Results.3D, All_Results3D.LV)
+rm(All_Results, All_Results3D.LV)
+
+All_Results.3D$Variables <- "95% PCs"
+All_Results.3D$Variables[301:600] <- "> 3% PCs"
+
+All_Results.3D$Model <- factor(All_Results.3D$Model,
+                               levels = c(
+                                 "LDA", "KNN", "Log. Reg.",
+                                 "C5.0 Tree", "Random Forest", "GBM",
+                                 "SVM Linear", "SVM Radial",
+                                 "SVM Poly",
+                                 "Naïve Bayes"
+                               ))
+
+All_Results.3D <- All_Results.3D %>% mutate(
+  Variables = factor(Variables,
+                     levels = c("95% PCs", "> 3% PCs")))
+
+#### Plot the graphs ####
+ggpubr::ggarrange(
+  (
+    All_Results.2D %>% 
+      ggplot(aes(Model, Accuracy, fill = Variables)) +
+      geom_violin(width = 0.4, alpha = 0.5) +
+      geom_boxplot(width = 0.4,
+                   outlier.shape = NA, alpha = 0.5) +
+      
+      theme_light() +
+      ylab("Accuracy after each cycle of up and down sampling") +
+      ggsci::scale_fill_aaas() +
+      ggtitle(label = "2D data") +
+      scale_x_discrete(labels = c(
+        "LDA", "KNN", "Log. Reg.",
+        "C5.0\nTree", "Random\nForest", "GBM",
+        "SVM\nLinear", "SVM\nRadial",
+        "SVM\nPoly",
+        "Naïve\nBayes")) +
+      scale_y_continuous(breaks = seq(0.4, 1, 0.1), limits = c(0.3, 1)) +
+      xlab(NULL) +
+      theme(
+        legend.position = "bottom",
+        axis.text = element_text(color = "black", size = 8),
+        axis.title = element_text(color = "black", size = 8.5),
+        plot.title = element_text(hjust = 0, vjust = 1, size = 9))
+          ),
+  
+  (
+    All_Results.3D %>% 
+      ggplot(aes(Model, Accuracy, fill = Variables)) +
+      geom_violin(width = 0.4, alpha = 0.5) +
+      geom_boxplot(width = 0.4,
+                   outlier.shape = NA, alpha = 0.5) +
+      ggtitle(label = "3D data") +
+      theme_light() +
+      ylab("Accuracy after each cycle of up and down sampling") +
+      ggsci::scale_fill_aaas() +
+      scale_x_discrete(labels = c(
+        "LDA", "KNN", "Log. Reg.",
+        "C5.0\nTree", "Random\nForest", "GBM",
+        "SVM\nLinear", "SVM\nRadial",
+        "SVM\nPoly",
+        "Naïve\nBayes")) +
+      scale_y_continuous(breaks = seq(0.4, 1, 0.1), limits = c(0.3, 1)) +
+      xlab(NULL) +
+      theme(
+        legend.position = "bottom",
+        axis.text = element_text(color = "black", size = 8),
+        axis.title = element_text(color = "black", size = 8.5),
+        plot.title = element_text(hjust = 0, vjust = 1, size = 9))
+    ),
+  nrow = 2,
+  common.legend = TRUE,
+  legend = "bottom")
+```
+```{r}
+# Tables comparing results from models and variables
+All_Results.2D %>% group_by(Model) %>% 
+  summarise(
+    Mean.Acc = mean(Accuracy)
+  )
+
+All_Results.3D %>% group_by(Model) %>% 
+  summarise(
+    Mean.Acc = mean(Accuracy)
+  )
+
+```
 
 
 
