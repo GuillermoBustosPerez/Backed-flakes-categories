@@ -428,7 +428,7 @@ confusionMatrix(RF.Predictions.LP$pred, RF.Predictions.LP$obs)[[4]]
 
 ### 3.2 Feature importance    
 
-The following figure presents average variable importance for the three products after 30 cycles of up- and down-sampling and k-fold cross-validation. The random forest trained on 2D data consider four sets of principal components important in terms of classification. The SVM with polynomial kernel trained on 3D data considers five sets of principal components in terms of classification.       
+The following presents average variable importance for the three products after 30 cycles of up- and down-sampling and k-fold cross-validation when PC summing up to 95% of variance are employed. The random forest trained on 2D data consider four sets of principal components important in terms of classification. The SVM with polynomial kernel trained on 3D data considers five sets of principal components in terms of classification.    
 
 ```{r}
 load("Data/Best model 2D varimp and cm.RData")
@@ -481,53 +481,59 @@ ggpubr::ggarrange(
   ncol = 2)
 ```
 
-PC2 (29.38% of variance) is considered the most important variable for discrimination when using the 2D data, followed by PC1 (39.33% of variance), PC5 (3.38% of variance) and PC3 (9.12% of variance). The following figure presents shape change according to these PCs. PC1 and PC2 capture the elongation of flakes along an asymmetric axis, but with different orientation. Positive values of PC1 or PC2 result in wider flakes. PC3 captures variance of flakes were the proximal part is much wider than the distal portion of the flake. PC5 appears to capture pointed extremes resulting from concave delineations of the middle portion of the laterals. This might be representing the presence of convergent extremes at either end of the flake.   
+PC2 (29.38% of variance) is considered the most important variable for discrimination when using the 2D data, followed by PC1 (39.33% of variance), PC5 (3.38% of variance) and PC3 (9.12% of variance). The following figure presents shape change according to these PCs. PC1 and PC2 capture the elongation of flakes along an asymmetric axis, but with different orientation. Positive values of PC1 or PC2 result in wider flakes. PC3 captures variance of flakes where the proximal part is much wider than the distal portion of the flake. PC5 appears to capture pointed extremes resulting from concave delineations of the middle portion of the laterals. This might be representing the presence of convergent extremes at either end of the flake.   
 
 ![Visualization of shape change according to PC for the 2D data. Differences towards mean shape have been magnified by a factor of three](Figures/2D PC meaning.png)
 
-In the case of 3D data, PC5 (5.5% of variance) is considered the most important variable for discrimination, followed by PC1 (31.32% of variance), PC6 (5.06% of variance), PC11 (1.45% of variance) and PC3 (8.82% of variance). PC11 presented an average importance value of 59.68. However, the low variance captured by this PC (1.45), and visual evaluation of shape change, indicate that its effect is minimum and should be excluded from analysis.        
-PC5 is driven by the interaction of platform depth and flake thickness. Increasing values of PC5 result in flakes with platforms much wider than deep, with the width of the platform finding their continuation in one of the abrupt laterals. Increasing PC5 values also result in thinner flakes. The negative space of PC5 captures flakes with platforms much more deep than wide and thicker flakes. PC1 largely captures elongation along with platform size and thickness. Positive PC1 values result in very wide flakes with a reduced length and bigger platforms. This increase in width is slightly accompanied with an increase in thickness. Negative space values result in thin elongated flakes with a distal convergent edge and small platforms. Positive values of PC6 represent the convergence of one of the distal laterals into a pointed end. The negative space of PC6 results in flakes with a wide proximal portion which becomes narrower in the towards the distal part of the flake. PC3 represents transversal flake morphology and the relationship between thickness, width and asymmetry. Increasing values of PC3 result in thicker and narrower flakes with a marked asymmetry which results from a thick back located at the left lateral.    
+In the case of 3D data, PC5 (5.5% of variance) is considered the most important variable for discrimination, followed by PC1 (31.32% of variance), PC6 (5.06% of variance), PC11 (1.45% of variance) and PC3 (8.82% of variance). PC11 presented an average importance value of 59.68. However, the low variance captured by this PC (1.45), and visual evaluation of shape change, indicate that its effect is minimum and should be excluded from analysis.    
+
+PC5 is driven by the interaction of platform depth and flake thickness. Increasing values of PC5 result in flakes with platforms much wider than deep, with the width of the platform finding their continuation in one of the abrupt laterals. Increasing PC5 values also result in thinner flakes. The negative space of PC5 captures flakes with platforms much more deep than wide and thicker flakes. PC1 largely captures elongation along with platform size and thickness. Positive PC1 values result in very wide flakes with a reduced length and bigger platforms. This increase in width is slightly accompanied with an increase in thickness. Negative space values result in thin elongated flakes with a distal convergent edge and small platforms. Positive values of PC6 represent the convergence of one of the distal laterals into a pointed end. The negative space of PC6 results in flakes with a wide proximal portion which becomes narrower in the towards the distal part of the flake. PC3 represents transversal flake morphology and the relationship between thickness, width and asymmetry. Increasing values of PC3 result in thicker and narrower flakes with a marked asymmetry which results from a thick back located at the left lateral. 
+   
 
 ![Visualization of shape change according to PC of the 3D data. Differences towards mean shape have been magnified by a factor of three.](Figures/PC contribution to shape change.png)
-
+   
+The combination of variance captured by each PC, importance of a PC for classification, and visualization of shape change according to PC indicate that a threshold of 3% variance captured is adequate for the present dataset. PC 5 of the 2D data presents an example of feature to be included in the analysis: despite capturing little more than 3% of variance, it is considered important by the random forest as a classification feature, and it does have an effect on sample shape. PC11 of the 3D data presents an opposite example, were a variable should be excluded from the training of the final models. While it is considered an important variable for classification by the SVM with polynomial kernel, the low variance captured (1.45%) and the little effect on shape change prevent its inclusion into the final set of machine learning models.   
 
 
 
 ### 3.3 Group discreteness through confusion matrix and PCA biplots   
 
-The confusion matrixes illustrate the directionality of confusion between the predicted and true values of classified technological products for the 2D and 3D data. In both types of data pseudo-Levallois points have the best identification, in accordance with the reported sensitivity and specificity. In general, it is very difficult to mistake pseudo-Levallois points for any of the two considered technological products. Wrongly considering a pseudo-Levallois point a core edge flake is very unlikely for the 2D data (2.39) and residual for the model on 3D data (0.21). Although mistaking a pseudo-Levallois point for a core edge flake with a limited back is slightly more common for both types of data, there is still a very low confusion value.     
-
-Core edge flakes and core edge flakes with a limited back offer slightly higher frequencies of misidentifications, although they maintain high values for sensitivity and specificity for both types of data. For the Random Forest model based on the 2D data it is more common to mislabel core edge flakes with a limited back as core edge flakes (25.51) than the reverse (18.84).    
-
-In the case of the SVM with polynomial kernel based on 3D data, the confusion between both categories diminishes lightly and it is balanced (17.61 and 16.27). On general, the 3D data identifies better core edge flakes with a limited back and core edge flakes than the model based on the 2D data. This greater precision is the result of a lower frequency in the incorrect identification of core edge flakes with a limited back as core edge flakes. The incorrect identification of backed flakes as pseudo-Levallois points is slightly more common when 2D data is employed. Their incorrect identification as pseudo-Levallois flakes is minimal in the case of the 3D data, although this incorrect identification has a higher frequency in core edge flakes with a limited back (6.63) than in core edge flakes (0.53).    
 
 
+
+
+
+```{r include=FALSE}
+rm(list = ls())
+load("Data/Results 2D Data Limited variables Best Model.RData")
+load("Data/Results 3D Data Limited variables Best Model.RData")
+```
 ```{r}
 #### Confusion Matrix 2D ####
-CFM.2D <- confusionMatrix(RF.Predictions$pred, RF.Predictions$obs)$table
+CFM.2D <- confusionMatrix(RF.Predictions.LM$pred, RF.Predictions.LM$obs)$table
 CFM.2D <- reshape2::melt(CFM.2D)
 
 CFM.2D <- CFM.2D %>% mutate(
   Value = case_when(
-    Reference == "ED" ~ (value/sum(confusionMatrix(RF.Predictions$pred, RF.Predictions$obs)$table[1:3]))*100,
-    Reference == "EDlb" ~ (value/sum(confusionMatrix(RF.Predictions$pred, RF.Predictions$obs)$table[4:6]))*100,
-    Reference == "p_Lp" ~ (value/sum(confusionMatrix(RF.Predictions$pred, RF.Predictions$obs)$table[7:9]))*100)
+    Reference == "ED" ~ (value/sum(confusionMatrix(RF.Predictions.LM$pred, RF.Predictions.LM$obs)$table[1:3]))*100,
+    Reference == "EDlb" ~ (value/sum(confusionMatrix(RF.Predictions.LM$pred, RF.Predictions.LM$obs)$table[4:6]))*100,
+    Reference == "p_Lp" ~ (value/sum(confusionMatrix(RF.Predictions.LM$pred, RF.Predictions.LM$obs)$table[7:9]))*100)
 )
 
 #### Confusion matrix 3D data ####
-CFM <- confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)$table
+CFM <- confusionMatrix(RF.Predictions.LP$pred, RF.Predictions.LP$obs)$table
 CFM <- reshape2::melt(CFM)
 
-x <- data.frame(confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)[[4]])
+x <- data.frame(confusionMatrix(RF.Predictions.LP$pred, RF.Predictions.LP$obs)[[4]])
 xlsx::write.xlsx(x,
                  file = "svmpoly results.xlsx")
 
 # Normalize the confusion matrix
 CFM <- CFM %>% mutate(
   Value = case_when(
-    Reference == "ED" ~ (value/sum(confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)$table[1:3]))*100,
-    Reference == "EDlb" ~ (value/sum(confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)$table[4:6]))*100,
-    Reference == "p_Lp" ~ (value/sum(confusionMatrix(SVMP.Predictions$pred, SVMP.Predictions$obs)$table[7:9]))*100)
+    Reference == "ED" ~ (value/sum(confusionMatrix(RF.Predictions.LP$pred, RF.Predictions.LP$obs)$table[1:3]))*100,
+    Reference == "EDlb" ~ (value/sum(confusionMatrix(RF.Predictions.LP$pred, RF.Predictions.LP$obs)$table[4:6]))*100,
+    Reference == "p_Lp" ~ (value/sum(confusionMatrix(RF.Predictions.LP$pred, RF.Predictions.LP$obs)$table[7:9]))*100)
 )
 
 #### Plot both confusion matrixes ####
@@ -570,7 +576,7 @@ The above interpretation of the PCs, biplot visualization, and descriptive stati
 
 For the 2D data pseudo-Levallois points are characterized by having positive values of PC1 (mean = 0.53; SD = 0.116) and PC2 (mean = 0.168; SD = 0.128). These generally positive values are indicative of the low elongation of pseudo-Levallois points. The triangular morphology characteristic of pseudo-Levallois points remains elusive for the 2D data and is only slightly captured by PC5 (mean = 0.002; SD = 0.028). Features which characterize core edge flakes are much better captured by the 2D geometric morphometrics. In the 2D data core edge flakes are characterized by having low values of PC1 (mean = -0.052; SD = 0.111) and PC2 (mean = -0.043; SD = 0.092) which are indicative of being elongated products. Core edge flakes (mean = -0.014, SD = 0.055) and pseudo-Levallois points (mean = -0.014, SD = 0.079) tend to have negative values of PC3. This indicated that, on general, neither of the two products had a distal part narrower than the proximal part.  Core edge flakes with a limited back presented slightly positive values of PC1 (mean = 0.008; SD = 0.131) and PC2 (mean = 0.011; SD = 0.111) indicating that their elongation and asymmetry falls between core edge flakes and pseudo-Levallois points. Additional to this, core edge flakes with a limited back presented slightly positive values of PC3 (mean = 0.007; SD = 0.06), indicating that it is more common for these types of products to present a narrower distal part.    
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 PC.scores.2D <- data.frame(Coord.2D$PCscores)
 PC.scores.2D$ID <- rownames(PC.scores.2D)
 
@@ -638,7 +644,7 @@ ggpubr::ggarrange(
 
 For the 3D data pseudo-Levallois points were characterized by having high values of PC1 (mean = 0.031; SD = 0.055), low values of PC3 (mean = 0.024; SD = 0.09) and negative values of PC5 (mean = -0.046; SD = 0.059). Finally, pseudo-Levallois points also exhibit intermediate positive values of PC6 (mean = 0.018; SD = 0.05). The combination of these PC’s and their values indictes that the geometric morphometrics is capturing the low elongation (PC1), assymetry (PC3), and to some extent the triangular morphology resulting from the convergence of two edges (PC5 and PC6). Core edge flakes exhibited negative values of PC1 (mean = -0.078; SD = 0.136), positive values of PC5 (mean = 0.024; SD = 0.048) and PC6 (mean = 0.031; SD = 0.055). These PC’s capture the elongated nature (PC1) of core edge flakes (in comparisson to the other two categories), their lower ratio of legth compared to thickness (PC5) and the presence of a distal transversal edge which can result in distal pointed portions. Core edge flakes with a limited back are characterized by intermediate values of PC1 (mean = 0.012, SD = 0.142), PC3 (mean = -0.006, SD = 0.078) and PC5 (mean = 0.00; SD = 0.061) and slightly negative values of PC6 (mean = -0.013; SD = 0.058). The combination of values from these PC is indicative of the wide morphological variability of core edge flakes with a limited back were the main features are a low elongation (PC1), varing ratios of thickness and platform morphology (PC5) and strong variability of the plain view (PC6).     
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 PC.scores.3D <- data.frame(Coord.3D$PCscores) %>% 
   mutate(ID = dimnames(Coord.3D$rotated)[[3]])
 
@@ -704,7 +710,7 @@ ggpubr::ggarrange(
                           fig.lab.size = 12, fig.lab.face = "bold")
 ```
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 ### Group PCA ####
 
 # Group PCA 2d data 
@@ -791,7 +797,7 @@ ggpubr::ggarrange(
 )
 ```
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 #### Violin and boxplots of PC values ####
 
 ggpubr::ggarrange(
