@@ -1397,6 +1397,95 @@ ggpubr::ggarrange(
 
 ![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
+``` r
+### Group PCA ####
+
+# Group PCA 2d data 
+PCA.group.2D <- Morpho::groupPCA(
+  PC.scores.2D[,c(1:9)],
+  PC.scores.2D$ARTIFACTTYPE)
+
+df.GPCA.2D <- data.frame(PCA.group.2D$Scores)
+df.GPCA.2D$Class <- PCA.group.2D$groups
+
+# Group PCA 3d data 
+PCA.group.3D <- Morpho::groupPCA(
+  PC.scores.3D[,1:22],
+  PC.scores.3D$ARTIFACTTYPE)
+
+df.GPCA.3D <- data.frame(PCA.group.3D$Scores)
+df.GPCA.3D$Class <- PCA.group.3D$groups
+
+#### Plot together ####
+ggpubr::ggarrange(
+  (
+    df.GPCA.2D %>% 
+      ggplot(aes(X1, X2, fill = Class)) +
+      stat_ellipse(geom = "polygon", alpha = 0.2, aes(fill = Class),
+                   level = 0.8) +
+      geom_point(aes(color = Class), size = 1) +
+      coord_fixed() +
+      geom_vline(xintercept = 0, alpha = 0.7, linetype = "dashed") +
+      geom_hline(yintercept = 0, alpha = 0.7, linetype = "dashed") +
+      ggsci::scale_fill_lancet(name = "Backed flake type",
+                               labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      ggsci::scale_color_lancet(name = "Backed flake type",
+                                labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      theme_light() +
+      xlab(paste0("GPC1 (", round((PCA.group.2D$Variance[1,2])*100,2), "%)")) +
+      ylab(paste0("GPC2 (", round((PCA.group.2D$Variance[2,2])*100,2), "%)")) +
+      guides(color = guide_legend(nrow = 1, title.position = "top"),
+             fill = guide_legend(nrow = 1, title.position = "top")) +
+      labs(title = "2D data") +
+      theme(
+        title = element_text(color = "black", size = 8),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 9),
+        axis.title.y = element_text(color = "black", size = 9),
+        legend.title = element_text(color = "black", size = 9),
+        legend.text = element_text(color = "black", size = 9),
+        legend.position = "bottom")
+  ),
+  (
+    df.GPCA.3D %>% 
+      ggplot(aes(X1, X2, fill = Class)) +
+      geom_vline(xintercept = 0, alpha = 0.7, linetype = "dashed") +
+      geom_hline(yintercept = 0, alpha = 0.7, linetype = "dashed") +
+      geom_point(aes(color = Class), size = 1) +
+      stat_ellipse(geom = "polygon", alpha = 0.2, aes(fill = Class),
+                   level = 0.8) +
+      coord_fixed() +
+      ggsci::scale_fill_lancet(name = "Backed flake type",
+                               labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      ggsci::scale_color_lancet(name = "Backed flake type",
+                                labels = c("Core edge flake", "Core edge flake with limited back", "pseudo-Levallois Point")) +
+      theme_light() +
+      xlab(paste0("GPC1 (", round((PCA.group.3D$Variance[1,2])*100,2), "%)")) +
+      ylab(paste0("GPC2 (", round((PCA.group.3D$Variance[2,2])*100,2), "%)")) +
+      guides(color = guide_legend(nrow = 1, title.position = "top"),
+             fill = guide_legend(nrow = 1, title.position = "top")) +
+      labs(title = "3D data") +
+      theme(
+        title = element_text(color = "black", size = 8),
+        axis.text.y = element_text(color = "black", size = 7),
+        axis.text.x = element_text(color = "black", size = 7),
+        axis.title.x = element_text(color = "black", size = 9),
+        axis.title.y = element_text(color = "black", size = 9),
+        legend.title = element_text(color = "black", size = 9),
+        legend.text = element_text(color = "black", size = 9),
+        legend.position = "bottom")
+  ),
+  ncol = 2,
+  common.legend = TRUE,
+  legend = "bottom",
+  align = "h"
+  
+)
+```
+
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+
 ## 4. Discussion
 
 Our results show that geometric morphometrics, along with machine

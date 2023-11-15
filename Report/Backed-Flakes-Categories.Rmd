@@ -498,16 +498,17 @@ The combination of variance captured by each PC, importance of a PC for classifi
 
 ### 3.3 Group discreteness through confusion matrix and PCA biplots   
 
+The confusion matrixes of final models trained with limited number of variables illustrate the directionality of confusion between the predicted and true values of classified technological products for the 2D and 3D data. In both types of data pseudo-Levallois points have the best identification, in accordance with the reported sensitivity and specificity. In general, it is very difficult to mistake pseudo-Levallois points for any of the two considered technological products. Wrongly considering a pseudo-Levallois point as a core-edge flake is very unlikely for the 2D data (2.4) and minimal for the model on 3D data (1.59). Although mistaking a pseudo-Levallois point for a core-edge flake with a limited back is slightly more common for both types of data, there is still a very low confusion value.    
 
-
-
-
+Core-edge flakes and core-edge flakes with a limited back offer slightly higher frequencies of misidentifications, although they maintain high values for sensitivity and specificity for both types of data. For the random forest model based on the 2D data it is more common to mislabel core-edge flakes with a limited back as core edge flakes (28.18) than the reverse (17.81).     
+In the case of the random forest based on 3D data, the confusion between both categories diminishes slightly (20.78 and 13.3). In general, the 3D data better identifies core-edge flakes with a limited back and core-edge flakes than the model based on the 2D data. This greater precision is the result of a lower frequency in the incorrect identification of core edge flakes with a limited back as core-edge flakes. The incorrect identification of backed flakes as pseudo-Levallois points is slightly more common when 2D data is employed. Their incorrect identification as pseudo-Levallois flakes is minimal in the case of the 3D data, although this incorrect identification has a higher frequency in core-edge flakes with a limited back (4.82) than in core-edge flakes (1.59).    
 
 ```{r include=FALSE}
 rm(list = ls())
 load("Data/Results 2D Data Limited variables Best Model.RData")
 load("Data/Results 3D Data Limited variables Best Model.RData")
 ```
+
 ```{r}
 #### Confusion Matrix 2D ####
 CFM.2D <- confusionMatrix(RF.Predictions.LM$pred, RF.Predictions.LM$obs)$table
@@ -572,11 +573,19 @@ ggpubr::ggarrange(
   ncol = 2)
 ```
 
-The above interpretation of the PCs, biplot visualization, and descriptive statistics of PC values allow us to evaluate the morphological features captured by the 2D and 3D geometric morphometrics and the characterization of each type of technological backed flake. On general, biplots from 2D data show much more overlapping than biplots from 3D data. The higher overlapping observed on PC biplot from the 2D data is also observed when a group PCA is performed using the most important variables for classification. Visual analysis of group PCA biplot from variables of the 3D data shows much less overlap between the three categories. While core edge flakes and pseudo-Levallois points show little overlap between each other, core edge flakes are situated as an intermediate product, pointing out to their wide morphological variability.   
+The above interpretation of the PCs, biplot visualization, and descriptive statistics of PC values allow us to evaluate the morphological features captured by the 2D and 3D geometric morphometrics and the characterization of each type of technological backed flake. In general, biplots from 2D data show much more overlap than biplots from 3D data. The higher overlap observed on the PC biplot from the 2D data is also observed when a group PCA is performed using the most important variables for classification. Visual analysis of group PCA biplot from variables of the 3D data shows much less overlap between the three categories. While core-edge flakes and pseudo-Levallois points show little overlap between each other, core-edge flakes are situated as an intermediate product, pointing out to their wide morphological variability.   
 
-For the 2D data pseudo-Levallois points are characterized by having positive values of PC1 (mean = 0.53; SD = 0.116) and PC2 (mean = 0.168; SD = 0.128). These generally positive values are indicative of the low elongation of pseudo-Levallois points. The triangular morphology characteristic of pseudo-Levallois points remains elusive for the 2D data and is only slightly captured by PC5 (mean = 0.002; SD = 0.028). Features which characterize core edge flakes are much better captured by the 2D geometric morphometrics. In the 2D data core edge flakes are characterized by having low values of PC1 (mean = -0.052; SD = 0.111) and PC2 (mean = -0.043; SD = 0.092) which are indicative of being elongated products. Core edge flakes (mean = -0.014, SD = 0.055) and pseudo-Levallois points (mean = -0.014, SD = 0.079) tend to have negative values of PC3. This indicated that, on general, neither of the two products had a distal part narrower than the proximal part.  Core edge flakes with a limited back presented slightly positive values of PC1 (mean = 0.008; SD = 0.131) and PC2 (mean = 0.011; SD = 0.111) indicating that their elongation and asymmetry falls between core edge flakes and pseudo-Levallois points. Additional to this, core edge flakes with a limited back presented slightly positive values of PC3 (mean = 0.007; SD = 0.06), indicating that it is more common for these types of products to present a narrower distal part.    
+For the 2D data, pseudo-Levallois points are characterized by having positive values of PC1 (mean = 0.53; SD = 0.116) and PC2 (mean = 0.168; SD = 0.128). These generally positive values are indicative of the low elongation of pseudo-Levallois points. The triangular off-axis morphology characteristic of pseudo-Levallois points is weakly expressed for the 2D data and is only slightly captured by PC5 (mean = 0.002; SD = 0.028). On the contrary, 2D geometric morphometrics is useful to detect features of core-edge flakes, although the overlap with core edge flakes with a limited back is very high. In the 2D data core edge flakes are characterized by having low values of PC1 (mean = -0.052; SD = 0.111) and PC2 (mean = -0.043; SD = 0.092) which are indicative of being elongated products. Core edge flakes (mean = -0.014, SD = 0.055) and pseudo-Levallois points (mean = -0.014, SD = 0.079) tend to have negative values of PC3. This indicates that, in general, neither of the two products had a distal portion narrower than the proximal one. Core-edge flakes with a limited back presented slightly positive values of PC1 (mean = 0.008; SD = 0.131) and PC2 (mean = 0.011; SD = 0.111), indicating that their elongation and asymmetry falls between core-edge flakes and pseudo-Levallois points. Additionally, core-edge flakes with a limited back presented slightly positive values of PC3 (mean = 0.007; SD = 0.06), indicating that it is more common for these types of products to present a narrower distal portion.    
 
-```{r eval=FALSE, include=FALSE}
+```{r include=FALSE}
+load("Data/2D Data.RData")
+load("Data/3D Data.RData")
+# Load attribute data
+Att <- read.csv("Data/Attributes data.csv")
+```
+
+```{r}
+#### Make into data frame ####
 PC.scores.2D <- data.frame(Coord.2D$PCscores)
 PC.scores.2D$ID <- rownames(PC.scores.2D)
 
@@ -641,10 +650,10 @@ ggpubr::ggarrange(
   ggpubr::annotate_figure(fig.lab = "2D data", fig.lab.pos = "top.left", 
                           fig.lab.size = 12, fig.lab.face = "bold")
 ```
+   
+For the 3D data, pseudo-Levallois points were characterized by high values for PC1 (mean = 0.031; SD = 0.055), low values for PC3 (mean = 0.024; SD = 0.09) and negative values for PC5 (mean = -0.046; SD = 0.059). Finally, pseudo-Levallois points also exhibit intermediate positive values for PC6 (mean = 0.018; SD = 0.05). The combination of these PCs and their values indicates that the geometric morphometrics is capturing the low elongation (PC1), asymmetry (PC3), and to some extent, the triangular morphology resulting from the convergence of two edges (PC5 and PC6). Core-edge flakes exhibited negative values of PC1 (mean = -0.078; SD = 0.136), positive values of PC5 (mean = 0.024; SD = 0.048) and PC6 (mean = 0.031; SD = 0.055). These PCs capture the elongated nature (PC1) of core edge flakes (in comparison to the other two categories), their lower ratio of length to thickness (PC5) and the presence of a distal transverse edge which can result in distal pointed portions. Core-edge flakes with a limited back are characterized by intermediate values of PC1 (mean = 0.012, SD = 0.142), PC3 (mean = -0.006, SD = 0.078) and PC5 (mean = 0.00; SD = 0.061) and slightly negative values of PC6 (mean = -0.013; SD = 0.058). The combination of values from these PC reflects the wide morphological variability of core-edge flakes with a limited back were the main features are a low elongation (PC1), varying ratios of thickness and platform morphology (PC5) and strong variability of the upper view (PC6).           
 
-For the 3D data pseudo-Levallois points were characterized by having high values of PC1 (mean = 0.031; SD = 0.055), low values of PC3 (mean = 0.024; SD = 0.09) and negative values of PC5 (mean = -0.046; SD = 0.059). Finally, pseudo-Levallois points also exhibit intermediate positive values of PC6 (mean = 0.018; SD = 0.05). The combination of these PC’s and their values indictes that the geometric morphometrics is capturing the low elongation (PC1), assymetry (PC3), and to some extent the triangular morphology resulting from the convergence of two edges (PC5 and PC6). Core edge flakes exhibited negative values of PC1 (mean = -0.078; SD = 0.136), positive values of PC5 (mean = 0.024; SD = 0.048) and PC6 (mean = 0.031; SD = 0.055). These PC’s capture the elongated nature (PC1) of core edge flakes (in comparisson to the other two categories), their lower ratio of legth compared to thickness (PC5) and the presence of a distal transversal edge which can result in distal pointed portions. Core edge flakes with a limited back are characterized by intermediate values of PC1 (mean = 0.012, SD = 0.142), PC3 (mean = -0.006, SD = 0.078) and PC5 (mean = 0.00; SD = 0.061) and slightly negative values of PC6 (mean = -0.013; SD = 0.058). The combination of values from these PC is indicative of the wide morphological variability of core edge flakes with a limited back were the main features are a low elongation (PC1), varing ratios of thickness and platform morphology (PC5) and strong variability of the plain view (PC6).     
-
-```{r eval=FALSE, include=FALSE}
+```{r}
 PC.scores.3D <- data.frame(Coord.3D$PCscores) %>% 
   mutate(ID = dimnames(Coord.3D$rotated)[[3]])
 
@@ -710,7 +719,7 @@ ggpubr::ggarrange(
                           fig.lab.size = 12, fig.lab.face = "bold")
 ```
 
-```{r eval=FALSE, include=FALSE}
+```{r}
 ### Group PCA ####
 
 # Group PCA 2d data 
