@@ -133,7 +133,7 @@ files:
   - [Attributes data](Report/Data/Attributes%20data.csv): a .csv file
     containing all data of atribute analysis of the sample and their
     categories.  
-  - [2D-Upper-view](Report/Data/Attributes%20data.TPS:) a TPS file
+  - [2D-Upper-view](Report/Data/Attributes%20data.TPS): a TPS file
     containing the 2D coordinates of the perimeter of the upper view of
     each specimen. Each specimen has a landmarks per pixel, and thud
     having different number of landmarks. To resample each specimen into
