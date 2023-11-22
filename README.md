@@ -140,8 +140,8 @@ files:
     having the same number of landmarks, the [21 Muggle 2D
     data](Report/Scripts/21%20Muggle%202D%20data.R): R script is
     employed.  
-  - [2D upper views folder](2D%20upper%20views): contains the
-    screenshots of the upper view of each 3D mesh (technologically
+  - [2D upper views folder](Report/Data/2D%20upper%20views): contains
+    the screenshots of the upper view of each 3D mesh (technologically
     oriented) employed for the positioning of landmarks using the TPS
     series.  
   - [GM csvs](Report/Data/GM%20csvs) folder containing all .csv’s with
