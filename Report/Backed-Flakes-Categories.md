@@ -1330,6 +1330,7 @@ elongation (PC1), varying ratios of thickness and platform morphology
 (PC5) and strong variability of the upper view (PC6).
 
 ``` r
+#### Biplots of 3D data ####
 PC.scores.3D <- data.frame(Coord.3D$PCscores) %>% 
   mutate(ID = dimnames(Coord.3D$rotated)[[3]])
 
@@ -1399,7 +1400,6 @@ ggpubr::ggarrange(
 
 ``` r
 ### Group PCA ####
-
 # Group PCA 2d data 
 PCA.group.2D <- Morpho::groupPCA(
   PC.scores.2D[,c(1:9)],
@@ -1486,261 +1486,131 @@ ggpubr::ggarrange(
 
 ![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
+``` r
+#### Violin and boxplots of PC values ####
+ggpubr::ggarrange(
+  
+  (
+    PC.scores.2D %>% select(ARTIFACTTYPE, PC1, PC2, PC3, PC5) %>% 
+      pivot_longer(
+        PC1:PC5,
+        names_to = "PC",
+        values_to = "Values") %>% 
+      ggplot(aes(ARTIFACTTYPE, Values, fill = ARTIFACTTYPE)) +
+      geom_violin(alpha = 0.4, width = 0.75) +
+      geom_boxplot(alpha = 0.75,  width = 0.25, outlier.size = 0) +
+      facet_grid(~ PC, scales = "free") +
+      geom_jitter(width = 0.15, alpha = 1, size = 0.9, shape = 23, aes(fill = ARTIFACTTYPE)) +
+      coord_flip() +
+      theme_light() +
+      scale_x_discrete(labels = c("Core Edge\nFlake",
+                                  "Core edge with\nlimited back",
+                                  "pseudo-Levallois\nPoint")) +
+      xlab(NULL) +
+      ylab("PC value") +
+      ggsci::scale_fill_lancet() +
+      ggtitle(label = "2D data") +
+      theme(
+        axis.title = element_text(size = 8, color = "black", face = "bold"),
+        strip.text = element_text(color = "black", face = "bold", size = 8),
+        strip.background = element_rect(fill = "white", colour = "black", size = 1),
+        legend.position = "none",
+        axis.text = element_text(color = "black", size = 7),
+        plot.title = element_text(hjust = 0, vjust = 1, size = 9))
+  ),
+  
+  (
+    PC.scores.3D %>% select(ARTIFACTTYPE, PC1, PC3, PC5, PC6) %>% 
+      pivot_longer(
+        PC1:PC6,
+        names_to = "PC",
+        values_to = "Values") %>% 
+      ggplot(aes(ARTIFACTTYPE, Values, fill = ARTIFACTTYPE)) +
+      geom_violin(alpha = 0.4, width = 0.75) +
+      geom_boxplot(alpha = 0.75,  width = 0.25, outlier.size = 0) +
+      facet_grid(~ PC, scales = "free") +
+      geom_jitter(width = 0.15, alpha = 1, size = 0.9, shape = 23, aes(fill = ARTIFACTTYPE)) +
+      coord_flip() +
+      theme_light() +
+      scale_x_discrete(labels = c("Core Edge\nFlake",
+                                  "Core edge with\nlimited back",
+                                  "pseudo-Levallois\nPoint")) +
+      xlab(NULL) +
+      ylab("PC value") +
+      ggsci::scale_fill_lancet() +
+      ggtitle(label = "3D data") +
+      theme(
+        axis.title = element_text(size = 8, color = "black", face = "bold"),
+        strip.text = element_text(color = "black", face = "bold", size = 8),
+        strip.background = element_rect(fill = "white", colour = "black", linewidth = 1),
+        legend.position = "none",
+        axis.text = element_text(color = "black", size = 7),
+        plot.title = element_text(hjust = 0, vjust = 1, size = 9))
+  ),
+  legend = "none",
+  common.legend = TRUE,
+  ncol = 1
+)
+```
+
+    ## Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
+    ## ℹ Please use the `linewidth` argument instead.
+    ## This warning is displayed once every 8 hours.
+    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+    ## generated.
+
+![](Backed-Flakes-Categories_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+
 ## 4. Discussion
 
 Our results show that geometric morphometrics, along with machine
 learning models, can easily differentiate between core edge flakes, core
 edge flakes with a limited back, and pseudo-Levallois points from
 discoidal and recurrent centripetal Levallois reduction sequences. The
-best model trained on the 2D data (random Forest) obtained a good
-general average precision value (0.779), while the best model trained on
-the 3D data (SVM with a polynomial kernel) obtained a high general
-average precision value (0.844). As expected, this indicates that when
-dealing with morphological objects which classification requires several
-views, more precise results will be obtained through the use of 3D data.
-Despite the differences in average precision values and performance
-measures for each of the categories, 2D geometric morphometrics were
-able to capture some of the morphological features which characterize
-the tree categories.
+best model trained on the 2D data (random forest) obtained a good
+general average precision value (0.785), while the best model trained on
+the 3D data (also random forest) obtained a high general average
+precision value (0.828). As expected, this indicates that when dealing
+with morphological objects whose classification requires several views,
+more precise results will be obtained using 3D data. Despite the
+differences in average precision values and performance measures for
+each of the categories, 2D geometric morphometrics were able to capture
+some of the morphological features which characterize the three
+categories. Thus, looking to methods that can facilitate the proper
+comparison between stone tool assemblages, based on corresponding
+classifications, and reducing the margin of error in analyzing the
+similarities between data samples, 2D geometric morphometrics are not
+suitable for generating lithic taxonomies, at least in relation with the
+three technological categories analyzed in this study. Core-edge flakes,
+core-edge flakes with a limited back, and pseudo-Levallois points are
+relevant categories when looking at patterns of core reductions and
+variability within centripetal core knapping methods, whether due to raw
+material constraints or the search for specific tool-types.
 
-Previous research has outlined the advantages of SVM’s when dealing with
-the classification of lithic products ([Bustos-Pérez et al.
-2022](#ref-bustos-perez_combining_2022),
-[2023](#ref-bustos-perez_what_2023)). Because of their features
-(hyperplane fitting, use of margins to find best separation, and use of
-a cost value for each misclassification), SVM’s seem to be well suited
-to deal with the classification of lithic categories and in the present
-study they outperformed other machine learning models. However, the
-random forest was selected as the best option when dealing with 2D data,
-and presented the second best performance metrics in the case of the 3D
-data. Random forest are common in lithic analysis for classification
-tasks ([Archer et al. 2021](#ref-archer_quantifying_2021);
-[González-Molina et al.
-2020](#ref-gonzalez-molina_distinguishing_2020)). The results from model
-performance on the 2D and 3D data indicate that random forests along
-with SVM with polynomial kernel are good options for classification when
-dealing with the variability observed in lithic artifacts.
-
-When considering each technological product individually,
-pseudo-Levallois points stood out as the most clearly differentiable of
-the three categories considered, with performance metrics above 0.9
-whether PC derived from the 2D or 3D data were used. Following
-pseudo-Levallois points, core edge flakes were the most clearly
-identifiable technological products, with a notable sensitivity value.
-The sensitivity value for the detection of core edge flakes were notably
-higher in the case of 3D data (81.86) than the ones obtained from the 2D
-data (76.16). The directionality of the confusion matrixes shows that
-the main drawback reduced the identification of core edge flakes is
-their identification as core edge flakes with a limited back in both
-types of data. Two underlying causes of confusion between core edge
-flakes and core edge flakes with a limited back can be considered:
-first, an increased deviation between the technological and
-morphological axes and, second, an increased angle between the platform
-and backed edge, which results in changing the morphological axis. These
-two factors of confusion can occur at the same time or individually,
-blurring the division between products in cases of similarity. This
-overlap is inherent in the morphological variability and defining
-features of both technological products. However, despite these
-overlapping features, a high degree of separation between both products
-is achieved by the machine learning model.
-
-This difference in the sensitivity values depending on the type of data
-is also observed in the case of core edge flakes with a limited back.
-The sensitivity value of the 3D data (77.11) was notably higher than the
-one obtained from the 2D data (65.17). In the present study core edge
-flakes with a limited back were the category of interest and on which
-down -sampling was applied, thus preventing overfitting. This indicates
-that geometric morphometrics are capturing the technological features
-defining each category and that they are discrete categories with little
-overlap. Thus, their use (and, more specifically, the use of the core
-edge flakes with a limited back as a category) for analysis in lists of
-technological products is justifiable.
-
-The present study included all backed flakes from a series of
-experimental recurrent centripetal cores. As a result, backed artifacts
-that fall within the definition of “core edge flakes with a limited
-back” were the overwhelming majority (n = 93, 66.91%). Consequently, it
-was necessary to use up- and down-sampling techniques to obtain balanced
-datasets ([Ganganwar 2012](#ref-ganganwar_overview_2012); [Kumar and
-Sheshadri 2012](#ref-kumar_classification_2012)). The most up-sampled
-product (pseudo-Levallois) is also the one with the highest values for
-identification metrics irrespective of the type of data (2D or 3D),
-probably as a result of overfitting (the model is classifying repeated
-samples from the training set). This overfitting is noteworthy in the
-case of the 2D data were the high level of sensitivity contrasts with
-the visual analysis of biplots obtained from PCA or group PCA were a
-high level of overlap can be observed. Unbalanced data is common in
-archaeological analysis and sampling approaches to overcome this
-drawback can result in overfitting when machine learning models are
-applied ([Domínguez-Rodrigo and Baquedano
-2018](#ref-dominguez-rodrigo_distinguishing_2018); [McPherron et al.
-2022](#ref-mcpherron_machine_2022)). Providing visual evaluation through
-biplots can help determine the extent of overfitting and the reliability
-of performance metrics from machine learning models.
-
-Given the strict definition adopted to classify a backed artifact as
-either a core edge flake or a pseudo-Levallois point, their
-morphological variability is limited, and the likelihood of their
-overlapping is small. This is logical given their definitions and can be
-observed in the biplots from 3D data of most important PCs for the
-classification of backed products. In the two biplots and the group PCA
-biplot, there is little overlapping of confidence ellipses of core edge
-flakes and pseudo-Levallois flakes. Moreover, the confidence ellipsis of
-core edge flakes with a limited back does seem to be intermediate
-between those of other two categories. Thus, although up-sampling
-imposes some limitations, it does not seem to affect the overall results
-regarding backed flake classification. Core edge flakes with a limited
-back were not up-sampled, thus avoiding the risk of overfitting their
-classification (having an observation on the training set repeated in
-the test set). The results show a very limited misidentification of core
-edge flakes as pseudo-Levallois points and their moderate confusion with
-core edge flakes. This indicates that core edge flakes with a limited
-back are being correctly identified despite the probable overfitting in
-the identification of core edge flakes and pseudo-Levallois points.
-
-The present study has compared the use of 2D and 3D geometric
-morphometrics. 2D geometric morphometrics have the advantage of being
-less time consuming, requiring less equipment, and being barely affected
-by camera positioning ([Cardini and Chiapelli
-2020](#ref-cardini_how_2020); [Macdonald et al.
-2020](#ref-macdonald_evaluating_2020)). Our research showed that the 2D
-dataset was not sufficiently useful to discriminate between the lithic
-backed categories and, therefore, not reasonably informative, at least
-for the three technological categories analyzed. Some authors considered
-2D geometric a useful tool for lithic analysis when performing lithic
-taxonomic or comparative studies. Previous studies using 2D geometric
-morphometrics were aimed at analyzing formal retouched tools (large
-tanged points; and Clovis, Folsom, and Plainview projectile points;
-Buchanan and Collard ([2010](#ref-buchanan_geometric_2010));Serwatka and
-Riede ([2016](#ref-serwatka_2d_2016))) testing the relationship between
-shape and function in informal flakes ([Borel et al.
-2017](#ref-borel_stone_2017)), and compare similarity of bone and stone
-Acheulean bifaces \[Costa ([2010](#ref-costa_geometric_2010)). The cited
-2D studies were not comparing between 2D and 3D datasets when analyzing
-the same sample, while the present study is aimed at testing
-methodological aspects to improve lithic taxonomic analysis and refine
-stone tool technological description and interpretation. Furthermore,
-the cited papers were mainly quantitatively analyzing morphological
-aspects. It seems reasonable that, when dealing with bidimensional
-surfaces, 2D geometric morphometrics should be valuable. The present
-research has addressed a volumetric problem. Thus, the better
-performance of 3D geometric morphometrics falls within what was
-expected. In the same line, previous works have outlined how, when
-working with volumetric structures, the use of 2D geometric
-morphometrics can result in a lower resolution of the analysis ([Buser
-et al. 2018](#ref-buser_2d_2018); [Cardini
-2014](#ref-cardini_missing_2014)). The present results indicate the
-preferable application of 3D techniques for the identification of
-technological backed categories related to core reduction strategies,
-suggesting that more studies are needed to test the best approach when
-dealing with different research questions and technological categories,
-including cores, retouched tool-types, unretouched items, and shaped
-elements.
-
-Sullivan and Rozen ([1985](#ref-sullivan_debitage_1985)) previously
-called attention to the use of technological categories of flakes. Their
-critique focuses on the lack of consistency in defining and using
-technological categories of flakes, along with a lack of consistency
-regarding the attributes employed to define them. Although their
-critique concerns flakes from bifacial retouch, it represents an
-important word of caution. The present study has shown that the three
-categories are well defined in terms of morphological and technological
-features (see also [Faivre et al. 2017](#ref-faivre_late_2017)). These
-morphological and technological features can be captured by geometric
-morphometrics and employed for accurate classifications. Thus, little
-ambiguity exists in the categories employed to classify backed flakes,
-which are connected to two of the main Middle Paleolithic flaking
-strategies (discoidal and recurrent centripetal Levallois). These
-morphological and technological features can be captured by geometric
-morphometrics and employed for accurate classifications. Thus, little
-ambiguity exists in the categories employed to classify backed flakes,
-which are connected to two of the main Middle Paleolithic flaking
-strategies (discoidal and recurrent centripetal Levallois).
-
-Meignen ([1993](#ref-meignen_les_1993);
-[1996](#ref-meignen_persistance_1996)) first proposed the category “core
-edge flake with a limited back” because better individualized and
-characterized the predominant centripetal debitage present at the site
-of Les Canalettes (Aveyron, France). The term has, however, seen limited
-use since, mainly employed when characterizing lithic assemblages
-produced via recurrent centripetal methods ([Bernard-Guelle
-2004](#ref-bernard-guelle_site_2004); [Bourguignon and Meignen
-2010](#ref-bourguignon_ioton_2010); [Duran
-2005](#ref-duran_lindustrie_2005); [Duran and Abelanet
-2004](#ref-duran_mousterien_2004); [Duran and Soler
-2006](#ref-duran_variabilite_2006)). The use of the “core edge flake
-with a limited back” category is usually overlooked (or merged into the
-core edge flake category) when lists of technological products are
-employed for the analysis of Middle Paleolithic lithic assemblages
-([Debénath and Dibble 1994](#ref-debenath_handbook_1994); [Geneste
-1988](#ref-rigaud_les_1988); [Shea 2013b](#ref-shea_middle_2013)).
-Although their merger into the core edge flake category is perfectly
-valid for analyzing lithic assemblages, differentiating between classic
-core edge flakes and core edge flakes with a limited back in lists of
-technological products can increase the resolution of and enrich the
-analysis of lithic assemblages. This, of course, results in a better
-understanding of the technical choices and constraints faced by past
-groups and may allow for better understanding of the relationships
-between technology and raw material, as well as volumetric core
-management, and could contribute to improving comparisons between
-assemblages to avoid simple and overly generic technological definitions
-and to avoid merging what are clearly different reduction concepts. Such
-generic definitions are often used to discuss human behaviors and
-cultural traditions and even human migrations ([Blinkhorn et al.
-2021](#ref-blinkhorn_directional_2021)), but they remain difficult to
-interpret ([Romagnoli et al. 2022](#ref-romagnoli_neanderthal_2022)).
-ThThey do not always reflect the diversity and specificity of the
-technological choices and constraints past human groups faced. A more
-in-depth analysis of variability in the techno-morphological
-characteristics of stone artifacts, in association with other
-approaches, such as refitting and taphonomic analysis Romagnoli and
-Vaquero ([2019](#ref-romagnoli_challenges_2019)), could also allow
-archaeologists to better understand the processes of assemblage
-formation.
-
-Previous researchers have pointed out the morphological and
-technological differences between classic core edge flakes and core edge
-flakes with a limited back. Beyries and Boëda
-([1983](#ref-beyries_etude_1983)) originally defined classic core edge
-flakes as having very similar morphological and percussion axes. Meignen
-([1993](#ref-meignen_les_1993); [1996](#ref-meignen_persistance_1996))
-used the “core edge flake with a limited back” category to classify core
-edge flakes in which the morphological and percussion axes were not
-aligned. Additionally, most of the examples presented ([Lilliane Meignen
-1996](#ref-meignen_persistance_1996)) had the flake back offset from the
-percussion axis. Slimak ([2003](#ref-peresani_les_2003)) also points out
-that, as a morphological feature, the flake back of core edge flakes
-with a limited back will be offset in regards the axis of percussion.
-These features of alignment between the flake back and percussion axis
-are captured by PC1 and PC3, with pseudo-Levallois and core edge flakes
-with a limited back having similar values, indicative of an offset
-backed edge and lower elongation.
-
-Slimak ([2003](#ref-peresani_les_2003)) also indicates that classic core
-edge flakes will be elongated as a result of percussion running parallel
-to the core edge. Following Slimak ([2003](#ref-peresani_les_2003)),
-core edge flakes with a limited back will have length/width ratios close
-to 1 as a result of percussion encountering ridges perpendicular to its
-direction. Although in the 3D data PC1 is the second most important
-variable for discrimination between backed products in the present
-study, it is clearly capturing the feature of elongation for the
-differentiation of classic core edge flakes. Classical core edge flakes
-have, on average, negative PC1 values (both on the 2D and 3D data),
-which are indicative of elongation. On the other hand, core edge flakes
-with a limited back and pseudo-Levallois points are characterized by, on
-average, positive PC1 values, which are indicative of their having
-similar values for width and length or even being wider than they are
-long.
-
-Ambiguity and overlap between some technological categories of flakes
-are common. Combining quantitative methods and techniques has showed to
-be a useful approach to distinguish between backed products extracted
-during Discoid and recurrent centripetal Levallois knapping strategies.
-The present research shows that geometric morphometrics along with
-machine learning models is an effective way also to test for the
-discreteness of categories, the possible directionality of confusions
-between categories and to quantify the features which best characterize
-and define each category.
+Several studies have employed machine learning models based on attribute
+analysis (Bustos-Pérez et al. 2023; González-Molina et al. 2020;
+Presnyakova et al. 2015) or geometric morphometrics (Archer et al. 2021;
+Bustos-Pérez et al. 2022). SVM with polynomial kernel and random forest
+stand out as the most common or accurate models when performing
+classificatory tasks among lithic artifacts. Previous studies have
+outlined the advantages of SVM’s when dealing with the classification of
+lithic products (Bustos-Pérez et al. 2022, 2023). Because of their
+features (hyperplane fitting, use of margins to find best separation,
+and use of a cost value for each misclassification) SVM’s seem well
+suited for the classification of lithic artifacts. In the present study,
+for the 3D data SVM with polynomial kernel outperformed the rest of the
+machine learning models. However, when the number of variables employed
+as predictors was restricted, its general accuracy was reduced to a
+value of 0.78, making the random forest the model with the best average
+accuracy. Random forest was also selected as the best option when
+dealing with 2D data independent of the number of variables employed.
+Random forest are common in lithic analysis for classification tasks
+(Archer et al. 2021; González-Molina et al. 2020). The results from
+model performance on the 2D and 3D data indicate that random forests
+along with SVM with polynomial kernel are good options for
+classification when dealing with the variability observed in lithic
+artifacts, although the number of variables introduced as predictors
+should be taken into account.
 
 ## 5. Conclusions
 
@@ -1768,9 +1638,17 @@ confusions, and the features characterizing these categories.
 
 ## 6. Acknowledgments
 
-This research has been supported by the project SI1/PJI/2019-00488
-funded by Comunidad Autónoma de Madrid and Universidad Autónoma de
-Madrid.
+The authors would like to thank the editor and the three anonymous
+reviewers for their comments and suggestions. This research has been
+supported by the project SI1/PJI/2019-00488 funded by Comunidad Autónoma
+de Madrid and Universidad Autónoma de Madrid. FR research studies are
+also supported by the project PID2022-138590NB-C42 funded by the Spanish
+Ministry of Science and Innovation. GBP is supported by the Program for
+the Requalification of the University System Margarita Salas
+(CA1/RSUE/2021-00743), financed through the Spanish “Recovery,
+Transformation and Resilience Plan” and managed from the Ministry of
+Universities (Ministerio de Universidades) and the Autonomous University
+of Madrid (Universidad Autónoma de Madrid).
 
 ## 7. References
 
@@ -1805,15 +1683,6 @@ et al. (2018). A geometric morphometric relationship predicts stone
 flake shape and size variability. *Archaeological and Anthropological
 Sciences*, *10*(8), 1991–2003.
 <https://doi.org/10.1007/s12520-017-0517-2>
-
-</div>
-
-<div id="ref-bernard-guelle_site_2004" class="csl-entry">
-
-Bernard-Guelle, S. (2004). Un site moustérien dans le Jura suisse: La
-grotte de Cotencher (Rochefort, Neuchâtel) revisitée. *Bulletin de la
-Société préhistorique française*, *101*(4), 741–769.
-https://doi.org/<https://doi.org/10.3406/bspf.2004.13066>
 
 </div>
 
@@ -1899,15 +1768,6 @@ Bordeaux: CNRS Editions.
 
 </div>
 
-<div id="ref-borel_stone_2017" class="csl-entry">
-
-Borel, A., Cornette, R., & Baylac, M. (2017). Stone Tool Forms and
-Functions: A Morphometric Analysis of Modern Humans’ Stone Tools From
-Song Terus Cave (Java, Indonesia): Stone tool forms and functions.
-*Archaeometry*, *59*(3), 455–471. <https://doi.org/10.1111/arcm.12264>
-
-</div>
-
 <div id="ref-bourguignon_analyse_1992" class="csl-entry">
 
 Bourguignon, L. (1992). Analyse du processus opératoire des coups de
@@ -1917,38 +1777,10 @@ Eyzies-de-Tayac, Dordogne). *Paléo*, *4*(1), 69–89.
 
 </div>
 
-<div id="ref-bourguignon_ioton_2010" class="csl-entry">
-
-Bourguignon, L., & Meignen, L. (2010). Ioton (Gard) 30 ans après :
-Nouvelles considérations technologiques et techno-économiques sur
-l’industrie moustérienne. *Bulletin de la Société préhistorique
-française*, *107*(3), 433–451. <https://doi.org/10.3406/bspf.2010.13944>
-
-</div>
-
 <div id="ref-breiman_random_2001" class="csl-entry">
 
 Breiman, L. (2001). Random Forests. *Machine Learning*, *45*(1), 5–32.
 <https://doi.org/10.1023/A:1010933404324>
-
-</div>
-
-<div id="ref-buchanan_geometric_2010" class="csl-entry">
-
-Buchanan, B., & Collard, M. (2010). A geometric morphometrics-based
-assessment of blade shape differences among Paleoindian projectile point
-types from western North America. *Journal of Archaeological Science*,
-*37*(2), 350–359. <https://doi.org/10.1016/j.jas.2009.09.047>
-
-</div>
-
-<div id="ref-buser_2d_2018" class="csl-entry">
-
-Buser, T. J., Sidlauskas, B. L., & Summers, A. P. (2018). 2D or Not 2D?
-Testing the Utility of 2D Vs. 3D Landmark Data in Geometric
-Morphometrics of the Sculpin Subfamily Oligocottinae (Pisces;
-Cottoidea). *The Anatomical Record*, *301*(5), 806–818.
-<https://doi.org/10.1002/ar.23752>
 
 </div>
 
@@ -1968,14 +1800,6 @@ Caracterización geoquímica de rocas sedimentarias formadas por
 silicificación como fuentes de suministro de utensilios líticos
 (Mioceno, cuenca de Madrid). *Revista Mexicana de Ciencias Geológicas*,
 *29*(1), 233–247.
-
-</div>
-
-<div id="ref-bustos-perez_what_2023" class="csl-entry">
-
-Bustos-Pérez, G., Baena, J., & Vaquero, M. (2023). What lies in between:
-Levallois, discoid and intermediate methods. *Journal of Lithic
-Studies*, *10*.
 
 </div>
 
@@ -2006,23 +1830,6 @@ stone tools for survival. *Bulletin of Primitive Technology*, *12*,
 
 </div>
 
-<div id="ref-cardini_missing_2014" class="csl-entry">
-
-Cardini, A. (2014). Missing the third dimension in geometric
-morphometrics: How to assess if 2D images really are a good proxy for 3D
-structures? *Hystrix, the Italian Journal of Mammalogy*, *25*(2).
-<https://doi.org/10.4404/hystrix-25.2-10993>
-
-</div>
-
-<div id="ref-cardini_how_2020" class="csl-entry">
-
-Cardini, A., & Chiapelli, M. (2020). How flat can a horse be? Exploring
-2D approximations of 3D crania in equids. *Zoology*, *139*, 125746.
-<https://doi.org/10.1016/j.zool.2020.125746>
-
-</div>
-
 <div id="ref-cignoni_meshlab_2008" class="csl-entry">
 
 Cignoni, P., Callieri, M., Corsini, M., Dellepiane, M., Ganovelli, F., &
@@ -2035,16 +1842,6 @@ Ranzuglia, G. (2008). MeshLab: An Open-Source Mesh Processing Tool.
 
 Cortes, C., & Vapnik, V. (1995). Support-vector networks. *Machine
 learning*, *20*(3), 273–297.
-
-</div>
-
-<div id="ref-costa_geometric_2010" class="csl-entry">
-
-Costa, A. G. (2010). A geometric morphometric assessment of plan shape
-in bone and stone Acheulean bifaces from the Middle Pleistocene site of
-Castel di Guido, Latium, Italy. In S. J. Lycett & P. R. Chauhan (Eds.),
-*New Perspectives on Old Stones: Analytical Approaches to Paleolithic
-Technologies* (pp. 23–41). New York: Springer.
 
 </div>
 
@@ -2072,13 +1869,6 @@ Philosophy of Biological and Biomedical Sciences*, *35*(4), 613–626.
 
 </div>
 
-<div id="ref-debenath_handbook_1994" class="csl-entry">
-
-Debénath, A., & Dibble, H. L. (1994). *Handbook of Paleolithic Typology*
-(Vol. 1). University of Pennsylvania Press.
-
-</div>
-
 <div id="ref-dibble_variability_1995" class="csl-entry">
 
 Delagnes, A. (1995). Variability within Uniformity: Three Levels of
@@ -2095,15 +1885,6 @@ Systems During the Middle Paleolithic in France. Are There Any
 Chronological Trends? In E. Hovers, S. L. Kuhn, & M. Jochim (Eds.),
 *Transitions Before the Transition Evolution and Stability in the Middle
 Paleolithic and Middle Stone Age* (pp. 85–107). Springer.
-
-</div>
-
-<div id="ref-dominguez-rodrigo_distinguishing_2018" class="csl-entry">
-
-Domínguez-Rodrigo, M., & Baquedano, E. (2018). Distinguishing butchery
-cut marks from crocodile bite marks through machine learning methods.
-*Scientific Reports*, *8*(1), 5786.
-<https://doi.org/10.1038/s41598-018-24071-1>
 
 </div>
 
@@ -2128,16 +1909,6 @@ Duran, J.-P., & Soler, N. (2006). Variabilité des modalités de débitage
 et des productions lithiques dans les industries moustériennes de la
 grotte de l’Arbreda, secteur alpha (Serinyà, Espagne). *Bulletin de la
 Société Préhistorique Française*, *103*(2), 241–262.
-
-</div>
-
-<div id="ref-faivre_late_2017" class="csl-entry">
-
-Faivre, G.-P., Gravina, B., Bourguignon, L., Discamps, E., & Turq, A.
-(2017). Late Middle Palaeolithic lithic technocomplexes (MIS 5-3) in the
-northeastern Aquitaine Basin: Advances and challenges. *Quaternary
-International*, *433*, 116–131.
-<https://doi.org/10.1016/j.quaint.2016.02.060>
 
 </div>
 
@@ -2179,14 +1950,6 @@ Statistics & Data Analysis*, *38*(4), 367–378.
 
 </div>
 
-<div id="ref-ganganwar_overview_2012" class="csl-entry">
-
-Ganganwar, V. (2012). An overview of classification algorithms for
-imbalanced datasets. *International Journal of Emerging Technology and
-Advanced Engineering*, *2*(4), 42–47.
-
-</div>
-
 <div id="ref-rigaud_les_1988" class="csl-entry">
 
 Geneste, J.-M. (1988). Les Industries De La Grotte Vaufrey: Technologie
@@ -2194,15 +1957,6 @@ du debitage, economie et circulation de la matiere premiere lithique. In
 J.-P. Rigaud (Ed.), *La grotte Vaufrey à Cenac et Saint-Julien
 (Dordogne) : Paléoenvironnements, chronologie et activités humaines*
 (pp. 441–517). Paris: Société préhistorique française.
-
-</div>
-
-<div id="ref-gonzalez-molina_distinguishing_2020" class="csl-entry">
-
-González-Molina, I., Jiménez-García, B., Maíllo-Fernández, J.-M.,
-Baquedano, E., & Domínguez-Rodrigo, M. (2020). Distinguishing Discoid
-and Centripetal Levallois methods through machine learning. *PLOS ONE*,
-*15*(12), e0244288. <https://doi.org/10.1371/journal.pone.0244288>
 
 </div>
 
@@ -2277,14 +2031,6 @@ Anthropology*, *54*(S8), S255–S268. <https://doi.org/10.1086/673529>
 
 </div>
 
-<div id="ref-kumar_classification_2012" class="csl-entry">
-
-Kumar, M., & Sheshadri, H. S. (2012). On the classification of
-imbalanced datasets. *International Journal of Computer Applications*,
-*44*(8), 1–7.
-
-</div>
-
 <div id="ref-lantz_machine_2019" class="csl-entry">
 
 Lantz, B. (2019). *Machine learning with R: Expert techniques for
@@ -2299,15 +2045,6 @@ and Discoidal): Continuity or Discontinuity? In H. L. Dibble & O.
 Bar-Yosef (Eds.), *The definition and interpretation of Levallois
 Technology* (Vol. 23, pp. 249–256). Madison, Wisconsin: Prehistory
 Press.
-
-</div>
-
-<div id="ref-macdonald_evaluating_2020" class="csl-entry">
-
-Macdonald, D. A., Royal, K., & Buchanan, B. (2020). Evaluating the
-effects of parallax in archaeological geometric morphometric analyses.
-*Archaeological and Anthropological Sciences*, *12*(7), 149.
-<https://doi.org/10.1007/s12520-020-01111-4>
 
 </div>
 
@@ -2430,40 +2167,11 @@ Academic Press.
 
 </div>
 
-<div id="ref-romagnoli_time_2018" class="csl-entry">
-
-Romagnoli, F., Nishiaki, Y., Rivals, F., & Vaquero, M. (2018). Time
-uncertainty, site formation processes, and human behaviours: New
-insights on old issues in High-Resolution Archaeology. *Quaternary
-International*, *474*, 99–102.
-<https://doi.org/10.1016/j.quaint.2018.04.033>
-
-</div>
-
-<div id="ref-romagnoli_challenges_2019" class="csl-entry">
-
-Romagnoli, F., & Vaquero, M. (2019). The challenges of applying
-refitting analysis in the Palaeolithic archaeology of the twenty-first
-century: An actualised overview and future perspectives. *Archaeological
-and Anthropological Sciences*, *11*(9), 4387–4396.
-<https://doi.org/10.1007/s12520-019-00888-3>
-
-</div>
-
 <div id="ref-schlager_morpho_2017" class="csl-entry">
 
 Schlager, S. (2017). Morpho and Rvcg–Shape Analysis in R: R-Packages for
 geometric morphometrics, shape analysis and surface manipulations. In
 *Statistical shape and deformation analysis* (pp. 217–256). Elsevier.
-
-</div>
-
-<div id="ref-serwatka_2d_2016" class="csl-entry">
-
-Serwatka, K., & Riede, F. (2016). 2D geometric morphometric analysis
-casts doubt on the validity of large tanged points as cultural markers
-in the European Final Palaeolithic. *Journal of Archaeological Science:
-Reports*, *9*, 150–159. <https://doi.org/10.1016/j.jasrep.2016.07.018>
 
 </div>
 
@@ -2488,14 +2196,6 @@ Cambridge University Press.
 Slimak, L. (2003). Les Debitages discoïdes mousteriens: Evaluation d’un
 concept technologique. In M. Peresani (Ed.), *Discoid Lithic Technology.
 Advances and Implications* (Vol. 1120, pp. 33–65). Oxford: Archaeopress.
-
-</div>
-
-<div id="ref-sullivan_debitage_1985" class="csl-entry">
-
-Sullivan, A. P., & Rozen, K. C. (1985). Debitage Analysis and
-Archaeological Interpretation. *American Antiquity*, *50*(4), 755–779.
-<https://doi.org/10.2307/280165>
 
 </div>
 
